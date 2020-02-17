@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace LuckyNumbers.API.Entities
 {
@@ -11,5 +12,7 @@ namespace LuckyNumbers.API.Entities
         public string email { get; set; }
         public DateTime lastLogin { get; set; }
         public DateTime created { get; set; }
+
+        public ICollection<HistoryGameForLotto> lottoHistoryGames { get; set; }
     }
 }
