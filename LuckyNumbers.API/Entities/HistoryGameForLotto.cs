@@ -1,7 +1,10 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace LuckyNumbers.API.Entities
 {
     public class HistoryGameForLotto
     {
+        [Key]
         public int historyLottoId { get; set; }
         public string dateGame { get; set; }
         public int betsSended { get; set; }
@@ -12,5 +15,6 @@ namespace LuckyNumbers.API.Entities
         public int experience { get; set; }
         public int result { get; set; }
         public User user { get; set; }
+        public int userId { get; set; }
     }
 }

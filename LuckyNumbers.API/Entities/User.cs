@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace LuckyNumbers.API.Entities
 {
     public class User
     {
+        [Key]
         public int userId { get; set; }
         public string username { get; set; }
         public byte[] passwordHash { get; set; }
@@ -14,5 +16,8 @@ namespace LuckyNumbers.API.Entities
         public DateTime created { get; set; }
 
         public ICollection<HistoryGameForLotto> lottoHistoryGames { get; set; }
+        public ICollection<UserLottoBets> userlottoBets { get; set; }
+        public LottoGame lottoGame { get; set; }
+        public UserExperience userExperience { get; set; }
     }
 }

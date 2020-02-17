@@ -27,7 +27,10 @@ namespace LuckyNumbers.API
                 x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();
             services.AddCors();
+
+            services.AddTransient<Seed>();
             services.AddScoped<IAuthRepository, AuthRepository>();
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                         .AddJwtBearer(options => {
                             options.TokenValidationParameters = new TokenValidationParameters {
@@ -41,12 +44,14 @@ namespace LuckyNumbers.API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, Seed seeder)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            seeder.seedUsers();
 
             app.UseRouting();
 
