@@ -1,4 +1,3 @@
-using System;
 using System.Text;
 using System.Threading.Tasks;
 using LuckyNumbers.API.Entities;
@@ -15,7 +14,7 @@ namespace LuckyNumbers.API.Data
             this.context = context;
         }
 
-        public async Task<User> Login(string username, string password)
+        public async Task<User> login(string username, string password)
         {
             var user = await context.users.FirstOrDefaultAsync(x => x.username == username);
 
@@ -31,7 +30,7 @@ namespace LuckyNumbers.API.Data
             return user;
         }
 
-        public async Task<User> Register(User user, string password)
+        public async Task<User> register(User user, string password)
         {
             byte[] passwordHash, passwordSalt;
             createPasswordHashSalt(password, out passwordHash, out passwordSalt);
