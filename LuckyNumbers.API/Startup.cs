@@ -30,6 +30,8 @@ namespace LuckyNumbers.API
 
             services.AddTransient<Seed>();
             services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IGenericRepository, GenericRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                         .AddJwtBearer(options => {
