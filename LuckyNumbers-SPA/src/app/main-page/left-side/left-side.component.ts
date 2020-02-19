@@ -12,4 +12,9 @@ export class LeftSideComponent implements OnInit {
   ngOnInit() {
   }
 
+  loggedIn() {
+    const token = localStorage.getItem('token');
+    return !!token;
+  }
+
 }

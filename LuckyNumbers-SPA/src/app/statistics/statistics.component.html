@@ -1,0 +1,84 @@
+<div class="cnt-center">
+
+  <style>
+      .stats_table {
+          counter-reset: tableCount;
+      }
+      .position:before {
+          content: counter(tableCount);
+          counter-increment: tableCount;
+      }
+      .color:nth-of-type(odd) {
+          background-color:#f1e0c6;
+      }
+      .color:nth-of-type(even){
+          background-color:#d4c0a1;
+      }
+  </style>
+  
+      <div class="content-top">
+          <div class="title">Statystyki</div>
+      </div>
+  
+      <div class="content-bg">
+          <div class="content-txt">
+  
+              <form>
+                Sortuj wedlug:
+                      <select style="margin-bottom: 5px" name="by">
+                          <option value="ym poziomem">Poziom</option>
+                          <option value="a iloscia gier">Ilosc gier</option>
+                          <option value="a iloscia trojek">Ilosc trojek</option>
+                          <option value="a iloscia czworek">Ilosc czworek</option>
+                          <option value="a iloscia piatek">Ilosc piatek</option>
+                          <option value="a iloscia szostek">Ilosc szostek</option>
+                      </select>
+                      <button class="btn btn-success">Wyświetl</button>
+              </form>
+  
+              <table class="stats_table" width="100%" cellspacing="1" cellpadding="4" border="0">
+  
+                  <tbody>
+  
+                  <tr bgcolor="#505050">
+                      <td colspan="9" style="font-weight: bold; color: white">
+                          <b> Gracze z najwiekszym poziomem </b>
+                      </td>
+                  </tr>
+  
+                  <tr bgcolor="#d4c0a1">
+                      <td class="whites" width="30px">#</td>
+                      <td width="100px" class="whites" align="center">Name</td>
+                      <td width="60px" class="whites" align="center">Ilosc gier</td>
+                      <td width="50px" class="whites" align="center">Ilosc 3</td>
+                      <td width="50px" class="whites" align="center">Ilosc 4</td>
+                      <td width="50px" class="whites" align="center">Ilosc 5</td>
+                      <td width="50px" class="whites" align="center">Ilosc 6</td>
+                      <td width="50px" class="whites" align="center">Lvl</td>
+                      <td width="60px" class="whites" align="center">Exp</td>
+                  </tr>
+  
+                  <tr class="color">
+  
+                      <td class="position"></td>
+                      <td align="center"> Player1 </td>
+  
+                      <td align="center"> 1212 </td>
+  
+                      <td align="center"> 34 </td>
+                      <td align="center"> 2 </td>
+                      <td align="center"> 0 </td>
+                      <td align="center"> 0 </td>
+                      <td align="center"> 41 </td>
+                      <td align="center"> 2315 </td>
+                  </tr>
+  
+                  </tbody>
+              </table>
+  
+          </div>
+      </div>
+  
+      <div class="content-bot"></div>
+  
+  </div>
