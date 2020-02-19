@@ -58,19 +58,17 @@
                       <td width="60px" class="whites" align="center">Exp</td>
                   </tr>
   
-                  <tr class="color">
+                  <tr class="color" *ngFor="let user of users">
   
                       <td class="position"></td>
-                      <td align="center"> Player1 </td>
-  
-                      <td align="center"> 1212 </td>
-  
-                      <td align="center"> 34 </td>
-                      <td align="center"> 2 </td>
-                      <td align="center"> 0 </td>
-                      <td align="center"> 0 </td>
-                      <td align="center"> 41 </td>
-                      <td align="center"> 2315 </td>
+                      <td align="center"> {{user.username}} </td>
+                      <td align="center"> {{user.betsSended}} </td>
+                      <td align="center"> {{user.amountOfThree}} </td>
+                      <td align="center"> {{user.amountOfFour}} </td>
+                      <td align="center"> {{user.amountOfFive}} </td>
+                      <td align="center"> {{user.amountOfSix}} </td>
+                      <td align="center"> {{user.level}} </td>
+                      <td align="center"> {{user.experience}} </td>
                   </tr>
   
                   </tbody>

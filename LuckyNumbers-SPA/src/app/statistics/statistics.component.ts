@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../_model/user';
+import { UserService } from '../_service/user.service';
 
 @Component({
   selector: 'app-statistics',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StatisticsComponent implements OnInit {
 
-  constructor() { }
+  users: User[];
+
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
+    this.loadUsers();
+  }
+
+  loadUsers() {
+    this.userService.getUsers().subscribe( (users: User[] ) => {
+      this.users = users;
+    });
   }
 
 }
