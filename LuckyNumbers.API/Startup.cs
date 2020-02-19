@@ -1,4 +1,5 @@
 using System.Text;
+using AutoMapper;
 using LuckyNumbers.API.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -26,8 +27,8 @@ namespace LuckyNumbers.API
         {
             services.AddDbContext<DataContext>(
                 x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
-            // services.AddControllers();
             services.AddCors();
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddTransient<Seed>();
             services.AddScoped<IAuthRepository, AuthRepository>();

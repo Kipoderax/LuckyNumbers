@@ -1,3 +1,5 @@
+using LuckyNumbers.API.Entities;
+
 namespace LuckyNumbers.API.Dtos
 {
     public class UserStatisticsDto
@@ -10,5 +12,6 @@ namespace LuckyNumbers.API.Dtos
         public int amountOfSix { get; set; }
         public int level { get; set; }
         public int experience { get; set; }
+
     }
 }
