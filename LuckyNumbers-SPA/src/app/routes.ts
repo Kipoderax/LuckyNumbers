@@ -4,12 +4,13 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { UserAccountComponent } from './user-account/user-account.component';
+import { AuthGuard } from './_guards/auth.guard';
 
 export const appRoutes: Routes = [
     { path: 'home', component: MainPageComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'statystyki', component: StatisticsComponent },
-    { path: 'moje-konto', component: UserAccountComponent },
+    { path: 'moje-konto', component: UserAccountComponent, canActivate: [AuthGuard] },
     { path: '**', redirectTo: 'home', pathMatch: 'full' },
 ];

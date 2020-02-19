@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_service/auth.service';
+import { Router } from '@angular/router';
 
 declare let alertify: any;
 
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   model: any = {};
 
-  constructor(private authService: AuthService) { }
+  constructor(public authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -22,6 +23,8 @@ export class LoginComponent implements OnInit {
       alertify.success('Zalogowano');
     }, error => {
       alertify.error('Zły login lub hasło');
+    }, () => {
+      this.router.navigate(['/moje-konto']);
     });
   }
 
@@ -29,9 +32,10 @@ export class LoginComponent implements OnInit {
     return this.authService.loggedIn();
   }
 
-  logout() {
-    localStorage.removeItem('token');
-    alertify.message('Wylogowano');
-  }
+  // logout() {
+  //   localStorage.removeItem('token');
+  //   alertify.message('Wylogowano');
+  //   this.router.navigate(['']);
+  // }
 
 }

@@ -2,16 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { map } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
+declare let alertify: any;
 
 @Injectable()
 export class AuthService {
 
-    baseUrl = 'http://localhost:5000/api/' + 'auth/';
+    baseUrl = 'http://localhost:5000/api/auth/';
     jwtHelper = new JwtHelperService();
     decodedToken: any;
 
-constructor(private http: HttpClient) { }
+constructor(private http: HttpClient, private router: Router) { }
 
     login(model: any) {
         return this.http.post(this.baseUrl + 'login', model)
@@ -33,5 +34,11 @@ constructor(private http: HttpClient) { }
         const token = localStorage.getItem('token');
         return !this.jwtHelper.isTokenExpired(token);
     }
+
+    logout() {
+        localStorage.removeItem('token');
+        alertify.message('Wylogowano');
+        this.router.navigate(['']);
+      }
 
 }

@@ -14,6 +14,7 @@ import { RegisterComponent } from './register/register.component';
 import { appRoutes } from './routes';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { UserAccountComponent } from './user-account/user-account.component';
+import { AuthGuard } from './_guards/auth.guard';
 
 @NgModule({
    declarations: [
@@ -33,7 +34,8 @@ import { UserAccountComponent } from './user-account/user-account.component';
       RouterModule.forRoot(appRoutes)
    ],
    providers: [
-      AuthService
+      AuthService,
+      AuthGuard
    ],
    bootstrap: [
       AppComponent

@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/_service/auth.service';
 })
 export class LeftSideComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(public authService: AuthService) { }
 
   ngOnInit() {
   }
