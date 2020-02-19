@@ -13,6 +13,7 @@ import { AuthService } from './_service/auth.service';
 import { RegisterComponent } from './register/register.component';
 import { appRoutes } from './routes';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { UserAccountComponent } from './user-account/user-account.component';
 
 @NgModule({
    declarations: [
@@ -22,7 +23,8 @@ import { StatisticsComponent } from './statistics/statistics.component';
       RightSideComponent,
       LoginComponent,
       RegisterComponent,
-      StatisticsComponent
+      StatisticsComponent,
+      UserAccountComponent
    ],
    imports: [
       BrowserModule,

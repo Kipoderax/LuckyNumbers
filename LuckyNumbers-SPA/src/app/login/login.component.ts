@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_service/auth.service';
 
+declare let alertify: any;
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,20 +19,19 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.authService.login(this.model).subscribe(next => {
-      console.log('Zalogowano');
+      alertify.success('Zalogowano');
     }, error => {
-      console.log('Zły login lub hasło');
+      alertify.error('Zły login lub hasło');
     });
   }
 
   loggedIn() {
-    const token = localStorage.getItem('token');
-    return !!token;
+    return this.authService.loggedIn();
   }
 
   logout() {
     localStorage.removeItem('token');
-    console.log('Wylogowano');
+    alertify.message('Wylogowano');
   }
 
 }

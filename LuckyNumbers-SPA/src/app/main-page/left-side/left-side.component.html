@@ -21,9 +21,9 @@
         </div>
         <div class="menu-cnt">
             <ul>
-                <li *ngIf="!loggedIn()" routerLinkActive="active"><a [routerLink]="['/login']">Logowanie</a></li>
+                <li *ngIf="!authService.loggedIn()" routerLinkActive="active"><a [routerLink]="['/login']">Logowanie</a></li>
                 <li routerLinkActive="active"><a [routerLink]="['/register']">Tworzenie konta</a></li>
-                <li *ngIf="loggedIn()"><a href="#">Moje konto</a></li>
+                <li *ngIf="authService.loggedIn()" routerLinkActive="active"><a [routerLink]="['/moje-konto']">Moje konto</a></li>
                 <li class="last"><a href="#">Utracone konto?</a></li>
             </ul>
         </div>

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../_service/auth.service';
+
+declare let alertify: any;
 
 @Component({
   selector: 'app-register',
@@ -9,13 +12,17 @@ export class RegisterComponent implements OnInit {
 
   model: any = {};
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }
 
   register() {
-    console.log(this.model);
+    this.authService.register(this.model).subscribe(() => {
+      alertify.success('Konto zostało utworzone');
+    }, error => {
+      alertify.error('Rejestracja nie powiodła się');
+    });
   }
 
 }

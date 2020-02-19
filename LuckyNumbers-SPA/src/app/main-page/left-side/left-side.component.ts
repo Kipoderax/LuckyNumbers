@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/_service/auth.service';
 
 @Component({
   selector: 'app-left-side',
@@ -7,14 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeftSideComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
-  }
-
-  loggedIn() {
-    const token = localStorage.getItem('token');
-    return !!token;
   }
 
 }
