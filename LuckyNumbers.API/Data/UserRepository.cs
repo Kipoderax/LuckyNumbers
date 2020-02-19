@@ -13,7 +13,7 @@ namespace LuckyNumbers.API.Data
             this.context = context;
         }
 
-        public async Task<User> GetUser(string username)
+        public async Task<User> getUser(string username)
         {
             var user = await context.users.Include(l => l.userlottoBets).FirstOrDefaultAsync(u => u.username == username);
             return user;

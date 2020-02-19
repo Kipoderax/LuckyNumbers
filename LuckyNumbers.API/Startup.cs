@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
 
 namespace LuckyNumbers.API
 {
@@ -25,7 +26,7 @@ namespace LuckyNumbers.API
         {
             services.AddDbContext<DataContext>(
                 x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddControllers();
+            // services.AddControllers();
             services.AddCors();
 
             services.AddTransient<Seed>();
@@ -43,6 +44,12 @@ namespace LuckyNumbers.API
                                 ValidateAudience = false
                             };
                         });
+
+            services.AddControllers().AddNewtonsoftJson(
+                opt => {
+                    opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;;
+                }
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -7,6 +7,6 @@ namespace LuckyNumbers.API.Data
     public interface IUserRepository : IGenericRepository
     {
          Task<IEnumerable<User>> getUsers();
-         Task<User> GetUser(string username);
+         Task<User> getUser(string username);
     }
 }
