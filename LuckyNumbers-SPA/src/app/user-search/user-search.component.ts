@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../_service/user.service';
+import { Router } from '@angular/router';
+declare let alertify: any;
 
 @Component({
   selector: 'app-user-search',
@@ -8,12 +10,20 @@ import { UserService } from '../_service/user.service';
 })
 export class UserSearchComponent implements OnInit {
 
-  constructor(private userService: UserService) { }
+  username: string;
+
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {
   }
 
-  searchPlayer(username: string) {
-    this.userService.searchPlayer(username);
+  searchPlayer() {
+    this.userService.getUser(this.username).subscribe(() => {
+      if (this.username != null) {
+        this.router.navigate(['/gracz/', this.username]);
+      }
+    }, error => {
+      alertify.error('Nie ma takiego użytkownika');
+    }, () => console.log('nie ma takiego użytkownika') );
   }
 }

@@ -7,7 +7,7 @@
   <div class="content-bg">
       <div class="content-txt">
 
-          <form>
+          <form #searchForm="ngForm" (ngSubmit)="searchPlayer()">
               <table width="100%" cellspacing="1" cellpadding="4" border="0">
                   <tbody>
                   <tr>
@@ -19,7 +19,7 @@
                   <tr bgcolor="#d4c0a1">
                       <td width="200" valign="top"><b>Nick gracza:</b></td>
                       <td colspan="2">
-                        <input type="text" id="name" #name src="" width="200" height="36" border="0" required>
+                        <input type="text" width="200" height="36" border="0" [(ngModel)]="username" name="username" required>
                       </td>
                   </tr>
 
@@ -32,7 +32,7 @@
                   <tbody>
                   <tr>
                       <td valign="top" align="center">
-                        <button type="submit" (click)="searchPlayer(name.value)">Wyszukaj</button>
+                        <button type="submit" >Wyszukaj</button>
                       </td>
                   </tr>
                   </tbody>

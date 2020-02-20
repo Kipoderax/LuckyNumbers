@@ -8,9 +8,8 @@
         <div class="content-txt">
             Wpisz login i hasło aby się zalogować.
             <br>
-            <a href="#">Utwórz konto</a>, jeśli jeszcze tego nie zrobiłeś.
+            <a [routerLink]="['/register']">Utwórz konto</a>, jeśli jeszcze tego nie zrobiłeś.
             <br>
-            <p style="color: red">Zly login lub haslo</p>
             <br>
             <form #loginForm="ngForm" (ngSubmit)="login()">
                 <table width="100%" cellspacing="1" cellpadding="4" border="0">
@@ -24,8 +23,7 @@
                         <tr bgcolor="#d4c0a1">
                             <td width="150" valign="top"><b>Login</b></td>
                             <td colspan="2">
-                                <input type="text" value="" size="30" maxlength="16" [(ngModel)]="model.username"
-                                    name="username" required>
+                                <input type="text" size="30" maxlength="16" [(ngModel)]="model.username" name="username" required>
                             </td>
                         </tr>
 
@@ -34,8 +32,7 @@
                                 <b>Hasło</b>
                             </td>
                             <td colspan="2">
-                                <input type="password" value="" size="30" maxlength="50" [(ngModel)]="model.password"
-                                    name="password" required>
+                                <input type="password" size="30" maxlength="50" [(ngModel)]="model.password" name="password" required>
                             </td>
                         </tr>
 
@@ -48,7 +45,6 @@
                     <tbody>
                         <tr>
                             <td valign="top" align="center">
-                                <!-- <input type="image" src=""  width="120" height="36" border="0"> -->
                                 <button [disabled]="!loginForm.valid" class="btn btn-outline-success my-2 my-sm-0"
                                     type="submit">Zaloguj</button>
                             </td>
