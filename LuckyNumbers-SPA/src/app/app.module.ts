@@ -15,6 +15,7 @@ import { appRoutes } from './routes';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { UserAccountComponent } from './user-account/user-account.component';
 import { AuthGuard } from './_guards/auth.guard';
+import { UserSearchComponent } from './user-search/user-search.component';
 
 @NgModule({
    declarations: [
@@ -25,7 +26,8 @@ import { AuthGuard } from './_guards/auth.guard';
       LoginComponent,
       RegisterComponent,
       StatisticsComponent,
-      UserAccountComponent
+      UserAccountComponent,
+      UserSearchComponent
    ],
    imports: [
       BrowserModule,

@@ -32,10 +32,4 @@ export class LoginComponent implements OnInit {
     return this.authService.loggedIn();
   }
 
-  // logout() {
-  //   localStorage.removeItem('token');
-  //   alertify.message('Wylogowano');
-  //   this.router.navigate(['']);
-  // }
-
 }
