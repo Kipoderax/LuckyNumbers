@@ -17,9 +17,9 @@
                   </tr>
 
                   <tr bgcolor="#d4c0a1">
-                      <td width="150" valign="top"><b>Nick gracza:</b></td>
+                      <td width="200" valign="top"><b>Nick gracza:</b></td>
                       <td colspan="2">
-                          <input type="text" value="" size="30" maxlength="50">
+                        <input type="text" id="name" #name src="" width="200" height="36" border="0" required>
                       </td>
                   </tr>
 
@@ -32,10 +32,8 @@
                   <tbody>
                   <tr>
                       <td valign="top" align="center">
-                          <input [routerLink]="['/gracz']" type="button" src="" width="120" height="36" border="0">Wyszukaj
+                        <button type="submit" (click)="searchPlayer(name.value)">Wyszukaj</button>
                       </td>
-                      <td align="center"></td>
-                      <td align="center"></td>
                   </tr>
                   </tbody>
               </table>

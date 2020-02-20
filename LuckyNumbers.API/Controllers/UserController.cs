@@ -11,33 +11,41 @@ namespace LuckyNumbers.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUserRepository repository;
+        private readonly IUserRepository userRepository;
+        private readonly IAuthRepository authRepository;
         private readonly IMapper mapper;
-        public UserController(IUserRepository repository,
+        public UserController(IUserRepository userRepository,
+                              IAuthRepository authRepository,
                               IMapper mapper)
         {
             this.mapper = mapper;
-            this.repository = repository;
+            this.userRepository = userRepository;
+            this.authRepository = authRepository;
         }
 
-    [HttpGet]
-    public async Task<IActionResult> getUsers()
-    {
-        var users = await repository.getUsers();
+        [HttpGet]
+        public async Task<IActionResult> getUsers()
+        {
+            var users = await userRepository.getUsers();
 
-        var usersToReturn = mapper.Map<IEnumerable<UserStatisticsDto>>(users);
+            var usersToReturn = mapper.Map<IEnumerable<UserStatisticsDto>>(users);
 
-        return Ok(usersToReturn);
+            return Ok(usersToReturn);
+        }
+
+        [HttpGet("{username}")]
+        public async Task<IActionResult> getUser(string username)
+        {
+            var user = await userRepository.getUser(username);
+
+            if (!await authRepository.userExists(username))
+            {
+                return BadRequest("Nie ma takiego gracza");
+            }
+
+            var userToReturn = mapper.Map<UserDetailsDto>(user);
+
+            return Ok(userToReturn);
+        }
     }
-
-    [HttpGet("{username}")]
-    public async Task<IActionResult> getUser(string username)
-    {
-        var user = await repository.getUser(username);
-
-        var userToReturn = mapper.Map<UserDetailsDto>(user);
-
-        return Ok(userToReturn);
-    }
-}
 }

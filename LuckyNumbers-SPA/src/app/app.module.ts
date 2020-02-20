@@ -16,6 +16,9 @@ import { StatisticsComponent } from './statistics/statistics.component';
 import { UserAccountComponent } from './user-account/user-account.component';
 import { AuthGuard } from './_guards/auth.guard';
 import { UserSearchComponent } from './user-search/user-search.component';
+import { UserDetailsComponent } from './user-search/user-details/user-details.component';
+import { UserLoginResolver } from './_resolvers/user-login.resolver';
+import { UserService } from './_service/user.service';
 
 @NgModule({
    declarations: [
@@ -27,7 +30,8 @@ import { UserSearchComponent } from './user-search/user-search.component';
       RegisterComponent,
       StatisticsComponent,
       UserAccountComponent,
-      UserSearchComponent
+      UserSearchComponent,
+      UserDetailsComponent
    ],
    imports: [
       BrowserModule,
@@ -37,7 +41,9 @@ import { UserSearchComponent } from './user-search/user-search.component';
    ],
    providers: [
       AuthService,
-      AuthGuard
+      UserService,
+      AuthGuard,
+      UserLoginResolver
    ],
    bootstrap: [
       AppComponent

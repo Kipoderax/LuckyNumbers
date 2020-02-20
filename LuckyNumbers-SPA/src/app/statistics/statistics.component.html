@@ -61,7 +61,7 @@
                   <tr class="color" *ngFor="let user of users">
   
                       <td class="position"></td>
-                      <td align="center"> {{user.username}} </td>
+                      <a [routerLink]="['/gracz/', user.username]"><td align="center"> {{user.username}} </td></a>
                       <td align="center"> {{user.betsSended}} </td>
                       <td align="center"> {{user.amountOfThree}} </td>
                       <td align="center"> {{user.amountOfFour}} </td>
