@@ -48,10 +48,10 @@
   </div>
   <div class="menu-cnt">
 
-      <ul>
+      <ul *ngFor="let user of users">
           <li class="last">
-              <span><i>Player1</i></span>
-              <span class="pull-right"> 121 lv </span>
+              <span><i> {{user.username}} </i></span>
+              <span class="pull-right"> {{user.level}} lv </span>
           </li>
       </ul>
 
@@ -64,10 +64,10 @@
   </div>
   <div class="menu-cnt">
 
-      <ul>
+      <ul *ngFor="let user of user1">
           <li>
-              <span><i> Player1 </i></span>
-              <span class="pull-right"> +487 </span>
+              <span><i> {{user.username}} </i></span>
+              <span class="pull-right"> +{{user.experience}} </span>
           </li>
       </ul>
       

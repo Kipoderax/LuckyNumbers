@@ -23,4 +23,13 @@ export class UserService {
   getStatus(): Observable<number[]> {
     return this.http.get<number[]>(this.baseUrl + 'status');
   }
+
+  get5BestPlayers(): Observable<User[]> {
+    return this.http.get<User[]>(this.baseUrl + 'server');
+  }
+
+  getLast5Xp(): Observable<User[]> {
+    return this.http.get<User[]>(this.baseUrl + 'xp');
+  }
+
 }

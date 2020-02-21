@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/_service/user.service';
 import { DecimalPipe } from '@angular/common';
+import { User } from 'src/app/_model/user';
 
 @Component({
   selector: 'app-right-side',
@@ -21,10 +22,15 @@ export class RightSideComponent implements OnInit {
   percentChangeForFive: string;
   percentChangeForSix: string;
 
+  users: User[];
+  user1: User[];
+
   constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.loadStatus();
+    this.load5BestPlayers();
+    this.loadBest5LastXp();
   }
 
   loadStatus() {
@@ -39,6 +45,18 @@ export class RightSideComponent implements OnInit {
       this.percentChangeForFour = (status[3] / status[1]).toPrecision(2);
       this.percentChangeForFive = (status[4] / status[1]).toPrecision(1);
       this.percentChangeForSix = (status[5] / status[1]).toPrecision(1);
+    });
+  }
+
+  load5BestPlayers() {
+    this.userService.get5BestPlayers().subscribe( (users: User[]) => {
+      this.users = users;
+    });
+  }
+
+  loadBest5LastXp() {
+    this.userService.getLast5Xp().subscribe( (users: User[]) => {
+      this.user1 = users;
     });
   }
 
