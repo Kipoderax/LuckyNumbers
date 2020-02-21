@@ -7,36 +7,37 @@
   <div class="menu-cnt">
       <ul>
           <li>
-              <span class="font_lightgreen"> 23 zarejestrowanych </span>
+              <span class="font_lightgreen"> {{registered}} zarejestrowamych </span>
           </li>
       </ul>
       <ul>
           <li>
-              <span class="font_lightgreen"> 0 online </span>
+              <span style="color: #D6960B"> {{sendBets}} wyslanych zakladow </span>
           </li>
       </ul>
       <ul>
           <li>
-              <span style="color: #D6960B"> 18923 wyslanych zakladow </span>
+              <span style="color: #D6960B"> Trojek: {{amountOfThrees}} </span>
+              <span class="pull-right"> {{percentChangeForThree}}% </span>
           </li>
       </ul>
       <ul>
           <li>
-              <span style="color: #D6960B"> Trojek: 185 </span>
-              <span class="pull-right"> 1.65% </span>
+              <span style="color: #D6960B"> Czwórek : {{amountOfFours}} </span>
+              <span class="pull-right"> {{percentChangeForFour}}% </span>
           </li>
       </ul>
       <ul>
           <li>
-              <span style="color: #D6960B"> Czwórek : 23 </span>
-              <span class="pull-right"> 0.17% </span>
+              <span style="color: #D6960B"> Piatek: {{amountOfFives}} </span>
+              <span class="pull-right"> {{percentChangeForFive}}% </span>
           </li>
       </ul>
       <ul>
-          <li class="last">
-              <span style="color: #D6960B"> Piatek: 1 </span>
-              <span class="pull-right"> 0.005% </span>
-          </li>
+        <li class="last">
+            <span style="color: #D6960B"> Szóstek: {{amountOfSixes}} </span>
+            <span class="pull-right"> {{percentChangeForSix}}% </span>
+        </li>
       </ul>
   </div>
   <div class="menu-bottom"></div>
