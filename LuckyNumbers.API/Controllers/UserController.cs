@@ -36,7 +36,7 @@ namespace LuckyNumbers.API.Controllers
         [HttpGet("{username}")]
         public async Task<IActionResult> getUser(string username)
         {
-            var user = await userRepository.getUser(username);
+            var user = await userRepository.getUserByUsername(username);
 
             if (!await authRepository.userExists(username))
             {

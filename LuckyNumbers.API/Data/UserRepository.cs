@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using LuckyNumbers.API.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -13,11 +15,18 @@ namespace LuckyNumbers.API.Data
             this.context = context;
         }
 
-        public async Task<User> getUser(string username)
+        public async Task<User> getUserByUsername(string username)
         {
             var user = await context.users.Include(l => l.userExperience)
                                           .Include(l => l.lottoGame)
                                           .FirstOrDefaultAsync(u => u.username == username);
+            return user;
+        }
+
+        public async Task<User> getUserByUserId ( int userId ) {
+            var user = await context.users.Include( l => l.userExperience )
+                                          .Include( l => l.lottoGame )
+                                          .FirstOrDefaultAsync( u => u.userId == userId );
             return user;
         }
 
@@ -30,7 +39,7 @@ namespace LuckyNumbers.API.Data
             return users;
         }
 
-        public async Task<List<int>> getBetsSended ( ) {
+        public async Task<List<int>> serverStatus ( ) {
             List<int> status = new List<int>();
 
             var registeredUsers = await context.users.CountAsync();
@@ -52,6 +61,23 @@ namespace LuckyNumbers.API.Data
             status.Add( amountOfSix );
 
             return status;
+        }
+
+        public async Task<IEnumerable<User>> best5Players() {
+            var registeredUsers = await context.users.CountAsync() - 5;
+            var users = context.users.Include( u => u.userExperience ).OrderBy( l => l.userExperience.level ).Skip( registeredUsers )
+                .OrderByDescending( l => l.userExperience.level ).ToListAsync();
+
+            return await users;
+        }
+
+        public async Task<IEnumerable<HistoryGameForLotto>> top5Xp() {
+            var registeredUsers = await context.users.CountAsync() - 5;
+            var userr = context.lottoHistoryGames.Include( u => u.user ).Where( d => d.dateGame.Substring( 8, 2 ) == "15" )
+                .OrderBy( x => x.experience ).Skip( registeredUsers )
+                .OrderByDescending( x => x.experience ).ToListAsync();
+
+            return await userr;
         }
     }
 }

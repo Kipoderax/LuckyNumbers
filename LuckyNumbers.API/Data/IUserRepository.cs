@@ -6,8 +6,11 @@ namespace LuckyNumbers.API.Data
 {
     public interface IUserRepository : IGenericRepository
     {
-         Task<IEnumerable<User>> getUsers();
-         Task<User> getUser(string username);
-         Task<List<int>> getBetsSended ();
+        Task<IEnumerable<User>> getUsers();
+        Task<User> getUserByUsername(string username);
+        Task<User> getUserByUserId(int userId);
+        Task<List<int>> serverStatus ();
+        Task<IEnumerable<User>> best5Players ();
+        Task<IEnumerable<HistoryGameForLotto>> top5Xp ();
     }
 }

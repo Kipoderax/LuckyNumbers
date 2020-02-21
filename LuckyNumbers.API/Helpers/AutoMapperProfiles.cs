@@ -11,64 +11,81 @@ namespace LuckyNumbers.API.Helpers
 
         public AutoMapperProfiles()
         {
+            userForUserStatisticsDto();
+            userForUserDetailsDto();
+            userForHistoryDto();
+        }
+
+        private void userForUserStatisticsDto() {
             CreateMap<User, UserStatisticsDto>().ForMember(
                 dest => dest.experience, opt => {
-                    opt.MapFrom(src => src.userExperience.experience);
+                    opt.MapFrom( src => src.userExperience.experience );
                 }
             ).ForMember(
                 dest => dest.level, opt => {
-                    opt.MapFrom(src => src.userExperience.level);
+                    opt.MapFrom( src => src.userExperience.level );
                 }
             ).ForMember(
                 dest => dest.betsSended, opt => {
-                    opt.MapFrom(src => src.lottoGame.betsSended);
+                    opt.MapFrom( src => src.lottoGame.betsSended );
                 }
             ).ForMember(
                 dest => dest.amountOfThree, opt => {
-                    opt.MapFrom(src => src.lottoGame.amountOfThree);
+                    opt.MapFrom( src => src.lottoGame.amountOfThree );
                 }
             ).ForMember(
                 dest => dest.amountOfFour, opt => {
-                    opt.MapFrom(src => src.lottoGame.amountOfFour);
+                    opt.MapFrom( src => src.lottoGame.amountOfFour );
                 }
             ).ForMember(
                 dest => dest.amountOfFive, opt => {
-                    opt.MapFrom(src => src.lottoGame.amountOfFive);
+                    opt.MapFrom( src => src.lottoGame.amountOfFive );
                 }
             ).ForMember(
                 dest => dest.amountOfSix, opt => {
-                    opt.MapFrom(src => src.lottoGame.amountOfSix);
+                    opt.MapFrom( src => src.lottoGame.amountOfSix );
                 }
             );
+        }
 
+        private void userForUserDetailsDto() {
             CreateMap<User, UserDetailsDto>().ForMember(
                 dest => dest.experience, opt => {
-                    opt.MapFrom(src => src.userExperience.experience);
+                    opt.MapFrom( src => src.userExperience.experience );
                 }
             )
             .ForMember(
                 dest => dest.level, opt => {
-                    opt.MapFrom(src => src.userExperience.level);
+                    opt.MapFrom( src => src.userExperience.level );
                 }
             ).ForMember(
                 dest => dest.betsSended, opt => {
-                    opt.MapFrom(src => src.lottoGame.betsSended);
+                    opt.MapFrom( src => src.lottoGame.betsSended );
                 }
             ).ForMember(
                 dest => dest.amountOfThree, opt => {
-                    opt.MapFrom(src => src.lottoGame.amountOfThree);
+                    opt.MapFrom( src => src.lottoGame.amountOfThree );
                 }
             ).ForMember(
                 dest => dest.amountOfFour, opt => {
-                    opt.MapFrom(src => src.lottoGame.amountOfFour);
+                    opt.MapFrom( src => src.lottoGame.amountOfFour );
                 }
             ).ForMember(
                 dest => dest.amountOfFive, opt => {
-                    opt.MapFrom(src => src.lottoGame.amountOfFive);
+                    opt.MapFrom( src => src.lottoGame.amountOfFive );
                 }
             ).ForMember(
                 dest => dest.amountOfSix, opt => {
-                    opt.MapFrom(src => src.lottoGame.amountOfSix);
+                    opt.MapFrom( src => src.lottoGame.amountOfSix );
+                }
+            );
+        }
+
+        private void userForHistoryDto() {
+            CreateMap<HistoryGameForLotto, HistoryGameDto>().ForMember(
+                dest => dest.username, opt =>
+                {
+                    opt.MapFrom( src => src.user.username );
                 }
             );
         }
