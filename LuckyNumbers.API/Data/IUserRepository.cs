@@ -8,5 +8,6 @@ namespace LuckyNumbers.API.Data
     {
          Task<IEnumerable<User>> getUsers();
          Task<User> getUser(string username);
+         Task<List<int>> getBetsSended ();
     }
 }

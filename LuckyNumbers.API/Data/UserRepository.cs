@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using LuckyNumbers.API.Entities;
@@ -29,6 +28,30 @@ namespace LuckyNumbers.API.Data
                                            .ToListAsync();
 
             return users;
+        }
+
+        public async Task<List<int>> getBetsSended ( ) {
+            List<int> status = new List<int>();
+
+            var registeredUsers = await context.users.CountAsync();
+            status.Add( registeredUsers );
+
+            var betsSended = await context.users.Include( l => l.lottoGame ).SumAsync( b => b.lottoGame.betsSended );
+            status.Add( betsSended );
+
+            var amountOfThree = await context.users.Include( l => l.lottoGame ).SumAsync( b => b.lottoGame.amountOfThree );
+            status.Add( amountOfThree );
+
+            var amountOfFour = await context.users.Include( l => l.lottoGame ).SumAsync( b => b.lottoGame.amountOfFour );
+            status.Add( amountOfFour );
+
+            var amountOfFive = await context.users.Include( l => l.lottoGame ).SumAsync( b => b.lottoGame.amountOfFive );
+            status.Add( amountOfFive );
+
+            var amountOfSix = await context.users.Include( l => l.lottoGame ).SumAsync( b => b.lottoGame.amountOfSix );
+            status.Add( amountOfSix );
+
+            return status;
         }
     }
 }

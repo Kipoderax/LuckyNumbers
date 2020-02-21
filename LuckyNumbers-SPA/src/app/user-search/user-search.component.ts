@@ -23,7 +23,7 @@ export class UserSearchComponent implements OnInit {
         this.router.navigate(['/gracz/', this.username]);
       }
     }, error => {
-      alertify.error('Nie ma takiego użytkownika');
-    }, () => console.log('nie ma takiego użytkownika') );
+      alertify.error('Nie ma takiego gracza');
+    });
   }
 }
