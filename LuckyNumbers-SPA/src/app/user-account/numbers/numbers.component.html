@@ -1,0 +1,73 @@
+<div class="cnt-center">
+
+  <style>
+  .stats_table {
+      counter-reset: tableCount;
+  }
+  .position:before {
+      content: counter(tableCount);
+      counter-increment: tableCount;
+  }
+  .color:nth-of-type(odd) {
+      background-color:#f1e0c6;
+  }
+  .color:nth-of-type(even){
+      background-color:#d4c0a1;
+  }
+  </style>
+
+  <div class="content-top">
+      <div class="title">Wytypowane liczby</div>
+  </div>
+
+  <div class="content-bg">
+      <div class="content-txt">
+
+          <form>
+              <table cellpadding="1" border="0">
+                  <tbody>
+                  <tr>
+                      <td>Wyslij losowo <input type="number" value="0"> 2*level liczb</td>
+                      <td>
+                        <a href="#"><button class="btn">Wyślij</button></a>
+                      </td>
+                      <td>Jeszcze 2*level liczb - ilosc wyslanych</td>
+                  </tr>
+                  </tbody>
+              </table>
+          </form>
+
+          <table class="stats_table" width="100%" cellspacing="1" cellpadding="4" border="0">
+              <tbody>
+              <tr>
+                  <td style="font-weight: bold; color: white" bgcolor="#505050">
+                      <b>Moje liczby</b>
+                  </td>
+              </tr>
+              <tr>
+
+                  <td bgcolor="#d4c0a1">
+                      <table cellpadding="1" border="0">
+                          <tbody>
+                              <tr class="color" *ngFor="let numbers of sendedBets">
+                                  <td width="20px" class="position"></td>
+                                  <td width="40px" align="center"> {{numbers.number1}} </td>
+                                  <td width="40px" align="center"> {{numbers.number2}} </td>
+                                  <td width="40px" align="center"> {{numbers.number3}} </td>
+                                  <td width="40px" align="center"> {{numbers.number4}} </td>
+                                  <td width="40px" align="center"> {{numbers.number5}} </td>
+                                  <td width="40px" align="center"> {{numbers.number6}} </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </td>
+
+                  </tr>
+                  </tbody>
+          </table>
+
+      </div>
+  </div>
+
+  <div class="content-bot"></div>
+</div>

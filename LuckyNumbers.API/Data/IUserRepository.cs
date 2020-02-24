@@ -13,5 +13,6 @@ namespace LuckyNumbers.API.Data
         Task<IEnumerable<User>> best5Players ();
         Task<IEnumerable<HistoryGameForLotto>> top5Xp ();
         Task<IEnumerable<HistoryGameForLotto>> userHistoryGame(string username);
+        Task<IEnumerable<UserLottoBets>> userSendedBets(string username);
     }
 }

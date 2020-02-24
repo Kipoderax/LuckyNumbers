@@ -21,6 +21,8 @@ import { UserLoginResolver } from './_resolvers/user-login.resolver';
 import { UserService } from './_service/user.service';
 import { UserHistoryResolver } from './_resolvers/user-history.resolver';
 import { HistoryComponent } from './user-account/history/history.component';
+import { NumbersComponent } from './user-account/numbers/numbers.component';
+import { UserSendedBetsResolver } from './_resolvers/user-sended-bets.resolver';
 
 @NgModule({
    declarations: [
@@ -34,7 +36,8 @@ import { HistoryComponent } from './user-account/history/history.component';
       UserAccountComponent,
       UserSearchComponent,
       UserDetailsComponent,
-      HistoryComponent
+      HistoryComponent,
+      NumbersComponent
    ],
    imports: [
       BrowserModule,
@@ -48,7 +51,8 @@ import { HistoryComponent } from './user-account/history/history.component';
       UserService,
       AuthGuard,
       UserLoginResolver,
-      UserHistoryResolver
+      UserHistoryResolver,
+      UserSendedBetsResolver
    ],
    bootstrap: [
       AppComponent

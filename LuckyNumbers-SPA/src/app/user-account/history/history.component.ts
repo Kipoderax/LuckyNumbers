@@ -12,8 +12,7 @@ export class HistoryComponent implements OnInit {
 
   historyGame: HistoryGame[];
 
-  constructor(public authService: AuthService,
-              private router: ActivatedRoute) { }
+  constructor(private router: ActivatedRoute) { }
 
   ngOnInit() {
     this.loadUser();

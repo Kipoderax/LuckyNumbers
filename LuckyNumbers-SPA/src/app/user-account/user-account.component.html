@@ -71,8 +71,8 @@
                       <table>
                           <tr>
                               <td>
-                                  <a href="#">
-                                      <img src="" height="30px"><button class="btn">Moje liczby</button>
+                                  <a *ngIf="authService.loggedIn()" routerLinkActive="active" [routerLink]="['/wyslane-liczby']">
+                                      <button class="btn">Moje liczby</button>
                                   </a>
                               </td>
                               <td>

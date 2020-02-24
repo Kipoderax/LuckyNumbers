@@ -35,6 +35,7 @@ namespace LuckyNumbers.API.Data
         {
             var users = await context.users.Include(u => u.userExperience)
                                            .Include(l => l.lottoGame)
+                                           .OrderByDescending(l => l.userExperience.level)
                                            .ToListAsync();
 
             return users;
@@ -85,6 +86,15 @@ namespace LuckyNumbers.API.Data
 
             var user = context.lottoHistoryGames.Include( u => u.user )
                 .Where( u => u.user.username == username )
+                .ToListAsync();
+
+            return await user;
+        }
+
+        public async Task<IEnumerable<UserLottoBets>> userSendedBets(string username) {
+
+            var user = context.userLottoBets.Include(u => u.user)
+                .Where(u => u.user.username == username)
                 .ToListAsync();
 
             return await user;

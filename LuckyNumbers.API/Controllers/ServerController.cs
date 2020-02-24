@@ -45,7 +45,7 @@ namespace LuckyNumbers.API.Controllers {
             return Ok(usersToReturn);
         }
 
-        [HttpGet("{username}")]
+        [HttpGet("/api/history-game/{username}")]
         public async Task<IActionResult> getHistoryGame(string username) {
             var users = await userRepository.userHistoryGame(username);
 

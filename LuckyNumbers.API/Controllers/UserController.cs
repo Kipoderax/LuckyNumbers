@@ -47,5 +47,14 @@ namespace LuckyNumbers.API.Controllers
 
             return Ok(userToReturn);
         }
+
+        [HttpGet("/api/sended-bets/{username}")]
+        public async Task<IActionResult> getUserSendedBets(string username) {
+
+            var user = await userRepository.userSendedBets(username);
+            var userToReturn = mapper.Map<IEnumerable<LottoNumbersDto>>(user);
+
+            return Ok(userToReturn);
+        }
     }
 }

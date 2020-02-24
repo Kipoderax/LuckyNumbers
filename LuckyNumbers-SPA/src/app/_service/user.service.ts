@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../_model/user';
 import { HistoryGame } from '../_model/historyGame';
+import { UserSendedBets } from '../_model/userSendedBets';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +35,11 @@ export class UserService {
   }
 
   getHistoryGameUser(username: string): Observable<HistoryGame[]> {
-    return this.http.get<HistoryGame[]>(this.baseUrl + 'server/' + username);
+    return this.http.get<HistoryGame[]>(this.baseUrl + 'history-game/' + username);
+  }
+
+  getUserSendedBets(username: string): Observable<UserSendedBets[]> {
+    return this.http.get<UserSendedBets[]>(this.baseUrl + 'sended-bets/' + username);
   }
 
 }
