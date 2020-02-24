@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_service/auth.service';
 import { User } from '../_model/user';
-import { UserService } from '../_service/user.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -12,14 +11,26 @@ import { ActivatedRoute } from '@angular/router';
 export class UserAccountComponent implements OnInit {
 
   user: User;
+  percentChanceForThree: string;
+  percentChanceForFour: any;
+  percentChanceForFive: any;
+  percentChanceForSix: any;
 
   constructor(public authService: AuthService,
-              private userService: UserService,
               private router: ActivatedRoute) { }
 
   ngOnInit() {
-      this.router.data.subscribe(data => {
+      this.loadUser();
+  }
+
+  loadUser() {
+    this.router.data.subscribe(data => {
       this.user = data.user;
+      this.percentChanceForThree = (this.user.amountOfThree / this.user.betsSended).toPrecision(2);
+      this.percentChanceForFour = (this.user.amountOfFour / this.user.betsSended).toPrecision(2);
+      this.percentChanceForFive = (this.user.amountOfFive / this.user.betsSended).toPrecision(1);
+      this.percentChanceForSix = (this.user.amountOfSix / this.user.betsSended).toPrecision(1);
     });
   }
+
 }

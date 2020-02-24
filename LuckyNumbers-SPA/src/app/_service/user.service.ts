@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../_model/user';
+import { HistoryGame } from '../_model/historyGame';
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,10 @@ export class UserService {
 
   getLast5Xp(): Observable<User[]> {
     return this.http.get<User[]>(this.baseUrl + 'xp');
+  }
+
+  getHistoryGameUser(username: string): Observable<HistoryGame[]> {
+    return this.http.get<HistoryGame[]>(this.baseUrl + 'server/' + username);
   }
 
 }

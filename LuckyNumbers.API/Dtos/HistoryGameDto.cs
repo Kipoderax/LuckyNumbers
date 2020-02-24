@@ -7,7 +7,7 @@ namespace LuckyNumbers.API.Dtos {
     public class HistoryGameDto {
         public string username { get; set; }
         public string dateGame { get; set; }
-        public int amountBets { get; set; }
+        public int betsSended { get; set; }
         public int amountGoalThrees { get; set; }
         public int amountGoalFours { get; set; }
         public int amountGoalFives { get; set; }

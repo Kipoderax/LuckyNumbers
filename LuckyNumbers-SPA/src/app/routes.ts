@@ -8,6 +8,8 @@ import { AuthGuard } from './_guards/auth.guard';
 import { UserSearchComponent } from './user-search/user-search.component';
 import { UserDetailsComponent } from './user-search/user-details/user-details.component';
 import { UserLoginResolver } from './_resolvers/user-login.resolver';
+import { HistoryComponent } from './user-account/history/history.component';
+import { UserHistoryResolver } from './_resolvers/user-history.resolver';
 
 export const appRoutes: Routes = [
     { path: 'home', component: MainPageComponent },
@@ -15,6 +17,7 @@ export const appRoutes: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'statystyki', component: StatisticsComponent },
     { path: 'moje-konto', component: UserAccountComponent, canActivate: [AuthGuard], resolve: {user: UserLoginResolver} },
+    { path: 'historia', component: HistoryComponent, canActivate: [AuthGuard], resolve: {history: UserHistoryResolver} },
     { path: 'wyszukiwarka', component: UserSearchComponent },
     { path: 'gracz/:username', component: UserDetailsComponent },
     { path: '**', redirectTo: 'home', pathMatch: 'full' },

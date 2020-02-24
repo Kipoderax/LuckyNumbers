@@ -1,0 +1,68 @@
+<div class="cnt-center">
+
+  <style>
+  .stats_table {
+      counter-reset: tableCount;
+  }
+  .position:before {
+      content: counter(tableCount);
+      counter-increment: tableCount;
+  }
+  .color:nth-of-type(odd) {
+      background-color:#f1e0c6;
+  }
+  .color:nth-of-type(even){
+      background-color:#d4c0a1;
+  }
+</style>
+
+  <div class="content-top">
+      <div class="title">Historia gry</div>
+  </div>
+
+  <div class="content-bg">
+      <div class="content-txt">
+
+          <table class="stats_table" width="100%" cellspacing="1" cellpadding="4" border="0">
+
+              <tbody>
+
+              <tr bgcolor="#505050">
+                  <td colspan="9" style="font-weight: bold; color: white">
+                      Moja historia gry
+                  </td>
+              </tr>
+
+              <tr bgcolor="#d4c0a1">
+                  <td class="whites">#</td>
+                  <td class="whites">Data gry</td>
+                  <td class="whites">Ilosc: gier</td>
+                  <td class="whites">Trojek</td>
+                  <td class="whites">Czworek</td>
+                  <td class="whites">Piątek</td>
+                  <td class="whites">Szóstek</td>
+                  <td class="whites">Zdobyty exp</td>
+                  <td class="whites">Zdobyte coinsy</td>
+              </tr>
+
+              <tr class="color" *ngFor="let history of historyGame">
+                  <td class="position"></td>
+                  <td>{{history.dateGame}}</td>
+                  <td>{{history.betsSended}}</td>
+                  <td>{{history.amountGoalThrees}}</td>
+                  <td>{{history.amountGoalFours}}</td>
+                  <td>{{history.amountGoalFives}}</td>
+                  <td>{{history.amountGoalSixes}}</td>
+                  <td>{{history.experience}}</td>
+                  <td>{{history.result}}</td>
+              </tr>
+
+              </tbody>
+          </table>
+
+      </div>
+  </div>
+
+  <div class="content-bot"></div>
+
+</div>

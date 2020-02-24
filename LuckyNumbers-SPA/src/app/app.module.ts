@@ -19,6 +19,8 @@ import { UserSearchComponent } from './user-search/user-search.component';
 import { UserDetailsComponent } from './user-search/user-details/user-details.component';
 import { UserLoginResolver } from './_resolvers/user-login.resolver';
 import { UserService } from './_service/user.service';
+import { UserHistoryResolver } from './_resolvers/user-history.resolver';
+import { HistoryComponent } from './user-account/history/history.component';
 
 @NgModule({
    declarations: [
@@ -31,7 +33,8 @@ import { UserService } from './_service/user.service';
       StatisticsComponent,
       UserAccountComponent,
       UserSearchComponent,
-      UserDetailsComponent
+      UserDetailsComponent,
+      HistoryComponent
    ],
    imports: [
       BrowserModule,
@@ -44,7 +47,8 @@ import { UserService } from './_service/user.service';
       AuthService,
       UserService,
       AuthGuard,
-      UserLoginResolver
+      UserLoginResolver,
+      UserHistoryResolver
    ],
    bootstrap: [
       AppComponent

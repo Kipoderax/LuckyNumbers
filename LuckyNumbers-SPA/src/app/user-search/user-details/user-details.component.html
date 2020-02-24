@@ -47,32 +47,33 @@
                   <td class="table-desc">trafionych 3:</td>
                   <td style="width:90%">
                       <i> {{user.amountOfThree}} </i>
-                      <span class="pull-right" style="color: #5a2800"> Szansa trafienia trojki: 1.78% </span>
+                      <span class="pull-right" style="color: #5a2800"> Szansa trafienia trojki: {{percentChanceForThree}}% </span>
                   </td>
               </tr>
               <tr style="background-color: #f1e0c6">
                   <td class="table-desc">trafionych 4:</td>
                   <td>
                       <i> {{user.amountOfFour}} </i>
-                      <span class="pull-right" style="color: #5a2800"> Szansa trafienia czworki: 0.17% </span>
+                      <span class="pull-right" style="color: #5a2800"> Szansa trafienia czworki: {{percentChanceForFour}}% </span>
                   </td>
               </tr>
               <tr style="background-color: #d4c0a1">
                   <td class="table-desc">trafionych 5:</td>
                   <td>
                       <i> {{user.amountOfFive}} </i>
-                      <span class="pull-right" style="color: #5a2800"> Szansa trafienia piątki: 0.005 </span>
+                      <span class="pull-right" style="color: #5a2800"> Szansa trafienia piątki: {{percentChanceForFive}}% </span>
                   </td>
               </tr>
               <tr style="background-color: #f1e0c6">
                   <td class="table-desc">trafionych 6:</td>
                   <td>
                       <i> {{user.amountOfSix}} </i>
+                      <span class="pull-right" style="color: #5a2800"> Szansa trafienia piątki: {{percentChanceForSix}}% </span>
                   </td>
               </tr>
               <tr style="background-color: #d4c0a1">
                   <td class="table-desc">rozegranych gier:</td>
-                  <td>2245</td>
+                  <td>{{user.betsSended}}</td>
               </tr>
 
               </tbody>
@@ -87,7 +88,7 @@
               </tr>
               <tr style="background-color: #d4c0a1">
                   <td class="table-desc">Na gry wydano:</td>
-                  <td style="width:90%">4521</td>
+                  <td style="width:90%">{{user.betsSended * 3}}</td>
               </tr>
               <tr style="background-color: #f1e0c6">
                   <td class="table-desc">Z trafionych liczb uzbierano</td>

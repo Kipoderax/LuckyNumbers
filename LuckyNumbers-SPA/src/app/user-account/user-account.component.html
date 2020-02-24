@@ -101,7 +101,7 @@
                   <td style="width:90%">
                       <i> {{user.amountOfThree}} </i>
                       <span class="pull-right" style="color: #5a2800">
-                           Szansa trafienia trojki: 1%</span>
+                           Szansa trafienia trojki: {{percentChanceForThree}}%</span>
                   </td>
               </tr>
               <tr style="background-color: #f1e0c6">
@@ -109,7 +109,7 @@
                   <td>
                       <i> {{user.amountOfFour}} </i>
                       <span class="pull-right" style="color: #5a2800">
-                            Szansa trafienia czworki: 0.17%</span>
+                            Szansa trafienia czworki: {{percentChanceForFour}}%</span>
                   </td>
               </tr>
               <tr style="background-color: #d4c0a1">
@@ -117,7 +117,7 @@
                   <td>
                       <i> {{user.amountOfFive}} </i>
                       <span class="pull-right" style="color: #5a2800">
-                            Szansa trafienia piatki: 0%</span>
+                            Szansa trafienia piatki: {{percentChanceForFive}}%</span>
                   </td>
               </tr>
               <tr style="background-color: #f1e0c6">
@@ -125,7 +125,7 @@
                   <td>
                       <i> {{user.amountOfSix}} </i>
                       <span class="pull-right" style="color: #5a2800">
-                            Szansa trafienia szostki: 0%</span>
+                            Szansa trafienia szostki: {{percentChanceForSix}}%</span>
                   </td>
               </tr>
               <tr style="background-color: #d4c0a1">
@@ -134,8 +134,8 @@
               </tr>
               <tr>
               <td>
-                  <a href="#">
-                      <img src="" height="30px"><button class="btn">Historia</button>
+                  <a *ngIf="authService.loggedIn()" routerLinkActive="active" [routerLink]="['/historia']">
+                      <button class="btn">Historia</button>
                   </a>
               </td>
               </tr>
@@ -151,7 +151,7 @@
               </tr>
               <tr style="background-color: #d4c0a1">
                   <td class="table-desc">Na gry wydano:</td>
-                  <td style="width:90%">2700</td>
+                  <td style="width:90%">{{user.betsSended * 3}}</td>
               </tr>
               <tr style="background-color: #f1e0c6">
                   <td class="table-desc">Z trafionych liczb uzbierano</td>

@@ -1,14 +1,13 @@
 ﻿using AutoMapper;
 using LuckyNumbers.API.Data;
 using LuckyNumbers.API.Dtos;
-using LuckyNumbers.API.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace LuckyNumbers.API.Controllers {
 
-    [Route( "api/server" )]
+    [Route( "/api/server" )]
     [ApiController]
     public class ServerController : ControllerBase {
 
@@ -43,6 +42,14 @@ namespace LuckyNumbers.API.Controllers {
 
             var usersToReturn = mapper.Map<IEnumerable<HistoryGameDto>> ( users );
 
+            return Ok(usersToReturn);
+        }
+
+        [HttpGet("{username}")]
+        public async Task<IActionResult> getHistoryGame(string username) {
+            var users = await userRepository.userHistoryGame(username);
+
+            var usersToReturn = mapper.Map<IEnumerable<HistoryGameDto>> ( users );
 
             return Ok(usersToReturn);
         }

@@ -49,8 +49,8 @@
   <div class="menu-cnt">
 
       <ul *ngFor="let user of users">
-          <li class="last">
-              <span><i> {{user.username}} </i></span>
+          <li>
+              <a [routerLink]="['/gracz/', user.username]"><span><i> {{user.username}} </i></span></a>
               <span class="pull-right"> {{user.level}} lv </span>
           </li>
       </ul>
@@ -66,7 +66,7 @@
 
       <ul *ngFor="let user of user1">
           <li>
-              <span><i> {{user.username}} </i></span>
+              <a [routerLink]="['/gracz/', user.username]"><span><i> {{user.username}} </i></span></a>
               <span class="pull-right"> +{{user.experience}} </span>
           </li>
       </ul>
