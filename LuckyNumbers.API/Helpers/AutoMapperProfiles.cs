@@ -80,6 +80,10 @@ namespace LuckyNumbers.API.Helpers
                 dest => dest.amountOfSix, opt => {
                     opt.MapFrom( src => src.lottoGame.amountOfSix );
                 }
+            ).ForMember(
+                dest => dest.maxBetsToSend, opt => {
+                    opt.MapFrom(src => src.lottoGame.maxBetsToSend);
+                }
             );
         }
 

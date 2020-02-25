@@ -38,13 +38,21 @@ namespace LuckyNumbers.API.Controllers
                 return BadRequest("Nazwa użytkownika " + userRegisterDto.username + " zajęta");
             }
 
-            var userToCreate = new User {
-                username = userRegisterDto.username,
-                email = userRegisterDto.email,
-                created = DateTime.Now,
-                lastLogin = DateTime.Now,
-                saldo = 30
-            };
+            var userToCreate = new User();
+            var lottogame = new LottoGame();
+            var userExp = new UserExperience();
+            userToCreate.username = userRegisterDto.username;
+            userToCreate.email = userRegisterDto.email;
+            userToCreate.created = DateTime.Now;
+            userToCreate.lastLogin = DateTime.Now;
+            userToCreate.saldo = 30;
+
+            lottogame.maxBetsToSend = 10;
+            userExp.experience = 0;
+            userExp.level = 1;
+
+            userToCreate.lottoGame = lottogame;
+            userToCreate.userExperience = userExp;
 
             var createdUser = await authRepository.register(userToCreate, userRegisterDto.password);
 

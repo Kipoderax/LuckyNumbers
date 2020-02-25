@@ -10,6 +10,7 @@ export interface User {
     amountOfFive: number;
     amountOfSix: number;
     betsSended: number;
+    maxBetsToSend: number;
     level: number;
     experience: number;
 

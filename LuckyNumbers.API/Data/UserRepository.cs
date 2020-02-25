@@ -66,18 +66,18 @@ namespace LuckyNumbers.API.Data
         }
 
         public async Task<IEnumerable<User>> best5Players() {
-            var registeredUsers = await context.users.CountAsync() - 5;
-            var users = context.users.Include( u => u.userExperience ).OrderBy( l => l.userExperience.level ).Skip( registeredUsers )
-                .OrderByDescending( l => l.userExperience.level ).ToListAsync();
+            var users = context.users.Include( u => u.userExperience )
+                .OrderByDescending( l => l.userExperience.level )
+                .ThenByDescending(e => e.userExperience.experience).Take(5)
+                .ToListAsync();
 
             return await users;
         }
 
         public async Task<IEnumerable<HistoryGameForLotto>> top5Xp() {
-            var registeredUsers = await context.users.CountAsync() - 5;
-            var user = context.lottoHistoryGames.Include( u => u.user ).Where( d => d.dateGame.Substring( 8, 2 ) == "15" )
-                .OrderBy( x => x.experience ).Skip( registeredUsers )
-                .OrderByDescending( x => x.experience ).ToListAsync();
+            var user = context.lottoHistoryGames.Include( u => u.user )
+                .OrderByDescending( x => x.experience ).Take(5)
+                .ToListAsync();
 
             return await user;
         }
