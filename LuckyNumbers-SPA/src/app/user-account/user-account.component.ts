@@ -26,10 +26,10 @@ export class UserAccountComponent implements OnInit {
   loadUser() {
     this.router.data.subscribe(data => {
       this.user = data.user;
-      this.percentChanceForThree = (this.user.amountOfThree / this.user.betsSended).toPrecision(2);
-      this.percentChanceForFour = (this.user.amountOfFour / this.user.betsSended).toPrecision(2);
-      this.percentChanceForFive = (this.user.amountOfFive / this.user.betsSended).toPrecision(1);
-      this.percentChanceForSix = (this.user.amountOfSix / this.user.betsSended).toPrecision(1);
+      this.percentChanceForThree = (this.user.amountOfThree / this.user.betsSended * 100).toPrecision(3);
+      this.percentChanceForFour = (this.user.amountOfFour / this.user.betsSended * 100).toPrecision(3);
+      this.percentChanceForFive = (this.user.amountOfFive / this.user.betsSended * 100).toPrecision(1);
+      this.percentChanceForSix = (this.user.amountOfSix / this.user.betsSended * 100).toPrecision(1);
     });
   }
 

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { MainPageComponent } from './main-page/main-page.component';
@@ -44,6 +45,7 @@ import { UserSendedBetsResolver } from './_resolvers/user-sended-bets.resolver';
       HttpClientModule,
       FormsModule,
       ReactiveFormsModule,
+      // CommonModule,
       RouterModule.forRoot(appRoutes)
    ],
    providers: [

@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using LuckyNumbers.API.Dtos;
 using LuckyNumbers.API.Entities;
 
 namespace LuckyNumbers.API.Data

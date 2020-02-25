@@ -15,6 +15,7 @@ namespace LuckyNumbers.API.Helpers
             userForUserDetailsDto();
             userForHistoryDto();
             userBetsForLottoNumbersDto();
+            userForUserRegisterDto();
         }
 
         private void userForUserStatisticsDto() {
@@ -97,6 +98,10 @@ namespace LuckyNumbers.API.Helpers
                     opt.MapFrom ( src => src.user.username );
                 }
             );
+        }
+
+        private void userForUserRegisterDto() {
+            CreateMap<User, UserRegisterDto>();
         }
 
     }

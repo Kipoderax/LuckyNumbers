@@ -9,6 +9,7 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.IdentityModel.Tokens.Jwt;
+using AutoMapper;
 
 namespace LuckyNumbers.API.Controllers
 {
@@ -16,13 +17,15 @@ namespace LuckyNumbers.API.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly IAuthRepository repository;
+        private readonly IAuthRepository authRepository;
         private readonly IConfiguration config;
+        private readonly IMapper mapper;
 
-        public AuthController(IAuthRepository repository, IConfiguration config)
+        public AuthController(IAuthRepository repository, IConfiguration config, IMapper mapper)
         {
+            this.mapper = mapper;
             this.config = config;
-            this.repository = repository;
+            this.authRepository = repository;
         }
 
         [HttpPost("register")]
@@ -30,17 +33,20 @@ namespace LuckyNumbers.API.Controllers
         {
             userRegisterDto.username = userRegisterDto.username.ToLower();
 
-            if (await repository.userExists(userRegisterDto.username))
+            if (await authRepository.userExists(userRegisterDto.username))
             {
                 return BadRequest("Nazwa użytkownika " + userRegisterDto.username + " zajęta");
             }
 
-            var userToCreate = new User
-            {
-                username = userRegisterDto.username
+            var userToCreate = new User {
+                username = userRegisterDto.username,
+                email = userRegisterDto.email,
+                created = DateTime.Now,
+                lastLogin = DateTime.Now,
+                saldo = 30
             };
 
-            var createdUser = await repository.register(userToCreate, userRegisterDto.password);
+            var createdUser = await authRepository.register(userToCreate, userRegisterDto.password);
 
             return StatusCode(201);
         }
@@ -48,7 +54,7 @@ namespace LuckyNumbers.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> login(UserLoginDto userLoginDto)
         {
-            var userFromRepo = await repository.login(userLoginDto.username.ToLower(), userLoginDto.password);
+            var userFromRepo = await authRepository.login(userLoginDto.username.ToLower(), userLoginDto.password);
 
             if (userFromRepo == null)
             {
@@ -64,7 +70,8 @@ namespace LuckyNumbers.API.Controllers
 
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
-            var tokenDescriptor = new SecurityTokenDescriptor {
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
                 Subject = new ClaimsIdentity(claims),
                 Expires = DateTime.Now.AddMinutes(10),
                 SigningCredentials = creds

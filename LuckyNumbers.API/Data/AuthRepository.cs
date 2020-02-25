@@ -1,5 +1,7 @@
+using System;
 using System.Text;
 using System.Threading.Tasks;
+using LuckyNumbers.API.Dtos;
 using LuckyNumbers.API.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -32,6 +34,7 @@ namespace LuckyNumbers.API.Data
 
         public async Task<User> register(User user, string password)
         {
+            UserRegisterDto userDto = new UserRegisterDto();
             byte[] passwordHash, passwordSalt;
             createPasswordHashSalt(password, out passwordHash, out passwordSalt);
 

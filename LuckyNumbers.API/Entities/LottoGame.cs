@@ -11,6 +11,7 @@ namespace LuckyNumbers.API.Entities
         public int amountOfFive { get; set; }
         public int amountOfSix { get; set; }
         public int betsSended { get; set; }
+        public int maxBetsToSend { get; set; }
         public User user { get; set; }
         public int userId { get; set; }
     }
