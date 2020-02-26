@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using LuckyNumbers.API.Data;
 using LuckyNumbers.API.Dtos;
+using LuckyNumbers.API.Service;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace LuckyNumbers.API.Controllers {
             this.userRepository = userRepository;
             this.mapper = mapper;
         }
+        
         [Route("/api/status")]
         [HttpGet]
         public async Task<List<int>> getServerStatus () {
@@ -45,13 +47,22 @@ namespace LuckyNumbers.API.Controllers {
             return Ok(usersToReturn);
         }
 
-        [HttpGet("/api/history-game/{username}")]
-        public async Task<IActionResult> getHistoryGame(string username) {
+        [HttpGet("/api/history/{username}")]
+         public async Task<IActionResult> getHistoryGame(string username)
+        {
             var users = await userRepository.userHistoryGame(username);
 
-            var usersToReturn = mapper.Map<IEnumerable<HistoryGameDto>> ( users );
+            var usersToReturn = mapper.Map<IEnumerable<HistoryGameDto>>(users);
 
             return Ok(usersToReturn);
         }
+
+        // [HttpGet("/api/lotto")]
+        // public SortedSet<int> getGenerateNumbers()
+        // {
+        //     LottoNumbers lottoNumbers = new LottoNumbers();
+        //     var num = lottoNumbers.generateNumbers();
+        //     return num;
+        // }
     }
 }

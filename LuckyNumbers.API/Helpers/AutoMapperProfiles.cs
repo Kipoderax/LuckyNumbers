@@ -98,8 +98,8 @@ namespace LuckyNumbers.API.Helpers
 
         private void userBetsForLottoNumbersDto() {
             CreateMap<UserLottoBets, LottoNumbersDto>().ForMember(
-                dest => dest.username, opt => {
-                    opt.MapFrom ( src => src.user.username );
+                dest => dest.userId, opt => {
+                    opt.MapFrom ( src => src.user.userId );
                 }
             );
         }

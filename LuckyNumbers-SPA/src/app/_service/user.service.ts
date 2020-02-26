@@ -35,7 +35,7 @@ export class UserService {
   }
 
   getHistoryGameUser(username: string): Observable<HistoryGame[]> {
-    return this.http.get<HistoryGame[]>(this.baseUrl + 'history-game/' + username);
+    return this.http.get<HistoryGame[]>(this.baseUrl + 'history/' + username);
   }
 
   getUserSendedBets(username: string): Observable<UserSendedBets[]> {

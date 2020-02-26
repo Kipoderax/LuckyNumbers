@@ -2,7 +2,7 @@ namespace LuckyNumbers.API.Dtos
 {
     public class LottoNumbersDto
     {
-        public string username { get; set; }
+        public int userId { get; set; }
         public int number1 { get; set; }
         public int number2 { get; set; }
         public int number3 { get; set; }
