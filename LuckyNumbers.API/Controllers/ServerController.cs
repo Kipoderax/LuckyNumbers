@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using LuckyNumbers.API.Data;
 using LuckyNumbers.API.Dtos;
-using LuckyNumbers.API.Service;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -56,13 +55,5 @@ namespace LuckyNumbers.API.Controllers {
 
             return Ok(usersToReturn);
         }
-
-        // [HttpGet("/api/lotto")]
-        // public SortedSet<int> getGenerateNumbers()
-        // {
-        //     LottoNumbers lottoNumbers = new LottoNumbers();
-        //     var num = lottoNumbers.generateNumbers();
-        //     return num;
-        // }
     }
 }

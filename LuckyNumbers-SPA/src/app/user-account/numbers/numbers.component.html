@@ -23,13 +23,13 @@
   <div class="content-bg">
       <div class="content-txt">
 
-          <form>
+          <form (ngSubmit)="sendGenerateNumbers()">
               <table cellpadding="1" border="0">
                   <tbody>
                   <tr>
                       <td>Wyslij losowo <input type="number" value="0" min="0"></td>
                       <td>
-                        <a href="#"><button class="btn" style="height: 28px; font-size: 12px;">Wyślij</button></a>
+                        <button class="btn" style="height: 28px; font-size: 12px;" type="submit">Wyślij</button>
                       </td>
                       <td> Do wysłania pozostało {{leftSendToBets}} zakładów </td>
                   </tr>

@@ -23,22 +23,15 @@ namespace LuckyNumbers.API.Controllers
             this.mapper = mapper;
         }
 
-        [HttpGet]
-        public int[] getGenerateNumbers()
-        {
-            LottoNumbers lottoNumbers = new LottoNumbers();
-            var num = lottoNumbers.generateNumbers();
-            return num;
-        }
-
         [Authorize]
         [HttpPost("{userId}")]
         public async Task<IActionResult> saveUserNumbers(int userId, LottoNumbersDto lottoNumbersDto) {
+            var user = userRepository.getUserByUserId(userId);
+
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
             {
                 return Unauthorized();
             }
-            var user = userRepository.getUserByUserId(userId);
 
             UserLottoBets userLottoBets = new UserLottoBets();
             LottoNumbers lottoNumbers = new LottoNumbers();

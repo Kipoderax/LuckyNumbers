@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserSendedBets } from 'src/app/_model/userSendedBets';
 import { AuthService } from 'src/app/_service/auth.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/_service/user.service';
+import { Subscription, interval } from 'rxjs';
 
 @Component({
   selector: 'app-numbers',
@@ -13,8 +14,12 @@ export class NumbersComponent implements OnInit {
 
   sendedBets: UserSendedBets[];
   leftSendToBets: number;
+  lottoNumbers: UserSendedBets;
 
-  constructor(private authService: AuthService, private userService: UserService, private router: ActivatedRoute) { }
+  private updateSubscription: Subscription;
+
+
+  constructor(private authService: AuthService, private userService: UserService, private router: ActivatedRoute, private route: Router) { }
 
   ngOnInit() {
     this.loadUserSendedBets();
@@ -32,4 +37,12 @@ export class NumbersComponent implements OnInit {
        this.leftSendToBets = data.maxBetsToSend);
   }
 
+  sendGenerateNumbers() {
+    this.userService.sendLottoNumber(this.authService.decodedToken.nameid, {}).subscribe(() => {
+      // this.loadUserSendedBets();
+      window.location.reload();
+    }, error => {
+      console.log(error);
+    });
+  }
 }
