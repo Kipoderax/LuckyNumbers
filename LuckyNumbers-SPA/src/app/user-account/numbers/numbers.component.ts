@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UserSendedBets } from 'src/app/_model/userSendedBets';
 import { AuthService } from 'src/app/_service/auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { UserService } from 'src/app/_service/user.service';
-import { Subscription, interval } from 'rxjs';
+
+declare let alertify: any;
 
 @Component({
   selector: 'app-numbers',
@@ -13,13 +14,10 @@ import { Subscription, interval } from 'rxjs';
 export class NumbersComponent implements OnInit {
 
   sendedBets: UserSendedBets[];
-  leftSendToBets: number;
   lottoNumbers: UserSendedBets;
+  leftSendToBets: number;
 
-  private updateSubscription: Subscription;
-
-
-  constructor(private authService: AuthService, private userService: UserService, private router: ActivatedRoute, private route: Router) { }
+  constructor(private authService: AuthService, private userService: UserService, private router: ActivatedRoute) { }
 
   ngOnInit() {
     this.loadUserSendedBets();
@@ -33,16 +31,28 @@ export class NumbersComponent implements OnInit {
   }
 
   loadNumberBetsToSend() {
-     this.userService.getUser(this.authService.decodedToken.unique_name).subscribe(data =>
-       this.leftSendToBets = data.maxBetsToSend);
+    this.userService.getUser(this.authService.decodedToken.unique_name).subscribe(data =>
+      this.leftSendToBets = data.maxBetsToSend - this.sendedBets.length);
   }
 
-  sendGenerateNumbers() {
-    this.userService.sendLottoNumber(this.authService.decodedToken.nameid, {}).subscribe(() => {
-      // this.loadUserSendedBets();
+  sendGenerateNumbers(numberBetsToGenerate: number) {
+    if (numberBetsToGenerate > this.leftSendToBets) {
+      alertify.error('Możesz wysłać co najwyżej jeszcze ' + this.leftSendToBets + ' zakładów.');
+      return false;
+    } else {
+      for (let i = 0; i < numberBetsToGenerate; i++) {
+        this.userService.sendLottoNumber(this.authService.decodedToken.nameid, {}, numberBetsToGenerate).subscribe(() => {
+          this.reloadPage(i, numberBetsToGenerate);
+        }, error => {
+          console.log(error);
+        });
+      }
+    }
+  }
+
+  reloadPage(iteration: number, isSended: number) {
+    if (iteration === isSended - 1) {
       window.location.reload();
-    }, error => {
-      console.log(error);
-    });
+    }
   }
 }
