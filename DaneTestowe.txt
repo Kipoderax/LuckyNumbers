@@ -1,0 +1,49 @@
+[
+  '{{repeat(25)}}',
+  {
+    username: '{{firstName("male")}}',
+    password: 'password',
+    email: '{{email([random])}}',
+    saldo: '{{30}}',
+    created: '{{date(new Date(2020,1,1), new Date(2019,1,1), "YYYY-MM-dd")}}',
+    lastLogin: function(){return this.created; },
+    lottoHistoryGames: [
+      {
+        dateGame: function() {return this.created; },
+        betsSended: '{{integer(0, 202)}}',
+        amountGoalThrees: '{{integer(0, 7)}}',
+        amountGoalFours: '{{integer(0, 2)}}',
+        amountGoalFives: '{{integer(0, 1)}}',
+        amountGoalSixes: '{{integer(0, 1)}}',
+        experience: '{{integer(10, 2700)}}',
+        result: '{{integer(-400, 720)}}'
+      }
+    ],
+    userLottoBets: [
+      {
+        number1: '{{integer(1, 49)}}',
+        number2: '{{integer(1, 49)}}',
+        number3: '{{integer(1, 49)}}',
+        number4: '{{integer(1, 49)}}',
+        number5: '{{integer(1, 49)}}',
+        number6: '{{integer(1, 49)}}'
+      }
+    ],
+    lottoGame: [
+      {
+        amountOfThree: '{{integer(0, 80)}}',
+        amountOfFour: '{{integer(0, 15)}}',
+        amountOfFive: '{{integer(0, 3)}}',
+        amountOfSix: '{{integer(0, 1)}}',
+        betsSended: '{{integer(0, 8500)}}',
+        maxBetsToSend: '{{integer(10, 202)}}'
+      }
+    ],
+    userExperience: [
+      {
+        level: '{{integer(1, 101)}}',
+        experience: '{{integer(0, 18000)}}'
+      }
+    ]
+  }
+]

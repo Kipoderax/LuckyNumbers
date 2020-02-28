@@ -25,7 +25,8 @@ namespace LuckyNumbers.API.Controllers
 
         // [Authorize]
         [HttpPost("{userId}/{amountBetsToSend}")]
-        public async Task<IActionResult> saveUserNumbers(int userId, LottoNumbersDto lottoNumbersDto, int amountBetsToSend) {
+        public async Task<IActionResult> saveUserGenerateNumbers(int userId, LottoNumbersDto lottoNumbersDto, int amountBetsToSend)
+        {
             var user = userRepository.getUserByUserId(userId);
 
             // if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
@@ -36,7 +37,8 @@ namespace LuckyNumbers.API.Controllers
             UserLottoBets userLottoBets = new UserLottoBets();
             LottoNumbers lottoNumbers = new LottoNumbers();
 
-            for (int i = 0; i < amountBetsToSend; i++) {
+            for (int i = 0; i < amountBetsToSend; i++)
+            {
                 int[] numbers = lottoNumbers.generateNumbers();
                 userLottoBets.number1 = numbers[0];
                 userLottoBets.number2 = numbers[1];
@@ -50,7 +52,37 @@ namespace LuckyNumbers.API.Controllers
 
                 userRepository.add(userLottoBets);
             }
-                await userRepository.saveAll();
+            await userRepository.saveAll();
+
+            return StatusCode(201);
+        }
+
+        // [Authorize]
+        [HttpPost("{userId}")]
+        public async Task<IActionResult> saveUserInputNumbers(int userId, LottoNumbersDto lottoNumbersDto)
+        {
+            var user = userRepository.getUserByUserId(userId);
+
+            // if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            // {
+            //     return Unauthorized();
+            // }
+
+            UserLottoBets userLottoBets = new UserLottoBets();
+
+            userLottoBets.number1 = lottoNumbersDto.number1;
+            userLottoBets.number2 = lottoNumbersDto.number2;
+            userLottoBets.number3 = lottoNumbersDto.number3;
+            userLottoBets.number4 = lottoNumbersDto.number4;
+            userLottoBets.number5 = lottoNumbersDto.number5;
+            userLottoBets.number6 = lottoNumbersDto.number6;
+            userLottoBets.userId = userId;
+
+            var bet = mapper.Map(userLottoBets, lottoNumbersDto);
+
+            userRepository.add(userLottoBets);
+
+            await userRepository.saveAll();
 
             return StatusCode(201);
         }

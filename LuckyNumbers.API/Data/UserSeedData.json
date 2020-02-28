@@ -1,0 +1,1027 @@
+[
+  {
+    "username": "Mills",
+    "password": "password",
+    "email": "mavisscott@grok.com",
+    "saldo": 30,
+    "created": "2019-05-17",
+    "lastLogin": "2019-05-17",
+    "lottoHistoryGames": [
+      {
+        "betsSended": 104,
+        "amountGoalThrees": 3,
+        "amountGoalFours": 0,
+        "amountGoalFives": 0,
+        "amountGoalSixes": 0,
+        "experience": 1734,
+        "result": -170
+      }
+    ],
+    "userLottoBets": [
+      {
+        "number1": 32,
+        "number2": 46,
+        "number3": 24,
+        "number4": 45,
+        "number5": 11,
+        "number6": 23
+      }
+    ],
+    "lottoGame": {
+      "amountOfThree": 30,
+      "amountOfFour": 4,
+      "amountOfFive": 0,
+      "amountOfSix": 0,
+      "betsSended": 5111,
+      "maxBetsToSend": 56
+    },
+    "userExperience": {
+      "level": 74,
+      "experience": 9467
+    }
+  },
+  {
+    "username": "Dejesus",
+    "password": "password",
+    "email": "abbysolomon@keeg.com",
+    "saldo": 30,
+    "created": "2019-09-02",
+    "lastLogin": "2019-09-02",
+    "lottoHistoryGames": [
+      {
+        "betsSended": 6,
+        "amountGoalThrees": 6,
+        "amountGoalFours": 0,
+        "amountGoalFives": 1,
+        "amountGoalSixes": 1,
+        "experience": 769,
+        "result": -31
+      }
+    ],
+    "userLottoBets": [
+      {
+        "number1": 19,
+        "number2": 26,
+        "number3": 29,
+        "number4": 13,
+        "number5": 10,
+        "number6": 6
+      }
+    ],
+    "lottoGame": {
+      "amountOfThree": 36,
+      "amountOfFour": 12,
+      "amountOfFive": 0,
+      "amountOfSix": 1,
+      "betsSended": 1471,
+      "maxBetsToSend": 96
+    },
+    "userExperience": {
+      "level": 22,
+      "experience": 5625
+    }
+  },
+  {
+    "username": "Cantu",
+    "password": "password",
+    "email": "christygrant@omatom.com",
+    "saldo": 30,
+    "created": "2019-07-06",
+    "lastLogin": "2019-07-06",
+    "lottoHistoryGames": [
+      {
+        "betsSended": 37,
+        "amountGoalThrees": 1,
+        "amountGoalFours": 0,
+        "amountGoalFives": 0,
+        "amountGoalSixes": 0,
+        "experience": 1166,
+        "result": -354
+      }
+    ],
+    "userLottoBets": [
+      {
+        "number1": 31,
+        "number2": 15,
+        "number3": 23,
+        "number4": 24,
+        "number5": 31,
+        "number6": 23
+      }
+    ],
+    "lottoGame": {
+      "amountOfThree": 62,
+      "amountOfFour": 12,
+      "amountOfFive": 1,
+      "amountOfSix": 1,
+      "betsSended": 7381,
+      "maxBetsToSend": 165
+    },
+    "userExperience": {
+      "level": 1,
+      "experience": 3805
+    }
+  },
+  {
+    "username": "Woodard",
+    "password": "password",
+    "email": "shawnhood@updat.com",
+    "saldo": 30,
+    "created": "2019-05-29",
+    "lastLogin": "2019-05-29",
+    "lottoHistoryGames": [
+      {
+        "betsSended": 167,
+        "amountGoalThrees": 6,
+        "amountGoalFours": 0,
+        "amountGoalFives": 1,
+        "amountGoalSixes": 1,
+        "experience": 1416,
+        "result": 5
+      }
+    ],
+    "userLottoBets": [
+      {
+        "number1": 31,
+        "number2": 25,
+        "number3": 39,
+        "number4": 26,
+        "number5": 48,
+        "number6": 28
+      }
+    ],
+    "lottoGame": {
+      "amountOfThree": 59,
+      "amountOfFour": 12,
+      "amountOfFive": 1,
+      "amountOfSix": 0,
+      "betsSended": 417,
+      "maxBetsToSend": 103
+    },
+    "userExperience": {
+      "level": 8,
+      "experience": 4218
+    }
+  },
+  {
+    "username": "Holder",
+    "password": "password",
+    "email": "harrietclay@miracula.com",
+    "saldo": 30,
+    "created": "2019-07-04",
+    "lastLogin": "2019-07-04",
+    "lottoHistoryGames": [
+      {
+        "betsSended": 201,
+        "amountGoalThrees": 7,
+        "amountGoalFours": 1,
+        "amountGoalFives": 1,
+        "amountGoalSixes": 0,
+        "experience": 647,
+        "result": 442
+      }
+    ],
+    "userLottoBets": [
+      {
+        "number1": 32,
+        "number2": 43,
+        "number3": 44,
+        "number4": 5,
+        "number5": 25,
+        "number6": 13
+      }
+    ],
+    "lottoGame": {
+      "amountOfThree": 77,
+      "amountOfFour": 15,
+      "amountOfFive": 1,
+      "amountOfSix": 1,
+      "betsSended": 160,
+      "maxBetsToSend": 171
+    },
+    "userExperience": {
+      "level": 90,
+      "experience": 11242
+    }
+  },
+  {
+    "username": "Irwin",
+    "password": "password",
+    "email": "owennelson@yogasm.com",
+    "saldo": 30,
+    "created": "2019-04-05",
+    "lastLogin": "2019-04-05",
+    "lottoHistoryGames": [
+      {
+        "betsSended": 149,
+        "amountGoalThrees": 6,
+        "amountGoalFours": 0,
+        "amountGoalFives": 1,
+        "amountGoalSixes": 0,
+        "experience": 2177,
+        "result": 38
+      }
+    ],
+    "userLottoBets": [
+      {
+        "number1": 6,
+        "number2": 18,
+        "number3": 34,
+        "number4": 30,
+        "number5": 5,
+        "number6": 22
+      }
+    ],
+    "lottoGame": {
+      "amountOfThree": 17,
+      "amountOfFour": 3,
+      "amountOfFive": 2,
+      "amountOfSix": 1,
+      "betsSended": 6145,
+      "maxBetsToSend": 74
+    },
+    "userExperience": {
+      "level": 53,
+      "experience": 3312
+    }
+  },
+  {
+    "username": "Kidd",
+    "password": "password",
+    "email": "nixonwalton@paragonia.com",
+    "saldo": 30,
+    "created": "2019-10-21",
+    "lastLogin": "2019-10-21",
+    "lottoHistoryGames": [
+      {
+        "betsSended": 139,
+        "amountGoalThrees": 0,
+        "amountGoalFours": 0,
+        "amountGoalFives": 0,
+        "amountGoalSixes": 1,
+        "experience": 1014,
+        "result": -231
+      }
+    ],
+    "userLottoBets": [
+      {
+        "number1": 34,
+        "number2": 19,
+        "number3": 5,
+        "number4": 3,
+        "number5": 34,
+        "number6": 1
+      }
+    ],
+    "lottoGame": {
+      "amountOfThree": 0,
+      "amountOfFour": 9,
+      "amountOfFive": 2,
+      "amountOfSix": 0,
+      "betsSended": 4277,
+      "maxBetsToSend": 10
+    },
+    "userExperience": {
+      "level": 72,
+      "experience": 16873
+    }
+  },
+  {
+    "username": "Warren",
+    "password": "password",
+    "email": "reneprice@musanpoly.com",
+    "saldo": 30,
+    "created": "2019-06-30",
+    "lastLogin": "2019-06-30",
+    "lottoHistoryGames": [
+      {
+        "betsSended": 94,
+        "amountGoalThrees": 2,
+        "amountGoalFours": 1,
+        "amountGoalFives": 1,
+        "amountGoalSixes": 1,
+        "experience": 1588,
+        "result": 432
+      }
+    ],
+    "userLottoBets": [
+      {
+        "number1": 37,
+        "number2": 3,
+        "number3": 13,
+        "number4": 20,
+        "number5": 20,
+        "number6": 24
+      }
+    ],
+    "lottoGame": {
+      "amountOfThree": 72,
+      "amountOfFour": 7,
+      "amountOfFive": 2,
+      "amountOfSix": 0,
+      "betsSended": 1859,
+      "maxBetsToSend": 42
+    },
+    "userExperience": {
+      "level": 38,
+      "experience": 368
+    }
+  },
+  {
+    "username": "Fernandez",
+    "password": "password",
+    "email": "angeliasolis@steeltab.com",
+    "saldo": 30,
+    "created": "2019-02-07",
+    "lastLogin": "2019-02-07",
+    "lottoHistoryGames": [
+      {
+        "betsSended": 60,
+        "amountGoalThrees": 0,
+        "amountGoalFours": 0,
+        "amountGoalFives": 0,
+        "amountGoalSixes": 1,
+        "experience": 2666,
+        "result": 8
+      }
+    ],
+    "userLottoBets": [
+      {
+        "number1": 5,
+        "number2": 47,
+        "number3": 32,
+        "number4": 14,
+        "number5": 20,
+        "number6": 9
+      }
+    ],
+    "lottoGame": {
+      "amountOfThree": 63,
+      "amountOfFour": 14,
+      "amountOfFive": 1,
+      "amountOfSix": 1,
+      "betsSended": 1114,
+      "maxBetsToSend": 111
+    },
+    "userExperience": {
+      "level": 18,
+      "experience": 8277
+    }
+  },
+  {
+    "username": "Blevins",
+    "password": "password",
+    "email": "brennanhess@insuresys.com",
+    "saldo": 30,
+    "created": "2019-03-02",
+    "lastLogin": "2019-03-02",
+    "lottoHistoryGames": [
+      {
+        "betsSended": 198,
+        "amountGoalThrees": 5,
+        "amountGoalFours": 1,
+        "amountGoalFives": 1,
+        "amountGoalSixes": 1,
+        "experience": 2361,
+        "result": -379
+      }
+    ],
+    "userLottoBets": [
+      {
+        "number1": 11,
+        "number2": 35,
+        "number3": 35,
+        "number4": 36,
+        "number5": 15,
+        "number6": 28
+      }
+    ],
+    "lottoGame": {
+      "amountOfThree": 79,
+      "amountOfFour": 6,
+      "amountOfFive": 0,
+      "amountOfSix": 1,
+      "betsSended": 1785,
+      "maxBetsToSend": 107
+    },
+    "userExperience": {
+      "level": 90,
+      "experience": 13497
+    }
+  },
+  {
+    "username": "Dawson",
+    "password": "password",
+    "email": "ayalaboyer@rodemco.com",
+    "saldo": 30,
+    "created": "2019-05-23",
+    "lastLogin": "2019-05-23",
+    "lottoHistoryGames": [
+      {
+        "betsSended": 117,
+        "amountGoalThrees": 5,
+        "amountGoalFours": 1,
+        "amountGoalFives": 1,
+        "amountGoalSixes": 0,
+        "experience": 2687,
+        "result": -110
+      }
+    ],
+    "userLottoBets": [
+      {
+        "number1": 41,
+        "number2": 32,
+        "number3": 45,
+        "number4": 34,
+        "number5": 43,
+        "number6": 7
+      }
+    ],
+    "lottoGame": {
+      "amountOfThree": 51,
+      "amountOfFour": 8,
+      "amountOfFive": 1,
+      "amountOfSix": 1,
+      "betsSended": 7941,
+      "maxBetsToSend": 102
+    },
+    "userExperience": {
+      "level": 101,
+      "experience": 11081
+    }
+  },
+  {
+    "username": "Workman",
+    "password": "password",
+    "email": "goffnoel@marqet.com",
+    "saldo": 30,
+    "created": "2019-12-25",
+    "lastLogin": "2019-12-25",
+    "lottoHistoryGames": [
+      {
+        "betsSended": 202,
+        "amountGoalThrees": 2,
+        "amountGoalFours": 1,
+        "amountGoalFives": 1,
+        "amountGoalSixes": 0,
+        "experience": 1179,
+        "result": 677
+      }
+    ],
+    "userLottoBets": [
+      {
+        "number1": 8,
+        "number2": 6,
+        "number3": 41,
+        "number4": 21,
+        "number5": 41,
+        "number6": 7
+      }
+    ],
+    "lottoGame": {
+      "amountOfThree": 79,
+      "amountOfFour": 4,
+      "amountOfFive": 3,
+      "amountOfSix": 1,
+      "betsSended": 3017,
+      "maxBetsToSend": 130
+    },
+    "userExperience": {
+      "level": 37,
+      "experience": 15181
+    }
+  },
+  {
+    "username": "Mays",
+    "password": "password",
+    "email": "christinielsen@rodeocean.com",
+    "saldo": 30,
+    "created": "2019-05-26",
+    "lastLogin": "2019-05-26",
+    "lottoHistoryGames": [
+      {
+        "betsSended": 31,
+        "amountGoalThrees": 2,
+        "amountGoalFours": 1,
+        "amountGoalFives": 0,
+        "amountGoalSixes": 0,
+        "experience": 449,
+        "result": -63
+      }
+    ],
+    "userLottoBets": [
+      {
+        "number1": 5,
+        "number2": 27,
+        "number3": 27,
+        "number4": 13,
+        "number5": 5,
+        "number6": 19
+      }
+    ],
+    "lottoGame": {
+      "amountOfThree": 56,
+      "amountOfFour": 11,
+      "amountOfFive": 2,
+      "amountOfSix": 0,
+      "betsSended": 5866,
+      "maxBetsToSend": 184
+    },
+    "userExperience": {
+      "level": 36,
+      "experience": 16172
+    }
+  },
+  {
+    "username": "Powers",
+    "password": "password",
+    "email": "oladeleon@crustatia.com",
+    "saldo": 30,
+    "created": "2019-08-25",
+    "lastLogin": "2019-08-25",
+    "lottoHistoryGames": [
+      {
+        "betsSended": 101,
+        "amountGoalThrees": 1,
+        "amountGoalFours": 0,
+        "amountGoalFives": 1,
+        "amountGoalSixes": 1,
+        "experience": 533,
+        "result": 234
+      }
+    ],
+    "userLottoBets": [
+      {
+        "number1": 25,
+        "number2": 44,
+        "number3": 8,
+        "number4": 32,
+        "number5": 43,
+        "number6": 30
+      }
+    ],
+    "lottoGame": {
+      "amountOfThree": 17,
+      "amountOfFour": 5,
+      "amountOfFive": 3,
+      "amountOfSix": 0,
+      "betsSended": 8018,
+      "maxBetsToSend": 120
+    },
+    "userExperience": {
+      "level": 71,
+      "experience": 9083
+    }
+  },
+  {
+    "username": "Stephens",
+    "password": "password",
+    "email": "feleciatrevino@hairport.com",
+    "saldo": 30,
+    "created": "2019-09-28",
+    "lastLogin": "2019-09-28",
+    "lottoHistoryGames": [
+      {
+        "betsSended": 195,
+        "amountGoalThrees": 7,
+        "amountGoalFours": 2,
+        "amountGoalFives": 1,
+        "amountGoalSixes": 0,
+        "experience": 1752,
+        "result": -20
+      }
+    ],
+    "userLottoBets": [
+      {
+        "number1": 36,
+        "number2": 39,
+        "number3": 41,
+        "number4": 8,
+        "number5": 24,
+        "number6": 15
+      }
+    ],
+    "lottoGame": {
+      "amountOfThree": 71,
+      "amountOfFour": 0,
+      "amountOfFive": 1,
+      "amountOfSix": 1,
+      "betsSended": 7508,
+      "maxBetsToSend": 83
+    },
+    "userExperience": {
+      "level": 23,
+      "experience": 17725
+    }
+  },
+  {
+    "username": "Santana",
+    "password": "password",
+    "email": "marthabradley@entropix.com",
+    "saldo": 30,
+    "created": "2019-07-27",
+    "lastLogin": "2019-07-27",
+    "lottoHistoryGames": [
+      {
+        "betsSended": 138,
+        "amountGoalThrees": 6,
+        "amountGoalFours": 2,
+        "amountGoalFives": 1,
+        "amountGoalSixes": 0,
+        "experience": 337,
+        "result": -40
+      }
+    ],
+    "userLottoBets": [
+      {
+        "number1": 21,
+        "number2": 28,
+        "number3": 20,
+        "number4": 45,
+        "number5": 36,
+        "number6": 40
+      }
+    ],
+    "lottoGame": {
+      "amountOfThree": 55,
+      "amountOfFour": 7,
+      "amountOfFive": 1,
+      "amountOfSix": 1,
+      "betsSended": 5482,
+      "maxBetsToSend": 132
+    },
+    "userExperience": {
+      "level": 34,
+      "experience": 7063
+    }
+  },
+  {
+    "username": "Haley",
+    "password": "password",
+    "email": "guylamb@cuizine.com",
+    "saldo": 30,
+    "created": "2020-01-26",
+    "lastLogin": "2020-01-26",
+    "lottoHistoryGames": [
+      {
+        "betsSended": 14,
+        "amountGoalThrees": 3,
+        "amountGoalFours": 1,
+        "amountGoalFives": 0,
+        "amountGoalSixes": 0,
+        "experience": 2008,
+        "result": -48
+      }
+    ],
+    "userLottoBets": [
+      {
+        "number1": 20,
+        "number2": 14,
+        "number3": 2,
+        "number4": 36,
+        "number5": 5,
+        "number6": 5
+      }
+    ],
+    "lottoGame": {
+      "amountOfThree": 33,
+      "amountOfFour": 3,
+      "amountOfFive": 3,
+      "amountOfSix": 1,
+      "betsSended": 6957,
+      "maxBetsToSend": 165
+    },
+    "userExperience": {
+      "level": 11,
+      "experience": 15836
+    }
+  },
+  {
+    "username": "Best",
+    "password": "password",
+    "email": "hullpace@acrodance.com",
+    "saldo": 30,
+    "created": "2019-10-29",
+    "lastLogin": "2019-10-29",
+    "lottoHistoryGames": [
+      {
+        "betsSended": 112,
+        "amountGoalThrees": 6,
+        "amountGoalFours": 1,
+        "amountGoalFives": 0,
+        "amountGoalSixes": 0,
+        "experience": 1878,
+        "result": 496
+      }
+    ],
+    "userLottoBets": [
+      {
+        "number1": 16,
+        "number2": 23,
+        "number3": 35,
+        "number4": 34,
+        "number5": 8,
+        "number6": 34
+      }
+    ],
+    "lottoGame": {
+      "amountOfThree": 54,
+      "amountOfFour": 8,
+      "amountOfFive": 2,
+      "amountOfSix": 0,
+      "betsSended": 4244,
+      "maxBetsToSend": 15
+    },
+    "userExperience": {
+      "level": 13,
+      "experience": 13795
+    }
+  },
+  {
+    "username": "Hays",
+    "password": "password",
+    "email": "mckinneyirwin@senmei.com",
+    "saldo": 30,
+    "created": "2019-12-05",
+    "lastLogin": "2019-12-05",
+    "lottoHistoryGames": [
+      {
+        "betsSended": 143,
+        "amountGoalThrees": 4,
+        "amountGoalFours": 1,
+        "amountGoalFives": 1,
+        "amountGoalSixes": 1,
+        "experience": 629,
+        "result": -57
+      }
+    ],
+    "userLottoBets": [
+      {
+        "number1": 7,
+        "number2": 8,
+        "number3": 35,
+        "number4": 10,
+        "number5": 6,
+        "number6": 26
+      }
+    ],
+    "lottoGame": {
+      "amountOfThree": 69,
+      "amountOfFour": 14,
+      "amountOfFive": 2,
+      "amountOfSix": 0,
+      "betsSended": 6344,
+      "maxBetsToSend": 198
+    },
+    "userExperience": {
+      "level": 19,
+      "experience": 5759
+    }
+  },
+  {
+    "username": "Harrison",
+    "password": "password",
+    "email": "robynfinley@ginkle.com",
+    "saldo": 30,
+    "created": "2019-12-27",
+    "lastLogin": "2019-12-27",
+    "lottoHistoryGames": [
+      {
+        "betsSended": 75,
+        "amountGoalThrees": 2,
+        "amountGoalFours": 1,
+        "amountGoalFives": 0,
+        "amountGoalSixes": 1,
+        "experience": 356,
+        "result": -136
+      }
+    ],
+    "userLottoBets": [
+      {
+        "number1": 2,
+        "number2": 12,
+        "number3": 5,
+        "number4": 44,
+        "number5": 44,
+        "number6": 11
+      }
+    ],
+    "lottoGame": {
+      "amountOfThree": 29,
+      "amountOfFour": 0,
+      "amountOfFive": 0,
+      "amountOfSix": 0,
+      "betsSended": 1310,
+      "maxBetsToSend": 188
+    },
+    "userExperience": {
+      "level": 90,
+      "experience": 3647
+    }
+  },
+  {
+    "username": "Carter",
+    "password": "password",
+    "email": "madgedaugherty@quizmo.com",
+    "saldo": 30,
+    "created": "2019-05-29",
+    "lastLogin": "2019-05-29",
+    "lottoHistoryGames": [
+      {
+        "betsSended": 139,
+        "amountGoalThrees": 4,
+        "amountGoalFours": 0,
+        "amountGoalFives": 0,
+        "amountGoalSixes": 1,
+        "experience": 252,
+        "result": -293
+      }
+    ],
+    "userLottoBets": [
+      {
+        "number1": 11,
+        "number2": 37,
+        "number3": 19,
+        "number4": 5,
+        "number5": 32,
+        "number6": 43
+      }
+    ],
+    "lottoGame": {
+      "amountOfThree": 51,
+      "amountOfFour": 3,
+      "amountOfFive": 2,
+      "amountOfSix": 0,
+      "betsSended": 7567,
+      "maxBetsToSend": 81
+    },
+    "userExperience": {
+      "level": 41,
+      "experience": 14483
+    }
+  },
+  {
+    "username": "Mosley",
+    "password": "password",
+    "email": "pamgarza@utarian.com",
+    "saldo": 30,
+    "created": "2019-08-18",
+    "lastLogin": "2019-08-18",
+    "lottoHistoryGames": [
+      {
+        "betsSended": 13,
+        "amountGoalThrees": 4,
+        "amountGoalFours": 1,
+        "amountGoalFives": 1,
+        "amountGoalSixes": 0,
+        "experience": 575,
+        "result": 266
+      }
+    ],
+    "userLottoBets": [
+      {
+        "number1": 23,
+        "number2": 33,
+        "number3": 2,
+        "number4": 18,
+        "number5": 35,
+        "number6": 5
+      }
+    ],
+    "lottoGame": {
+      "amountOfThree": 24,
+      "amountOfFour": 6,
+      "amountOfFive": 0,
+      "amountOfSix": 1,
+      "betsSended": 929,
+      "maxBetsToSend": 34
+    },
+    "userExperience": {
+      "level": 3,
+      "experience": 5840
+    }
+  },
+  {
+    "username": "Blair",
+    "password": "password",
+    "email": "silviaharding@gallaxia.com",
+    "saldo": 30,
+    "created": "2019-09-24",
+    "lastLogin": "2019-09-24",
+    "lottoHistoryGames": [
+      {
+        "betsSended": 19,
+        "amountGoalThrees": 3,
+        "amountGoalFours": 1,
+        "amountGoalFives": 1,
+        "amountGoalSixes": 1,
+        "experience": 826,
+        "result": -286
+      }
+    ],
+    "userLottoBets": [
+      {
+        "number1": 24,
+        "number2": 45,
+        "number3": 35,
+        "number4": 30,
+        "number5": 46,
+        "number6": 24
+      }
+    ],
+    "lottoGame": {
+      "amountOfThree": 30,
+      "amountOfFour": 6,
+      "amountOfFive": 0,
+      "amountOfSix": 0,
+      "betsSended": 1085,
+      "maxBetsToSend": 72
+    },
+    "userExperience": {
+      "level": 19,
+      "experience": 12420
+    }
+  },
+  {
+    "username": "Dyer",
+    "password": "password",
+    "email": "adrianshepard@norsup.com",
+    "saldo": 30,
+    "created": "2019-07-16",
+    "lastLogin": "2019-07-16",
+    "lottoHistoryGames": [
+      {
+        "betsSended": 76,
+        "amountGoalThrees": 1,
+        "amountGoalFours": 0,
+        "amountGoalFives": 1,
+        "amountGoalSixes": 1,
+        "experience": 1242,
+        "result": -342
+      }
+    ],
+    "userLottoBets": [
+      {
+        "number1": 32,
+        "number2": 32,
+        "number3": 3,
+        "number4": 39,
+        "number5": 19,
+        "number6": 34
+      }
+    ],
+    "lottoGame": {
+      "amountOfThree": 58,
+      "amountOfFour": 6,
+      "amountOfFive": 1,
+      "amountOfSix": 0,
+      "betsSended": 3331,
+      "maxBetsToSend": 193
+    },
+    "userExperience": {
+      "level": 64,
+      "experience": 17755
+    }
+  },
+  {
+    "username": "Foreman",
+    "password": "password",
+    "email": "tracytownsend@insurity.com",
+    "saldo": 30,
+    "created": "2019-11-15",
+    "lastLogin": "2019-11-15",
+    "lottoHistoryGames": [
+      {
+        "betsSended": 109,
+        "amountGoalThrees": 2,
+        "amountGoalFours": 1,
+        "amountGoalFives": 0,
+        "amountGoalSixes": 1,
+        "experience": 1168,
+        "result": 150
+      }
+    ],
+    "userLottoBets": [
+      {
+        "number1": 6,
+        "number2": 41,
+        "number3": 20,
+        "number4": 36,
+        "number5": 31,
+        "number6": 8
+      }
+    ],
+    "lottoGame": {
+      "amountOfThree": 62,
+      "amountOfFour": 4,
+      "amountOfFive": 1,
+      "amountOfSix": 1,
+      "betsSended": 5120,
+      "maxBetsToSend": 17
+    },
+    "userExperience": {
+      "level": 31,
+      "experience": 6381
+    }
+  }
+]
