@@ -24,6 +24,7 @@ import { UserHistoryResolver } from './_resolvers/user-history.resolver';
 import { HistoryComponent } from './user-account/history/history.component';
 import { NumbersComponent } from './user-account/numbers/numbers.component';
 import { UserSendedBetsResolver } from './_resolvers/user-sended-bets.resolver';
+import { InputNumbersComponent } from './user-account/input-numbers/input-numbers.component';
 
 @NgModule({
    declarations: [
@@ -38,7 +39,8 @@ import { UserSendedBetsResolver } from './_resolvers/user-sended-bets.resolver';
       UserSearchComponent,
       UserDetailsComponent,
       HistoryComponent,
-      NumbersComponent
+      NumbersComponent,
+      InputNumbersComponent
    ],
    imports: [
       BrowserModule,

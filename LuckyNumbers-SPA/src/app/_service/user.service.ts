@@ -42,8 +42,12 @@ export class UserService {
     return this.http.get<UserSendedBets[]>(this.baseUrl + 'sended-bets/' + username);
   }
 
-  sendLottoNumber(userId: number, model: any, numberBetsToGenerate: number): Observable<User> {
+  sendGenerateLottoNumbers(userId: number, model: any, numberBetsToGenerate: number): Observable<User> {
     return this.http.post<User>(this.baseUrl + 'lotto/' + userId + '/' + numberBetsToGenerate, model);
+  }
+
+  sendInputLottoNumbers(userId: number, model: any): Observable<User> {
+    return this.http.post<User>(this.baseUrl + 'lotto/' + userId, model);
   }
 
 }

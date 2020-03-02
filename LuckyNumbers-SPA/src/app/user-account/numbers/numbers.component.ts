@@ -30,9 +30,11 @@ export class NumbersComponent implements OnInit {
     });
   }
 
-  loadNumberBetsToSend() {
+  loadNumberBetsToSend(): number {
     this.userService.getUser(this.authService.decodedToken.unique_name).subscribe(data =>
       this.leftSendToBets = data.maxBetsToSend - this.sendedBets.length);
+
+    return this.leftSendToBets;
   }
 
   sendGenerateNumbers(numberBetsToGenerate: number) {
@@ -41,7 +43,7 @@ export class NumbersComponent implements OnInit {
       return false;
     } else {
       for (let i = 0; i < numberBetsToGenerate; i++) {
-        this.userService.sendLottoNumber(this.authService.decodedToken.nameid, {}, numberBetsToGenerate).subscribe(() => {
+        this.userService.sendGenerateLottoNumbers(this.authService.decodedToken.nameid, {}, numberBetsToGenerate).subscribe(() => {
           this.reloadPage(i, numberBetsToGenerate);
         }, error => {
           console.log(error);
@@ -52,6 +54,8 @@ export class NumbersComponent implements OnInit {
 
   reloadPage(iteration: number, isSended: number) {
     if (iteration === isSended - 1) {
+      // this.loadUserSendedBets();
+      // this.loadNumberBetsToSend();
       window.location.reload();
     }
   }

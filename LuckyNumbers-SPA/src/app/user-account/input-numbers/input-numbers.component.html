@@ -1,0 +1,64 @@
+<div class="cnt-center">
+
+  <div class="content-top">
+      <div class="title">Typowanie liczb</div>
+  </div>
+
+  <div class="content-bg">
+      <div class="content-txt">
+              <table width="100%" cellspacing="1" cellpadding="4" border="0">
+                  <tbody>
+                  <tr>
+                      <td style="font-weight: bold; color: white" bgcolor="#505050">
+                          <b>Obstaw 6 swoich liczb</b>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td bgcolor="#d4c0a1">
+                          <form #numbersForm="ngForm" (ngSubmit)="saveInputNumbers()">
+                          <table cellpadding="1" border="0">
+                              <tbody>
+                              <tr>
+                                  <td>Liczby:</td>
+                                  <td>
+                                      <input width="20%" type="number" value="0" [(ngModel)]="model.number1" name="number1" style="padding-left: 10px">
+                                      <input width="40px" type="number" value="0" [(ngModel)]="model.number2" name="number2" style="padding-left: 10px">
+                                      <input width="40px" type="number" value="0" [(ngModel)]="model.number3" name="number3" style="padding-left: 10px">
+                                      <input width="40px" type="number" value="0" [(ngModel)]="model.number4" name="number4" style="padding-left: 10px">
+                                      <input width="40px" type="number" value="0" [(ngModel)]="model.number5" name="number5" style="padding-left: 10px">
+                                      <input width="40px" type="number" value="0" [(ngModel)]="model.number6" name="number6" style="padding-left: 10px">
+                                  </td>
+                                  <td>
+                                      <button>Wyślij</button>
+                                  </td>
+                              </tr>
+                              <tr> <p>Wysyłanie losowo wygenerowanych liczb znajdziesz w sekcji moje liczby</p></tr>
+                              </tbody>
+                          </table>
+                          </form>
+                      </td>
+                  </tr>
+
+                  <tr>
+                      <td bgcolor="#d4c0a1">
+                          <form>
+                              <p>Zakładów do wysłania: {{leftSendToBets}}</p>
+                              <table cellpadding="1" border="0">
+                                  <tbody>
+                                  <tr>
+                                      <button>Generuj</button>
+                                  </tr>
+                                  </tbody>
+                              </table>
+                          </form>
+
+                      </td>
+                  </tr>
+                  </tbody>
+              </table>
+      </div>
+  </div>
+
+  <div class="content-bot"></div>
+
+</div>

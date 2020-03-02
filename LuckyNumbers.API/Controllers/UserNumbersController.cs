@@ -5,7 +5,6 @@ using LuckyNumbers.API.Data;
 using LuckyNumbers.API.Dtos;
 using LuckyNumbers.API.Entities;
 using LuckyNumbers.API.Service;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LuckyNumbers.API.Controllers
@@ -23,19 +22,17 @@ namespace LuckyNumbers.API.Controllers
             this.mapper = mapper;
         }
 
-        // [Authorize]
         [HttpPost("{userId}/{amountBetsToSend}")]
         public async Task<IActionResult> saveUserGenerateNumbers(int userId, LottoNumbersDto lottoNumbersDto, int amountBetsToSend)
         {
-            var user = userRepository.getUserByUserId(userId);
-
-            // if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-            // {
-            //     return Unauthorized();
-            // }
+            var userFromRepo = await userRepository.getUserByUserId(userId);
 
             UserLottoBets userLottoBets = new UserLottoBets();
             LottoNumbers lottoNumbers = new LottoNumbers();
+
+            if (amountBetsToSend * 3 > userFromRepo.saldo) { 
+                return BadRequest("Ilość zakładów do wysłania przekracza możliwości salda");
+            }
 
             for (int i = 0; i < amountBetsToSend; i++)
             {
@@ -50,6 +47,9 @@ namespace LuckyNumbers.API.Controllers
 
                 var bet = mapper.Map(userLottoBets, lottoNumbersDto);
 
+                userLottoBets.user = userFromRepo;
+                userFromRepo.saldo -= 3;
+
                 userRepository.add(userLottoBets);
             }
             await userRepository.saveAll();
@@ -57,26 +57,43 @@ namespace LuckyNumbers.API.Controllers
             return StatusCode(201);
         }
 
-        // [Authorize]
         [HttpPost("{userId}")]
         public async Task<IActionResult> saveUserInputNumbers(int userId, LottoNumbersDto lottoNumbersDto)
         {
-            var user = userRepository.getUserByUserId(userId);
+            var userFromRepo = await userRepository.getUserByUserId(userId);
 
-            // if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-            // {
-            //     return Unauthorized();
-            // }
+            if (userFromRepo.saldo < 3)
+            {
+                return BadRequest("Brak salda na kolejny zakład");
+            }
 
             UserLottoBets userLottoBets = new UserLottoBets();
+            LottoNumbers lottoNumbers = new LottoNumbers();
 
-            userLottoBets.number1 = lottoNumbersDto.number1;
-            userLottoBets.number2 = lottoNumbersDto.number2;
-            userLottoBets.number3 = lottoNumbersDto.number3;
-            userLottoBets.number4 = lottoNumbersDto.number4;
-            userLottoBets.number5 = lottoNumbersDto.number5;
-            userLottoBets.number6 = lottoNumbersDto.number6;
+            int[] tabOfLottoNumbers = new int[] {
+                lottoNumbersDto.number1, lottoNumbersDto.number2,
+                lottoNumbersDto.number3, lottoNumbersDto.number4,
+                lottoNumbersDto.number5, lottoNumbersDto.number6
+            };
+            lottoNumbers.sortLottoNumbers(tabOfLottoNumbers);
+
+            userLottoBets.number1 = tabOfLottoNumbers[0];
+            userLottoBets.number2 = tabOfLottoNumbers[1];
+            userLottoBets.number3 = tabOfLottoNumbers[2];
+            userLottoBets.number4 = tabOfLottoNumbers[3];
+            userLottoBets.number5 = tabOfLottoNumbers[4];
+            userLottoBets.number6 = tabOfLottoNumbers[5];
             userLottoBets.userId = userId;
+
+            if (!lottoNumbers.isNumberDuplicated(tabOfLottoNumbers)) {
+                return BadRequest("Liczby nie mogą się powtarzać");
+            }
+
+            if (!lottoNumbers.isCorrectRange(tabOfLottoNumbers)) {
+                return BadRequest("Liczby muszą być w zakresie 1 - 49");
+            }
+
+            userFromRepo.saldo -= 3;
 
             var bet = mapper.Map(userLottoBets, lottoNumbersDto);
 
