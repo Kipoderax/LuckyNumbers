@@ -25,6 +25,7 @@ import { HistoryComponent } from './user-account/history/history.component';
 import { NumbersComponent } from './user-account/numbers/numbers.component';
 import { UserSendedBetsResolver } from './_resolvers/user-sended-bets.resolver';
 import { InputNumbersComponent } from './user-account/input-numbers/input-numbers.component';
+import { ServerService } from './_service/server.service';
 
 @NgModule({
    declarations: [
@@ -53,6 +54,7 @@ import { InputNumbersComponent } from './user-account/input-numbers/input-number
    providers: [
       AuthService,
       UserService,
+      ServerService,
       AuthGuard,
       UserLoginResolver,
       UserHistoryResolver,

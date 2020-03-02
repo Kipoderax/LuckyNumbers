@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using LuckyNumbers.API.Data;
 using LuckyNumbers.API.Dtos;
+using LuckyNumbers.API.Service;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -54,6 +55,14 @@ namespace LuckyNumbers.API.Controllers {
             var usersToReturn = mapper.Map<IEnumerable<HistoryGameDto>>(users);
 
             return Ok(usersToReturn);
+        }
+
+        [HttpGet("/api/latest")]
+        public int[] getLatestNumbers() {
+
+            ReadUrlPlanText rupt = new ReadUrlPlanText();
+
+            return rupt.readRawLatestLottoNumbers();
         }
     }
 }

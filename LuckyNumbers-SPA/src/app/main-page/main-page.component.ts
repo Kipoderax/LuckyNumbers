@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ServerService } from '../_service/server.service';
 
 @Component({
   selector: 'app-main-page',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainPageComponent implements OnInit {
 
-  constructor() { }
+  numbers: number[];
+
+  constructor(private serverService: ServerService) { }
 
   ngOnInit() {
+    this.getLatestLottoNumbers();
+  }
+
+  getLatestLottoNumbers() {
+    return this.serverService.getLatestLottoNumbers().subscribe(
+      (numbers: number[]) => { this.numbers = numbers; }
+    );
   }
 
 }
