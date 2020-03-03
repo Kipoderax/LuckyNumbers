@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -15,9 +18,12 @@ namespace LuckyNumbers.API.Controllers
     {
         private readonly IUserRepository userRepository;
         private readonly IMapper mapper;
+        ResultLottoDto resultDto;
         public UserNumbersController(IUserRepository userRepository,
-                                     IMapper mapper)
+        IMapper mapper)
         {
+            resultDto = new ResultLottoDto();
+
             this.userRepository = userRepository;
             this.mapper = mapper;
         }
@@ -30,7 +36,8 @@ namespace LuckyNumbers.API.Controllers
             UserLottoBets userLottoBets = new UserLottoBets();
             LottoNumbers lottoNumbers = new LottoNumbers();
 
-            if (amountBetsToSend * 3 > userFromRepo.saldo) { 
+            if (amountBetsToSend * 3 > userFromRepo.saldo)
+            {
                 return BadRequest("Ilość zakładów do wysłania przekracza możliwości salda");
             }
 
@@ -85,11 +92,13 @@ namespace LuckyNumbers.API.Controllers
             userLottoBets.number6 = tabOfLottoNumbers[5];
             userLottoBets.userId = userId;
 
-            if (!lottoNumbers.isNumberDuplicated(tabOfLottoNumbers)) {
+            if (!lottoNumbers.isNumberDuplicated(tabOfLottoNumbers))
+            {
                 return BadRequest("Liczby nie mogą się powtarzać");
             }
 
-            if (!lottoNumbers.isCorrectRange(tabOfLottoNumbers)) {
+            if (!lottoNumbers.isCorrectRange(tabOfLottoNumbers))
+            {
                 return BadRequest("Liczby muszą być w zakresie 1 - 49");
             }
 
@@ -102,6 +111,28 @@ namespace LuckyNumbers.API.Controllers
             await userRepository.saveAll();
 
             return StatusCode(201);
+        }
+
+        [HttpGet("/api/lotto/result/{username}")]
+        public string checkResult(string username)
+        {
+            List<LottoNumbersDto> userLottoBets = new List<LottoNumbersDto>();
+
+            var userNumbers = userRepository.userSendedBets(username).Result;
+            var numbersToReturn = mapper.Map<IEnumerable<LottoNumbersDto>>(userNumbers);
+            userLottoBets = numbersToReturn.Cast<LottoNumbersDto>().ToList();
+
+            ResultUserLottoNumbers result = new ResultUserLottoNumbers();
+            resultDto = result.resultLottoGame(userLottoBets);
+
+            return "Pudeł: " + resultDto.failGoal.ToString() + 
+                    "\nTrafienia 1 liczby: " + resultDto.goal1Number.ToString() +
+                    "\nTrafienia 2 liczb: " + resultDto.goal2Numbers.ToString() +
+                    "\nTrafienia 3 liczb: " + resultDto.goal3Numbers.ToString() +
+                    "\nTrafienia 4 liczb: " + resultDto.goal4Numbers.ToString() +
+                    "\nTrafienia 5 liczb: " + resultDto.goal5Numbers.ToString() +
+                    "\nTrafienia 6 liczb: " + resultDto.goal6Numbers.ToString() + 
+                    "\nNa " + userLottoBets.Count + " zakladow wydano " + resultDto.totalCostBets;
         }
     }
 }
