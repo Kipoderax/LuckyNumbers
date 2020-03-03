@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using AutoMapper;
+using LuckyNumbers.API.Service;
 
 namespace LuckyNumbers.API.Controllers
 {
@@ -31,6 +32,7 @@ namespace LuckyNumbers.API.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> register(UserRegisterDto userRegisterDto)
         {
+            ReadUrlPlanText readUrlPlanText = new ReadUrlPlanText();
             userRegisterDto.username = userRegisterDto.username.ToLower();
 
             if (await authRepository.userExists(userRegisterDto.username))
@@ -41,6 +43,10 @@ namespace LuckyNumbers.API.Controllers
             var userToCreate = new User();
             var lottogame = new LottoGame();
             var userExp = new UserExperience();
+            var latestDrawLottoNumbers = new LatestDrawLottoNumbers();
+
+            int[] drawNumbers = readUrlPlanText.readRawLatestLottoNumbers();
+
             userToCreate.username = userRegisterDto.username;
             userToCreate.email = userRegisterDto.email;
             userToCreate.created = DateTime.Now;
@@ -51,8 +57,16 @@ namespace LuckyNumbers.API.Controllers
             userExp.experience = 0;
             userExp.level = 1;
 
+            latestDrawLottoNumbers.number1 = drawNumbers[0];
+            latestDrawLottoNumbers.number2 = drawNumbers[1];
+            latestDrawLottoNumbers.number3 = drawNumbers[2];
+            latestDrawLottoNumbers.number4 = drawNumbers[3];
+            latestDrawLottoNumbers.number5 = drawNumbers[4];
+            latestDrawLottoNumbers.number6 = drawNumbers[5];
+
             userToCreate.lottoGame = lottogame;
             userToCreate.userExperience = userExp;
+            userToCreate.latestDrawLottoNumbers = latestDrawLottoNumbers;
 
             var createdUser = await authRepository.register(userToCreate, userRegisterDto.password);
 

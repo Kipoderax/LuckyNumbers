@@ -20,5 +20,6 @@ namespace LuckyNumbers.API.Entities
         public ICollection<UserLottoBets> userlottoBets { get; set; }
         public LottoGame lottoGame { get; set; }
         public UserExperience userExperience { get; set; }
+        public LatestDrawLottoNumbers latestDrawLottoNumbers { get; set; }
     }
 }

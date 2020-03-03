@@ -12,5 +12,6 @@ namespace LuckyNumbers.API.Data
         public DbSet<LottoGame> lottoGames { get; set; }
         public DbSet<UserExperience> userExperiences { get; set; }
         public DbSet<UserLottoBets> userLottoBets { get; set; }
+        public DbSet<LatestDrawLottoNumbers> latestDrawLottoNumbers { get; set; }
     }
 }
