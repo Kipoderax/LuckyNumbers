@@ -95,7 +95,7 @@ namespace LuckyNumbers.API.Data
         {
 
             var user = context.lottoHistoryGames.Include(u => u.user)
-                .Where(u => u.user.username == username)
+                .Where(u => u.user.username == username).OrderByDescending(u => u.historyLottoId)
                 .ToListAsync();
 
             return await user;
@@ -121,6 +121,12 @@ namespace LuckyNumbers.API.Data
                 context.userLottoBets.RemoveRange(numbers);
                 count--;
             }
+        }
+
+        public int getLastBetId() {
+            int lastId = this.context.userLottoBets.Select(u => u.lottoBetsId).Max();
+
+            return lastId;
         }
     }
 }

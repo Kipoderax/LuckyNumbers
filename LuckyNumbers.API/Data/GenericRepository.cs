@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using LuckyNumbers.API.Entities;
 
 namespace LuckyNumbers.API.Data
 {
@@ -18,6 +20,10 @@ namespace LuckyNumbers.API.Data
         public void delete<T>(T entity) where T : class
         {
             this.context.Remove(entity);
+        }
+
+        public void update<T>(T entity) where T: class {
+            this.context.Update(entity);
         }
 
         public async Task<bool> saveAll()

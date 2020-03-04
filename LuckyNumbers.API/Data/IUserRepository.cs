@@ -15,5 +15,6 @@ namespace LuckyNumbers.API.Data
         Task<IEnumerable<HistoryGameForLotto>> userHistoryGame(string username);
         Task<IEnumerable<UserLottoBets>> userSendedBets(int userId);
         void deleteSendedBets(UserLottoBets userLottoBets, int userId);
+        int getLastBetId();
     }
 }

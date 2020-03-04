@@ -23,11 +23,11 @@
   <div class="content-bg">
       <div class="content-txt">
 
-          <form *ngIf="leftSendToBets > 0" (ngSubmit)="sendGenerateNumbers(commonName.value)">
+          <form *ngIf="leftSendToBets > 0" (ngSubmit)="sendGenerateNumbers(amountBetsToSend.value)">
               <table cellpadding="1" border="0">
                   <tbody>
                   <tr>
-                      <td>Wyslij losowo <input type="number" value="" min="0" #commonName name="commonName"></td>
+                      <td>Wyslij losowo <input type="number" value="" min="0" #amountBetsToSend name="amountBetsToSend"></td>
                       <td>
                         <button class="btn" style="height: 28px; font-size: 12px;" type="submit">Wyślij</button>
                       </td>

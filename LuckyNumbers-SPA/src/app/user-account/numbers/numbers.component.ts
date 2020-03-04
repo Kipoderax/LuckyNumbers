@@ -37,26 +37,18 @@ export class NumbersComponent implements OnInit {
     return this.leftSendToBets;
   }
 
-  sendGenerateNumbers(numberBetsToGenerate: number) {
-    if (numberBetsToGenerate > this.leftSendToBets) {
+  sendGenerateNumbers(amountBetsToSend: number) {
+    if (amountBetsToSend > this.leftSendToBets) {
       alertify.error('Możesz wysłać co najwyżej jeszcze ' + this.leftSendToBets + ' zakładów.');
       return false;
     } else {
-      for (let i = 0; i < numberBetsToGenerate; i++) {
-        this.userService.sendGenerateLottoNumbers(this.authService.decodedToken.nameid, {}, numberBetsToGenerate).subscribe(() => {
-          this.reloadPage(i, numberBetsToGenerate);
+      this.userService.sendGenerateLottoNumbers(this.authService.decodedToken.nameid, {}, amountBetsToSend)
+        .subscribe(() => {
+          window.location.reload();
         }, error => {
           console.log(error);
         });
-      }
     }
   }
 
-  reloadPage(iteration: number, isSended: number) {
-    if (iteration === isSended - 1) {
-      // this.loadUserSendedBets();
-      // this.loadNumberBetsToSend();
-      window.location.reload();
-    }
-  }
 }

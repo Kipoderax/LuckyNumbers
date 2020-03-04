@@ -41,30 +41,34 @@ namespace LuckyNumbers.API.Service
             return result;
         }
 
-        private void countGoalNumbers(int goal, ref ResultLottoDto goalNumbers) {
+        private void countGoalNumbers(int goal, ref ResultLottoDto resultDto) {
             switch (goal) {
                 case 0: 
-                    goalNumbers.failGoal++;
+                    resultDto.failGoal++;
                     break;
                 case 1:
-                    goalNumbers.goal1Number++;
+                    resultDto.goal1Number++;
                     break;
                 case 2:
-                    goalNumbers.goal2Numbers++;
+                    resultDto.goal2Numbers++;
                     break;
                 case 3:
-                    goalNumbers.goal3Numbers++;
+                    resultDto.goal3Numbers++;
                     break;
                 case 4:
-                    goalNumbers.goal4Numbers++;
+                    resultDto.goal4Numbers++;
                     break;
                 case 5:
-                    goalNumbers.goal5Numbers++;
+                    resultDto.goal5Numbers++;
                     break;
                 case 6:
-                    goalNumbers.goal6Numbers++;
+                    resultDto.goal6Numbers++;
                     break;
             }
+        }
+
+        private void updateHistoryLottoGame(ResultLottoDto resultLotto) {
+
         }
     }
 }

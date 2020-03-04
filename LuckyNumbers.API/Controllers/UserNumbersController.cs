@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -35,14 +36,18 @@ namespace LuckyNumbers.API.Controllers
 
             UserLottoBets userLottoBets = new UserLottoBets();
             LottoNumbers lottoNumbers = new LottoNumbers();
+            List<UserLottoBets> collectBets = new List<UserLottoBets>();
 
             if (amountBetsToSend * 3 > userFromRepo.saldo)
             {
                 return BadRequest("Ilość zakładów do wysłania przekracza możliwości salda");
             }
 
+            int lottoBetId = userRepository.getLastBetId();
             for (int i = 0; i < amountBetsToSend; i++)
             {
+                
+                userFromRepo.saldo -= 3;
                 int[] numbers = lottoNumbers.generateNumbers();
                 userLottoBets.number1 = numbers[0];
                 userLottoBets.number2 = numbers[1];
@@ -51,15 +56,14 @@ namespace LuckyNumbers.API.Controllers
                 userLottoBets.number5 = numbers[4];
                 userLottoBets.number6 = numbers[5];
                 userLottoBets.userId = userId;
+                userLottoBets.user = userFromRepo;
+                userLottoBets.lottoBetsId = lottoBetId + i + 1;
 
                 var bet = mapper.Map(userLottoBets, lottoNumbersDto);
 
-                userLottoBets.user = userFromRepo;
-                userFromRepo.saldo -= 3;
-
                 userRepository.add(userLottoBets);
+                await userRepository.saveAll();
             }
-            await userRepository.saveAll();
 
             return StatusCode(201);
         }
@@ -118,6 +122,7 @@ namespace LuckyNumbers.API.Controllers
         {
             List<LottoNumbersDto> userLottoBets = new List<LottoNumbersDto>();
             var userFromRepo = await userRepository.getUserByUserId(userId);
+            var sendedBetss = await userRepository.userHistoryGame(userFromRepo.username);
 
             var userNumbers = userRepository.userSendedBets(userId).Result;
             var numbersToReturn = mapper.Map<IEnumerable<LottoNumbersDto>>(userNumbers);
@@ -127,6 +132,7 @@ namespace LuckyNumbers.API.Controllers
             resultDto = result.resultLottoGame(userLottoBets);
 
             var historyGame = new HistoryGameForLotto();
+            var lottoGame = new LottoGame();
             var userLottoBetsEntity = new UserLottoBets();
             userLottoBetsEntity.userId = userId;
 
@@ -138,7 +144,19 @@ namespace LuckyNumbers.API.Controllers
             historyGame.amountGoalSixes = resultDto.goal6Numbers;
             historyGame.user = userFromRepo;
 
+            lottoGame.userId = userId;
+            lottoGame.betsSended = sendedBetss.Select(u => u.betsSended).Sum() + userLottoBets.Count;
+            lottoGame.amountOfThree = sendedBetss.Select(u => u.amountGoalThrees).Sum() + resultDto.goal3Numbers;
+            lottoGame.amountOfFour = sendedBetss.Select(u => u.amountGoalFours).Sum() + resultDto.goal4Numbers;
+            lottoGame.amountOfFive = sendedBetss.Select(u => u.amountGoalFives).Sum() + resultDto.goal5Numbers;
+            lottoGame.amountOfSix = sendedBetss.Select(u => u.amountGoalSixes).Sum() + resultDto.goal6Numbers;
+            lottoGame.maxBetsToSend = 10;
+            lottoGame.user = userFromRepo;
+
+            userFromRepo.saldo = 30;
+
             userRepository.add(historyGame);
+            userRepository.update(lottoGame);
             if(userLottoBets.Count > 0) {
                 userRepository.deleteSendedBets(userLottoBetsEntity, userId);
             }
@@ -154,5 +172,6 @@ namespace LuckyNumbers.API.Controllers
                     "\nTrafienia 6 liczb: " + resultDto.goal6Numbers.ToString() + 
                     "\nNa " + userLottoBets.Count + " zakladow wydano " + resultDto.totalCostBets;
         }
+
     }
 }
