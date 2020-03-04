@@ -38,8 +38,8 @@ export class UserService {
     return this.http.get<HistoryGame[]>(this.baseUrl + 'history/' + username);
   }
 
-  getUserSendedBets(username: string): Observable<UserSendedBets[]> {
-    return this.http.get<UserSendedBets[]>(this.baseUrl + 'sended-bets/' + username);
+  getUserSendedBets(userId: number): Observable<UserSendedBets[]> {
+    return this.http.get<UserSendedBets[]>(this.baseUrl + 'sended-bets/' + userId);
   }
 
   sendGenerateLottoNumbers(userId: number, model: any, numberBetsToGenerate: number): Observable<User> {

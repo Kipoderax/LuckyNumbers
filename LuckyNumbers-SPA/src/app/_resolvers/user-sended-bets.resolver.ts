@@ -15,7 +15,7 @@ export class UserSendedBetsResolver implements Resolve<UserSendedBets[]> {
                 private authService: AuthService) {}
 
     resolve(route: ActivatedRouteSnapshot): Observable<UserSendedBets[]> {
-        return this.userService.getUserSendedBets(this.authService.decodedToken.unique_name).pipe(
+        return this.userService.getUserSendedBets(this.authService.decodedToken.nameid).pipe(
             catchError(error => {
                 this.router.navigate(['/home']);
                 return of(null);

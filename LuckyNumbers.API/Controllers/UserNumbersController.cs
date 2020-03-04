@@ -113,17 +113,37 @@ namespace LuckyNumbers.API.Controllers
             return StatusCode(201);
         }
 
-        [HttpGet("/api/lotto/result/{username}")]
-        public string checkResult(string username)
+        [HttpPost("/api/lotto/result/{userId}")]
+        public async Task<string> checkResult(int userId)
         {
             List<LottoNumbersDto> userLottoBets = new List<LottoNumbersDto>();
+            var userFromRepo = await userRepository.getUserByUserId(userId);
 
-            var userNumbers = userRepository.userSendedBets(username).Result;
+            var userNumbers = userRepository.userSendedBets(userId).Result;
             var numbersToReturn = mapper.Map<IEnumerable<LottoNumbersDto>>(userNumbers);
             userLottoBets = numbersToReturn.Cast<LottoNumbersDto>().ToList();
 
             ResultUserLottoNumbers result = new ResultUserLottoNumbers();
             resultDto = result.resultLottoGame(userLottoBets);
+
+            var historyGame = new HistoryGameForLotto();
+            var userLottoBetsEntity = new UserLottoBets();
+            userLottoBetsEntity.userId = userId;
+
+            historyGame.userId = userId;
+            historyGame.betsSended = userLottoBets.Count;
+            historyGame.amountGoalThrees = resultDto.goal3Numbers;
+            historyGame.amountGoalFours = resultDto.goal4Numbers;
+            historyGame.amountGoalFives = resultDto.goal5Numbers;
+            historyGame.amountGoalSixes = resultDto.goal6Numbers;
+            historyGame.user = userFromRepo;
+
+            userRepository.add(historyGame);
+            if(userLottoBets.Count > 0) {
+                userRepository.deleteSendedBets(userLottoBetsEntity, userId);
+            }
+
+            await userRepository.saveAll();
 
             return "Pudeł: " + resultDto.failGoal.ToString() + 
                     "\nTrafienia 1 liczby: " + resultDto.goal1Number.ToString() +

@@ -101,14 +101,26 @@ namespace LuckyNumbers.API.Data
             return await user;
         }
 
-        public async Task<IEnumerable<UserLottoBets>> userSendedBets(string username)
+        public async Task<IEnumerable<UserLottoBets>> userSendedBets(int userId)
         {
 
             var user = context.userLottoBets.Include(u => u.user)
-                .Where(u => u.user.username == username)
+                .Where(u => u.user.userId == userId)
                 .ToListAsync();
 
             return await user;
+        }
+
+        public async void deleteSendedBets(UserLottoBets userLottoBets, int userId) {
+
+            var userFromRepo = await getUserByUserId(userId);
+            int count = userFromRepo.userlottoBets.Count;
+
+            while(count > 0) {
+                var numbers = context.userLottoBets.Include(u => u.user).Where(u => u.userId == userId);
+                context.userLottoBets.RemoveRange(numbers);
+                count--;
+            }
         }
     }
 }
