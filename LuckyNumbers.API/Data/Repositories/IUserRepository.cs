@@ -9,12 +9,6 @@ namespace LuckyNumbers.API.Data
         Task<IEnumerable<User>> getUsers();
         Task<User> getUserByUsername(string username);
         Task<User> getUserByUserId(int userId);
-        Task<List<int>> serverStatus ();
         Task<IEnumerable<User>> best5Players ();
-        Task<IEnumerable<HistoryGameForLotto>> top5Xp ();
-        Task<IEnumerable<HistoryGameForLotto>> userHistoryGame(string username);
-        Task<IEnumerable<UserLottoBets>> userSendedBets(int userId);
-        void deleteSendedBets(UserLottoBets userLottoBets, int userId);
-        int getLastBetId();
     }
 }

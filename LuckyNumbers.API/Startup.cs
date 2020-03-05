@@ -1,6 +1,8 @@
 using System.Text;
 using AutoMapper;
 using LuckyNumbers.API.Data;
+using LuckyNumbers.API.Data.Repositories;
+using LuckyNumbers.API.Data.Repositories.LottoGame;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -34,6 +36,9 @@ namespace LuckyNumbers.API
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IGenericRepository, GenericRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IHistoryGameRepository, HistoryGameRepository>();
+            services.AddScoped<ILottoStatsRepository, LottoStatsRepository>();
+            services.AddScoped<IUserLottoBetsRepository, UserLottoBetsRepository>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                         .AddJwtBearer(options => {
