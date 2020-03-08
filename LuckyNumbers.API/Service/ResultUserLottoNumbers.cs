@@ -9,7 +9,7 @@ namespace LuckyNumbers.API.Service
         public ResultLottoDto resultLottoGame(List<LottoNumbersDto> userLottoBets )
         {
             ResultLottoDto result = new ResultLottoDto();
-            ReadUrlPlanText lastDrawNumbers = new ReadUrlPlanText();
+            ReadUrlPlainText lastDrawNumbers = new ReadUrlPlainText();
             
             int[] lastDrawLottoNumbers = lastDrawNumbers.readRawLatestLottoNumbers();
             int[] numbersToCheck = new int[6];

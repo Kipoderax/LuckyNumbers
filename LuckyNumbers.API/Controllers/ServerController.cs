@@ -74,7 +74,7 @@ namespace LuckyNumbers.API.Controllers
         public int[] getLatestNumbers()
         {
 
-            ReadUrlPlanText rupt = new ReadUrlPlanText();
+            ReadUrlPlainText rupt = new ReadUrlPlainText();
 
             return rupt.readRawLatestLottoNumbers();
         }

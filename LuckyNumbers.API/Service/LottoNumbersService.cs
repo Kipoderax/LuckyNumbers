@@ -1,10 +1,62 @@
 using System;
 using System.Collections.Generic;
+using LuckyNumbers.API.Dtos;
+using LuckyNumbers.API.Entities;
 
 namespace LuckyNumbers.API.Service
 {
-    public class LottoNumbers
+    public class LottoNumbersService : ILottoNumbersService
     {
+        public bool isUserHaveSaldo(int amountBets, int saldo) {
+            if (amountBets * 3 > saldo) {
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool isUserHaveSaldo(int saldo) {
+            if (saldo < 3) {
+                return false;
+            }
+
+            return true;
+        }
+
+        public int[] tabOfLottoNumbersDto(LottoNumbersDto lottoNumbersDto) {
+            int[] tabOfLottoNumbers = new int[] {
+                lottoNumbersDto.number1, lottoNumbersDto.number2,
+                lottoNumbersDto.number3, lottoNumbersDto.number4,
+                lottoNumbersDto.number5, lottoNumbersDto.number6
+            };
+
+            return tabOfLottoNumbers;
+        }
+        public UserLottoBets inputNumbers(LottoNumbersDto lottoNumbersDto, int userId) {
+            UserLottoBets userLottoBets = new UserLottoBets();
+
+            int[] tabOfLottoNumbers = tabOfLottoNumbersDto(lottoNumbersDto);
+
+            userLottoBets.number1 = tabOfLottoNumbers[0];
+            userLottoBets.number2 = tabOfLottoNumbers[1];
+            userLottoBets.number3 = tabOfLottoNumbers[2];
+            userLottoBets.number4 = tabOfLottoNumbers[3];
+            userLottoBets.number5 = tabOfLottoNumbers[4];
+            userLottoBets.number6 = tabOfLottoNumbers[5];
+            userLottoBets.userId = userId;
+
+            return userLottoBets;
+        }
+
+        public void mapNumbersToUserLottoBets(ref UserLottoBets userLottoBets, int[] numbers) {
+            userLottoBets.number1 = numbers[0];
+            userLottoBets.number2 = numbers[1];
+            userLottoBets.number3 = numbers[2];
+            userLottoBets.number4 = numbers[3];
+            userLottoBets.number5 = numbers[4];
+            userLottoBets.number6 = numbers[5];
+        }
+
         public int[] generateNumbers() {
             SortedSet<int> sortedLottoNumbers = new SortedSet<int>();
             Random randomNumber = new Random();

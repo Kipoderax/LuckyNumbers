@@ -21,17 +21,20 @@ namespace LuckyNumbers.API.Controllers
         private readonly IUserRepository userRepository;
         private readonly IHistoryGameRepository historyGameRepostory;
         private readonly IUserLottoBetsRepository userLottoBetsRepository;
+        private readonly ILottoNumbersService lottoNumbersService;
         private readonly IMapper mapper;
         ResultLottoDto resultDto;
         public UserNumbersController(IUserRepository userRepository,
                                      IHistoryGameRepository historyGameRepostory,
                                      IUserLottoBetsRepository userLottoBetsRepository,
+                                     ILottoNumbersService lottoNumbersService,
                                      IMapper mapper)
         {
             this.userLottoBetsRepository = userLottoBetsRepository;
             this.historyGameRepostory = historyGameRepostory;
             resultDto = new ResultLottoDto();
 
+            this.lottoNumbersService = lottoNumbersService;
             this.userRepository = userRepository;
             this.mapper = mapper;
         }
@@ -42,24 +45,19 @@ namespace LuckyNumbers.API.Controllers
         var userFromRepo = await userRepository.getUserByUserId(userId);
 
         UserLottoBets userLottoBets = new UserLottoBets();
-        LottoNumbers lottoNumbers = new LottoNumbers();
+        LottoNumbersService lottoNumbers = new LottoNumbersService();
 
-        if (amountBetsToSend * 3 > userFromRepo.saldo)
-        {
+        if (!lottoNumbersService.isUserHaveSaldo(amountBetsToSend, userFromRepo.saldo)) {
+
             return BadRequest("Ilość zakładów do wysłania przekracza możliwości salda");
         }
 
+        userFromRepo.saldo -= 3 * amountBetsToSend;
         int lottoBetId = userLottoBetsRepository.getLastBetId();
         for (int i = 0; i < amountBetsToSend; i++)
         {
-            userFromRepo.saldo -= 3;
             int[] numbers = lottoNumbers.generateNumbers();
-            userLottoBets.number1 = numbers[0];
-            userLottoBets.number2 = numbers[1];
-            userLottoBets.number3 = numbers[2];
-            userLottoBets.number4 = numbers[3];
-            userLottoBets.number5 = numbers[4];
-            userLottoBets.number6 = numbers[5];
+            lottoNumbers.mapNumbersToUserLottoBets(ref userLottoBets, numbers);
             userLottoBets.userId = userId;
             userLottoBets.user = userFromRepo;
             userLottoBets.lottoBetsId = lottoBetId + i + 1;
@@ -76,37 +74,25 @@ namespace LuckyNumbers.API.Controllers
     [HttpPost("{userId}")]
     public async Task<IActionResult> saveUserInputNumbers(int userId, LottoNumbersDto lottoNumbersDto)
     {
+        var userLottoBets = new UserLottoBets();
         var userFromRepo = await userRepository.getUserByUserId(userId);
 
-        if (userFromRepo.saldo < 3)
+        if (!lottoNumbersService.isUserHaveSaldo(userFromRepo.saldo))
         {
             return BadRequest("Brak salda na kolejny zakład");
         }
 
-        UserLottoBets userLottoBets = new UserLottoBets();
-        LottoNumbers lottoNumbers = new LottoNumbers();
+        userLottoBets = lottoNumbersService.inputNumbers(lottoNumbersDto, userId);
 
-        int[] tabOfLottoNumbers = new int[] {
-                lottoNumbersDto.number1, lottoNumbersDto.number2,
-                lottoNumbersDto.number3, lottoNumbersDto.number4,
-                lottoNumbersDto.number5, lottoNumbersDto.number6
-            };
-        lottoNumbers.sortLottoNumbers(tabOfLottoNumbers);
+        int[] tabOfLottoNumbers = lottoNumbersService.tabOfLottoNumbersDto(lottoNumbersDto);
+        lottoNumbersService.sortLottoNumbers(tabOfLottoNumbers);
 
-        userLottoBets.number1 = tabOfLottoNumbers[0];
-        userLottoBets.number2 = tabOfLottoNumbers[1];
-        userLottoBets.number3 = tabOfLottoNumbers[2];
-        userLottoBets.number4 = tabOfLottoNumbers[3];
-        userLottoBets.number5 = tabOfLottoNumbers[4];
-        userLottoBets.number6 = tabOfLottoNumbers[5];
-        userLottoBets.userId = userId;
-
-        if (!lottoNumbers.isNumberDuplicated(tabOfLottoNumbers))
+        if (!lottoNumbersService.isNumberDuplicated(tabOfLottoNumbers))
         {
             return BadRequest("Liczby nie mogą się powtarzać");
         }
 
-        if (!lottoNumbers.isCorrectRange(tabOfLottoNumbers))
+        if (!lottoNumbersService.isCorrectRange(tabOfLottoNumbers))
         {
             return BadRequest("Liczby muszą być w zakresie 1 - 49");
         }
@@ -162,10 +148,8 @@ namespace LuckyNumbers.API.Controllers
 
         userRepository.add(historyGame);
         userRepository.update(lottoGame);
-        if (userLottoBets.Count > 0)
-        {
-            userLottoBetsRepository.deleteSendedBets(userLottoBetsEntity, userId);
-        }
+        
+        userLottoBetsRepository.deleteSendedBets(userLottoBetsEntity, userId);
 
         await userRepository.saveAll();
 

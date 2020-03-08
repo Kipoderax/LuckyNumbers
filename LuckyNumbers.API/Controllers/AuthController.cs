@@ -32,7 +32,7 @@ namespace LuckyNumbers.API.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> register(UserRegisterDto userRegisterDto)
         {
-            ReadUrlPlanText readUrlPlanText = new ReadUrlPlanText();
+            ReadUrlPlainText readUrlPlanText = new ReadUrlPlainText();
             userRegisterDto.username = userRegisterDto.username.ToLower();
 
             if (await authRepository.userExists(userRegisterDto.username))
