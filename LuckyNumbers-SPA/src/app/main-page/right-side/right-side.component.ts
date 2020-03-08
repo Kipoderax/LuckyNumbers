@@ -41,10 +41,10 @@ export class RightSideComponent implements OnInit {
       this.amountOfFours = status[3];
       this.amountOfFives = status[4];
       this.amountOfSixes = status[5];
-      this.percentChangeForThree = (status[2] / status[1]).toPrecision(2);
-      this.percentChangeForFour = (status[3] / status[1]).toPrecision(2);
-      this.percentChangeForFive = (status[4] / status[1]).toPrecision(1);
-      this.percentChangeForSix = (status[5] / status[1]).toPrecision(1);
+      this.percentChangeForThree = ((status[2] / status[1]) * 100).toFixed(2);
+      this.percentChangeForFour = (status[3] / status[1] * 100).toFixed(2);
+      this.percentChangeForFive = (status[4] / status[1] * 100).toFixed(2);
+      this.percentChangeForSix = (status[5] / status[1] * 100).toFixed(3);
     });
   }
 

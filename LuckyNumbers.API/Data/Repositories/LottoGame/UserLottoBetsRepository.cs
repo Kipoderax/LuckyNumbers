@@ -29,7 +29,6 @@ namespace LuckyNumbers.API.Data.Repositories.LottoGame
 
         public async void deleteSendedBets(UserLottoBets userLottoBets, int userId) {
 
-            // var userFromRepo = await getUserByUserId(userId);
             int count = await this.context.userLottoBets.Include(u => u.user).CountAsync();
 
             while(count > 0) {

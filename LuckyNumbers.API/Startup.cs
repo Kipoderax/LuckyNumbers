@@ -34,13 +34,17 @@ namespace LuckyNumbers.API
             services.AddAutoMapper(typeof(Startup));
 
             services.AddTransient<Seed>();
+
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IGenericRepository, GenericRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IHistoryGameRepository, HistoryGameRepository>();
             services.AddScoped<ILottoStatsRepository, LottoStatsRepository>();
             services.AddScoped<IUserLottoBetsRepository, UserLottoBetsRepository>();
+            services.AddScoped<IUserExperienceRepository, UserExperienceRepository>();
+
             services.AddScoped<ILottoNumbersService, LottoNumbersService>();
+            services.AddScoped<IResultUserLottoNumbers, ResultUserLottoNumbers>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                         .AddJwtBearer(options => {

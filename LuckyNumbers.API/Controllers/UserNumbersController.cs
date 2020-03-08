@@ -1,7 +1,5 @@
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using LuckyNumbers.API.Data;
@@ -22,20 +20,23 @@ namespace LuckyNumbers.API.Controllers
         private readonly IHistoryGameRepository historyGameRepostory;
         private readonly IUserLottoBetsRepository userLottoBetsRepository;
         private readonly ILottoNumbersService lottoNumbersService;
+        private readonly IResultUserLottoNumbers result;
         private readonly IMapper mapper;
         ResultLottoDto resultDto;
         public UserNumbersController(IUserRepository userRepository,
                                      IHistoryGameRepository historyGameRepostory,
                                      IUserLottoBetsRepository userLottoBetsRepository,
                                      ILottoNumbersService lottoNumbersService,
+                                     IResultUserLottoNumbers result,
                                      IMapper mapper)
         {
             this.userLottoBetsRepository = userLottoBetsRepository;
             this.historyGameRepostory = historyGameRepostory;
+            this.userRepository = userRepository;
             resultDto = new ResultLottoDto();
 
             this.lottoNumbersService = lottoNumbersService;
-            this.userRepository = userRepository;
+            this.result = result;
             this.mapper = mapper;
         }
 
@@ -119,8 +120,7 @@ namespace LuckyNumbers.API.Controllers
         var numbersToReturn = mapper.Map<IEnumerable<LottoNumbersDto>>(userNumbers);
         userLottoBets = numbersToReturn.Cast<LottoNumbersDto>().ToList();
 
-        ResultUserLottoNumbers result = new ResultUserLottoNumbers();
-        resultDto = result.resultLottoGame(userLottoBets);
+        resultDto = result.resultLottoGame(userLottoBets, userId);
 
         var historyGame = new HistoryGameForLotto();
         var lottoGame = new LottoGame();
@@ -141,10 +141,11 @@ namespace LuckyNumbers.API.Controllers
         lottoGame.amountOfFour = sendedBetss.Select(u => u.amountGoalFours).Sum() + resultDto.goal4Numbers;
         lottoGame.amountOfFive = sendedBetss.Select(u => u.amountGoalFives).Sum() + resultDto.goal5Numbers;
         lottoGame.amountOfSix = sendedBetss.Select(u => u.amountGoalSixes).Sum() + resultDto.goal6Numbers;
-        lottoGame.maxBetsToSend = 10;
+        lottoGame.maxBetsToSend = 20000;
         lottoGame.user = userFromRepo;
 
-        userFromRepo.saldo = 30;
+        userFromRepo.saldo = 60000;
+
 
         userRepository.add(historyGame);
         userRepository.update(lottoGame);
