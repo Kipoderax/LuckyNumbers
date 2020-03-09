@@ -1,6 +1,10 @@
 ﻿using AutoMapper;
 using LuckyNumbers.API.Data;
 using LuckyNumbers.API.Data.Repositories;
+using LuckyNumbers.API.Data.Repositories.Lotto;
+// using LuckyNumbers.API.Data;
+// using LuckyNumbers.API.Data.Repositories;
+// using LuckyNumbers.API.Data.Repositories.Lotto;
 using LuckyNumbers.API.Dtos;
 using LuckyNumbers.API.Service;
 using Microsoft.AspNetCore.Mvc;

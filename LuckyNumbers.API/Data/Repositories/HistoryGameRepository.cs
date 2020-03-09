@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using LuckyNumbers.API.Data.Repositories;
+using LuckyNumbers.API.Dtos;
 using LuckyNumbers.API.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -34,6 +35,18 @@ namespace LuckyNumbers.API.Data
                 .ToListAsync();
 
             return await user;
+        }
+
+        public void updateUserHistory(ResultLottoDto result, HistoryGameForLotto historyGame, int userId) {
+
+            historyGame.userId = userId;
+            historyGame.betsSended = result.totalCostBets / 3;
+            historyGame.amountGoalThrees = result.goal3Numbers;
+            historyGame.amountGoalFours = result.goal4Numbers;
+            historyGame.amountGoalFives = result.goal5Numbers;
+            historyGame.amountGoalSixes = result.goal6Numbers;
+            historyGame.experience = result.totalEarnExp;
+            historyGame.result = result.totalEarnMoney;
         }
     }
 }

@@ -5,7 +5,7 @@ using AutoMapper;
 using LuckyNumbers.API.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace LuckyNumbers.API.Data.Repositories.LottoGame
+namespace LuckyNumbers.API.Data.Repositories.Lotto
 {
     public class UserLottoBetsRepository : IUserLottoBetsRepository
     {
@@ -27,7 +27,7 @@ namespace LuckyNumbers.API.Data.Repositories.LottoGame
             return await user;
         }
 
-        public async void deleteSendedBets(UserLottoBets userLottoBets, int userId) {
+        public async void deleteSendedBets(int userId) {
 
             int count = await this.context.userLottoBets.Include(u => u.user).CountAsync();
 

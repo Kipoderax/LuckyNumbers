@@ -5,7 +5,7 @@ namespace LuckyNumbers.API.Service
 {
     public interface IResultUserLottoNumbers
     {
-         ResultLottoDto resultLottoGame(List<LottoNumbersDto> userLottoBets, int userId );
+         ResultLottoDto resultLottoGame(int userId );
          
     }
 }

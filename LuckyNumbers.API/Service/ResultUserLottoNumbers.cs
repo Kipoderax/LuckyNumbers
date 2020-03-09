@@ -1,6 +1,9 @@
 using System.Collections.Generic;
+using System.Linq;
+using AutoMapper;
 using LuckyNumbers.API.Data;
 using LuckyNumbers.API.Data.Repositories;
+using LuckyNumbers.API.Data.Repositories.Lotto;
 using LuckyNumbers.API.Dtos;
 using LuckyNumbers.API.Entities;
 
@@ -10,24 +13,43 @@ namespace LuckyNumbers.API.Service
     {
         private readonly IUserExperienceRepository userExpRepo;
         private readonly IUserRepository userRepository;
-        public ResultUserLottoNumbers(IUserExperienceRepository userExpRepo, IUserRepository userRepository)
+        private readonly IHistoryGameRepository historyGameRepository;
+        private readonly IUserLottoBetsRepository betsRepository;
+
+        private readonly IMapper mapper;
+        UserExperience userExperience;
+        LottoGame lottoGame;
+        HistoryGameForLotto historyGame;
+        ILottoStatsRepository lottoStatsRepo;
+        
+        public ResultUserLottoNumbers(IUserExperienceRepository userExpRepo,
+                                      IUserRepository userRepository, 
+                                      IHistoryGameRepository historyGameRepository,
+                                      IUserLottoBetsRepository betsRepository,
+                                      ILottoStatsRepository lottoStatsRepo,
+                                      IMapper mapper)
         {
+            this.historyGameRepository = historyGameRepository;
             this.userRepository = userRepository;
             this.userExpRepo = userExpRepo;
+            this.betsRepository = betsRepository;
+            this.lottoStatsRepo = lottoStatsRepo;
+
+            this.mapper = mapper;
+
+            userExperience = new UserExperience();
+            lottoGame = new LottoGame();
+            historyGame = new HistoryGameForLotto();
         }
 
-        public ResultLottoDto resultLottoGame(List<LottoNumbersDto> userLottoBets, int userId)
+        public ResultLottoDto resultLottoGame(int userId)
         {
             ResultLottoDto result = new ResultLottoDto();
             ReadUrlPlainText lastDrawNumbers = new ReadUrlPlainText();
-            UserExperience userExperience = new UserExperience();
-            Experience experience = new Experience();
+            List<LottoNumbersDto> userLottoBets = getUserBetsForCheck(userId);
 
             int[] lastDrawLottoNumbers = lastDrawNumbers.readRawLatestLottoNumbers();
             int[] numbersToCheck = new int[6];
-
-            //user stats before result
-            int userCurrentExp = userExpRepo.getUserExperience(userId);
 
             for (int k = 0; k < userLottoBets.Count; k++)
             {
@@ -50,15 +72,16 @@ namespace LuckyNumbers.API.Service
                 }
 
                 countGoalNumbers(goalNumber, ref result);
-                userCurrentExp += addUserExperience(goalNumber);
+                result.totalEarnExp += addUserExperience(goalNumber);
             }
 
-            System.Console.WriteLine(userCurrentExp);
-            userExperience.level = experience.currentLevel(userCurrentExp);
-            userExperience.experience = userCurrentExp;
-            userExperience.userId = userId;
-            userRepository.add(userExperience);
             result.totalCostBets = userLottoBets.Count * 3;
+
+            updateUserStats(result, userId);
+            userRepository.add(historyGame);
+            userRepository.update(userExperience);
+            userRepository.update(lottoGame);
+            betsRepository.deleteSendedBets(userId);
 
             return result;
         }
@@ -94,7 +117,6 @@ namespace LuckyNumbers.API.Service
 
         public int addUserExperience(int goal)
         {
-
             int exp = 0;
             switch (goal)
             {
@@ -117,16 +139,32 @@ namespace LuckyNumbers.API.Service
                 case 6:
                     exp += (int)ExperiencePoints.SIXGOALS;
                     break;
-
             }
-
 
             return exp;
         }
 
-        private void updateHistoryLottoGame(ResultLottoDto resultLotto)
-        {
+        private List<LottoNumbersDto> getUserBetsForCheck(int userId) {
+            List<LottoNumbersDto> userLottoBets = new List<LottoNumbersDto>();
 
+            var userNumbers = betsRepository.userSendedBets(userId).Result;
+            var numbersToReturn = mapper.Map<IEnumerable<LottoNumbersDto>>(userNumbers);
+            userLottoBets = numbersToReturn.Cast<LottoNumbersDto>().ToList();
+
+            return userLottoBets;
+        }
+
+        private async void updateUserStats(ResultLottoDto resultLotto, int userId)
+        {
+            Experience experience = new Experience();
+
+            var userRepo = await userRepository.getUserByUserId(userId);
+            int newExp = userExpRepo.getUserExperience(userId) + resultLotto.totalEarnExp;
+            userRepo.saldo += 4 * experience.currentLevel(newExp);
+
+            userExpRepo.updateUserExperience(userId, newExp, userExperience);
+            historyGameRepository.updateUserHistory(resultLotto, historyGame, userId);
+            lottoStatsRepo.updateUserGameStats(lottoGame, userRepo, resultLotto);
         }
     }
 }

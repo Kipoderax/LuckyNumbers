@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using LuckyNumbers.API.Data;
-using LuckyNumbers.API.Data.Repositories.LottoGame;
+using LuckyNumbers.API.Data.Repositories.Lotto;
 using LuckyNumbers.API.Dtos;
 using Microsoft.AspNetCore.Mvc;
 

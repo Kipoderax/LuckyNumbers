@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using LuckyNumbers.API.Dtos;
+using LuckyNumbers.API.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace LuckyNumbers.API.Data.Repositories
+namespace LuckyNumbers.API.Data.Repositories.Lotto
 {
     public class LottoStatsRepository : ILottoStatsRepository
     {
@@ -39,5 +41,16 @@ namespace LuckyNumbers.API.Data.Repositories
 
             return status;
         }
+
+        public void updateUserGameStats(LottoGame lottoGame, User userRepo, ResultLottoDto resultLotto) {
+
+             lottoGame.userId = userRepo.userId;
+             lottoGame.betsSended = userRepo.lottoGame.betsSended + resultLotto.totalCostBets / 3;
+             lottoGame.amountOfThree = userRepo.lottoGame.amountOfThree + resultLotto.goal3Numbers;
+             lottoGame.amountOfFour = userRepo.lottoGame.amountOfFour + resultLotto.goal4Numbers;
+             lottoGame.amountOfFive = userRepo.lottoGame.amountOfFive + resultLotto.goal5Numbers;
+             lottoGame.amountOfSix = userRepo.lottoGame.amountOfSix + resultLotto.goal6Numbers; 
+             lottoGame.maxBetsToSend = userRepo.saldo / 3;
+         }
     }
 }
