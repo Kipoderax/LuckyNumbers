@@ -1,12 +1,10 @@
 using System;
-using System.IO;
 using System.Net;
 
 namespace LuckyNumbers.API.Service
 {
     public class ReadUrlPlainText
     {
-        private LottoNumbersService lottoNumbers = new LottoNumbersService();
 
         public string readlatestDataLottoGame() {
 
@@ -24,8 +22,6 @@ namespace LuckyNumbers.API.Service
             for (int i = 0; i < lottos.Length; i++) {
                 lottos[i] = int.Parse(getLottoNumbers[i+1]);
             }
-
-            lottoNumbers.sortLottoNumbers(lottos);
 
             return lottos;
         }

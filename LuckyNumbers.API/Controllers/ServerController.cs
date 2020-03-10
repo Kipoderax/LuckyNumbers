@@ -2,9 +2,6 @@
 using LuckyNumbers.API.Data;
 using LuckyNumbers.API.Data.Repositories;
 using LuckyNumbers.API.Data.Repositories.Lotto;
-// using LuckyNumbers.API.Data;
-// using LuckyNumbers.API.Data.Repositories;
-// using LuckyNumbers.API.Data.Repositories.Lotto;
 using LuckyNumbers.API.Dtos;
 using LuckyNumbers.API.Service;
 using Microsoft.AspNetCore.Mvc;
@@ -75,12 +72,14 @@ namespace LuckyNumbers.API.Controllers
         }
 
         [HttpGet("/api/latest")]
-        public int[] getLatestNumbers()
+        public int[] getLatestDrawNumbers()
         {
-
+            LottoNumbersService lottoNumbersService = new LottoNumbersService();
             ReadUrlPlainText rupt = new ReadUrlPlainText();
-
-            return rupt.readRawLatestLottoNumbers();
+            int[] latestDrawNumber = rupt.readRawLatestLottoNumbers();
+            
+            lottoNumbersService.sortLottoNumbers(latestDrawNumber);
+            return latestDrawNumber;
         }
     }
 }

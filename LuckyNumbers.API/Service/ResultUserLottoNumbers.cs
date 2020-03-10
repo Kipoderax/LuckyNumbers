@@ -42,7 +42,7 @@ namespace LuckyNumbers.API.Service
             historyGame = new HistoryGameForLotto();
         }
 
-        public ResultLottoDto resultLottoGame(int userId)
+        public void resultLottoGame(int userId)
         {
             ResultLottoDto result = new ResultLottoDto();
             ReadUrlPlainText lastDrawNumbers = new ReadUrlPlainText();
@@ -82,8 +82,6 @@ namespace LuckyNumbers.API.Service
             userRepository.update(userExperience);
             userRepository.update(lottoGame);
             betsRepository.deleteSendedBets(userId);
-
-            return result;
         }
 
         private void countGoalNumbers(int goal, ref ResultLottoDto resultDto)
