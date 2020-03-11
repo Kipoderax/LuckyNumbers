@@ -132,7 +132,7 @@ namespace LuckyNumbers.API.Service
 
         public void sortLottoNumbers(int[] lottoNumbers)
         {
-
+            
             int max = findMax(lottoNumbers);
             int[] tempTab = new int[max + 1];
 

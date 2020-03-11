@@ -73,6 +73,7 @@ namespace LuckyNumbers.API.Service
 
                 countGoalNumbers(goalNumber, ref result);
                 result.totalEarnExp += addUserExperience(goalNumber);
+                result.totalEarnMoney += addUserMoneyRewards(goalNumber);
             }
 
             result.totalCostBets = userLottoBets.Count * 3;
@@ -142,6 +143,19 @@ namespace LuckyNumbers.API.Service
             return exp;
         }
 
+        public int addUserMoneyRewards(int goals) {
+            int moneyRewards = 0;
+            ReadUrlPlainText reward = new ReadUrlPlainText();
+
+            for(int i = 3; i <= 6; i++ ) {
+                if (goals == i) {
+                    moneyRewards += reward.readPriceForGoalLottoNumbers()[i-3];
+                }
+            }
+
+            return moneyRewards;
+        }
+
         private List<LottoNumbersDto> getUserBetsForCheck(int userId) {
             List<LottoNumbersDto> userLottoBets = new List<LottoNumbersDto>();
 
@@ -158,11 +172,16 @@ namespace LuckyNumbers.API.Service
 
             var userRepo = await userRepository.getUserByUserId(userId);
             int newExp = userExpRepo.getUserExperience(userId) + resultLotto.totalEarnExp;
-            userRepo.saldo += 4 * experience.currentLevel(newExp);
+            userRepo.saldo += 4 * experience.currentLevel(newExp) + resultLotto.totalEarnMoney;
+
+            if(userRepo.userExperience.level > 5){
+                lottoGame.maxBetsToSend = System.Math.Min(userRepo.saldo / 3, experience.currentLevel(newExp) * 2);
+             } else lottoGame.maxBetsToSend = 10;
+
 
             userExpRepo.updateUserExperience(userId, newExp, userExperience);
-            historyGameRepository.updateUserHistory(resultLotto, historyGame, userId);
             lottoStatsRepo.updateUserGameStats(lottoGame, userRepo, resultLotto);
+            historyGameRepository.updateUserHistory(resultLotto, historyGame, userId);
         }
     }
 }

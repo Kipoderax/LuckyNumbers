@@ -49,8 +49,8 @@ namespace LuckyNumbers.API.Data.Repositories.Lotto
              lottoGame.amountOfThree = userRepo.lottoGame.amountOfThree + resultLotto.goal3Numbers;
              lottoGame.amountOfFour = userRepo.lottoGame.amountOfFour + resultLotto.goal4Numbers;
              lottoGame.amountOfFive = userRepo.lottoGame.amountOfFive + resultLotto.goal5Numbers;
-             lottoGame.amountOfSix = userRepo.lottoGame.amountOfSix + resultLotto.goal6Numbers; 
-             lottoGame.maxBetsToSend = userRepo.saldo / 3;
+             lottoGame.amountOfSix = userRepo.lottoGame.amountOfSix + resultLotto.goal6Numbers;
+             lottoGame.profit = userRepo.lottoGame.profit + resultLotto.totalEarnMoney - resultLotto.totalCostBets;
          }
     }
 }

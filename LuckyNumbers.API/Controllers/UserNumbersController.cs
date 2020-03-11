@@ -25,6 +25,7 @@ namespace LuckyNumbers.API.Controllers
         [HttpPost("{userId}/{amountBetsToSend}")]
         public async Task<IActionResult> saveUserGenerateNumbers(int userId, int amountBetsToSend)
         {
+            
             lottoNumbersService.sendGenerateNumbers(userId, amountBetsToSend);
 
             return StatusCode(201);

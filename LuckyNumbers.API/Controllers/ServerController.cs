@@ -71,15 +71,24 @@ namespace LuckyNumbers.API.Controllers
             return Ok(usersToReturn);
         }
 
-        [HttpGet("/api/latest")]
+        [HttpGet("/api/latest-numbers")]
         public int[] getLatestDrawNumbers()
         {
             LottoNumbersService lottoNumbersService = new LottoNumbersService();
             ReadUrlPlainText rupt = new ReadUrlPlainText();
             int[] latestDrawNumber = rupt.readRawLatestLottoNumbers();
+            rupt.readPriceForGoalLottoNumbers();
             
             lottoNumbersService.sortLottoNumbers(latestDrawNumber);
             return latestDrawNumber;
+        }
+
+        [HttpGet("/api/money-rewards")]
+        public int[] getLatestMoneyRewards() {
+            ReadUrlPlainText rewards = new ReadUrlPlainText();
+            int[] latestRewards = rewards.readPriceForGoalLottoNumbers();
+
+            return latestRewards;
         }
     }
 }

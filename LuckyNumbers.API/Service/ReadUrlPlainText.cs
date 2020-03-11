@@ -26,9 +26,19 @@ namespace LuckyNumbers.API.Service
             return lottos;
         }
 
-        public string readPriceForGoalLottoNumbers() {
+        public int[] readPriceForGoalLottoNumbers() {
+            string getUrl = readUrlData("https://app.lotto.pl/wygrane/?type=dl");
+            int[] rewardsMoney = new int[4];
+            string[] getData = getUrl.Split(Environment.NewLine.ToCharArray());
 
-            return "";
+            int.TryParse(getData[4].Substring(6, 2), out rewardsMoney[0]); // za trojke
+            int.TryParse(getData[3].Substring(5, 3), out rewardsMoney[1]); // za czworke
+            int.TryParse(getData[2].Substring(3, 4), out rewardsMoney[2]); // za piatke
+            int.TryParse(getData[1].Substring(0), out rewardsMoney[3]); // za szostke
+            if(rewardsMoney[3] == 0)
+                rewardsMoney[3] = 2_000_000;
+
+            return rewardsMoney;
         }
 
         private string readUrlData(string url) {
