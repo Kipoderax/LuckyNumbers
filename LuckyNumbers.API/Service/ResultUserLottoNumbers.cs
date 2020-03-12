@@ -15,7 +15,6 @@ namespace LuckyNumbers.API.Service
         private readonly IUserRepository userRepository;
         private readonly IHistoryGameRepository historyGameRepository;
         private readonly IUserLottoBetsRepository betsRepository;
-
         private readonly IMapper mapper;
         UserExperience userExperience;
         LottoGame lottoGame;
@@ -42,7 +41,7 @@ namespace LuckyNumbers.API.Service
             historyGame = new HistoryGameForLotto();
         }
 
-        public void resultLottoGame(int userId)
+        public ResultLottoDto resultLottoGame(int userId)
         {
             ResultLottoDto result = new ResultLottoDto();
             ReadUrlPlainText lastDrawNumbers = new ReadUrlPlainText();
@@ -72,8 +71,10 @@ namespace LuckyNumbers.API.Service
                 }
 
                 countGoalNumbers(goalNumber, ref result);
+                goalBetsWithSuccess(goalNumber, userLottoBets[k], result);
                 result.totalEarnExp += addUserExperience(goalNumber);
                 result.totalEarnMoney += addUserMoneyRewards(goalNumber);
+
             }
 
             result.totalCostBets = userLottoBets.Count * 3;
@@ -83,6 +84,8 @@ namespace LuckyNumbers.API.Service
             userRepository.update(userExperience);
             userRepository.update(lottoGame);
             betsRepository.deleteSendedBets(userId);
+
+            return result;
         }
 
         private void countGoalNumbers(int goal, ref ResultLottoDto resultDto)
@@ -114,7 +117,7 @@ namespace LuckyNumbers.API.Service
             }
         }
 
-        public int addUserExperience(int goal)
+        private int addUserExperience(int goal)
         {
             int exp = 0;
             switch (goal)
@@ -143,7 +146,7 @@ namespace LuckyNumbers.API.Service
             return exp;
         }
 
-        public int addUserMoneyRewards(int goals) {
+        private int addUserMoneyRewards(int goals) {
             int moneyRewards = 0;
             ReadUrlPlainText reward = new ReadUrlPlainText();
 
@@ -154,6 +157,23 @@ namespace LuckyNumbers.API.Service
             }
 
             return moneyRewards;
+        }
+
+        private void goalBetsWithSuccess(int goals, LottoNumbersDto userLottoBets, ResultLottoDto resultLotto){
+            switch (goals) {
+                case 3:
+                    resultLotto.betsWithGoal3Numbers.Add(userLottoBets);
+                    break;
+                case 4:
+                    resultLotto.betsWithGoal4Numbers.Add(userLottoBets);
+                    break;
+                case 5:
+                    resultLotto.betsWithGoal5Numbers.Add(userLottoBets);
+                    break;
+                case 6:
+                    resultLotto.betsWithGoal6Numbers.Add(userLottoBets);
+                    break;
+            }
         }
 
         private List<LottoNumbersDto> getUserBetsForCheck(int userId) {
@@ -177,7 +197,6 @@ namespace LuckyNumbers.API.Service
             if(userRepo.userExperience.level > 5){
                 lottoGame.maxBetsToSend = System.Math.Min(userRepo.saldo / 3, experience.currentLevel(newExp) * 2);
              } else lottoGame.maxBetsToSend = 10;
-
 
             userExpRepo.updateUserExperience(userId, newExp, userExperience);
             lottoStatsRepo.updateUserGameStats(lottoGame, userRepo, resultLotto);

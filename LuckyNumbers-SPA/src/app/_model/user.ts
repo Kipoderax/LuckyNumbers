@@ -13,5 +13,6 @@ export interface User {
     maxBetsToSend: number;
     level: number;
     experience: number;
+    profit: number;
 
 }

@@ -12,6 +12,6 @@ export class ServerService {
     constructor(private http: HttpClient) { }
 
     getLatestLottoNumbers(): Observable<number[]> {
-        return this.http.get<number[]>(this.baseUrl + 'latest');
+        return this.http.get<number[]>(this.baseUrl + 'latest-numbers');
     }
 }

@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
 
 import { AppComponent } from './app.component';
 import { MainPageComponent } from './main-page/main-page.component';
@@ -26,6 +25,8 @@ import { NumbersComponent } from './user-account/numbers/numbers.component';
 import { UserSendedBetsResolver } from './_resolvers/user-sended-bets.resolver';
 import { InputNumbersComponent } from './user-account/input-numbers/input-numbers.component';
 import { ServerService } from './_service/server.service';
+import { LottoResultComponent } from './user-account/lotto-result/lotto-result.component';
+import { UserLottoResultResolver } from './_resolvers/user-lotto-result.resolver';
 
 @NgModule({
    declarations: [
@@ -41,14 +42,14 @@ import { ServerService } from './_service/server.service';
       UserDetailsComponent,
       HistoryComponent,
       NumbersComponent,
-      InputNumbersComponent
+      InputNumbersComponent,
+      LottoResultComponent
    ],
    imports: [
       BrowserModule,
       HttpClientModule,
       FormsModule,
       ReactiveFormsModule,
-      // CommonModule,
       RouterModule.forRoot(appRoutes)
    ],
    providers: [
@@ -58,7 +59,8 @@ import { ServerService } from './_service/server.service';
       AuthGuard,
       UserLoginResolver,
       UserHistoryResolver,
-      UserSendedBetsResolver
+      UserSendedBetsResolver,
+      UserLottoResultResolver
    ],
    bootstrap: [
       AppComponent

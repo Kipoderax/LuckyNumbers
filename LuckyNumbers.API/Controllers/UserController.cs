@@ -27,39 +27,39 @@ namespace LuckyNumbers.API.Controllers
             this.authRepository = authRepository;
         }
 
-    [HttpGet]
-    public async Task<IActionResult> getUsers()
-    {
-        var users = await userRepository.getUsers();
-
-        var usersToReturn = mapper.Map<IEnumerable<UserStatisticsDto>>(users);
-
-        return Ok(usersToReturn);
-    }
-
-    [HttpGet("{username}")]
-    public async Task<IActionResult> getUser(string username)
-    {
-        var user = await userRepository.getUserByUsername(username);
-
-        if (!await authRepository.userExists(username))
+        [HttpGet]
+        public async Task<IActionResult> getUsers()
         {
-            return BadRequest("Nie ma takiego gracza");
+            var users = await userRepository.getUsers();
+
+            var usersToReturn = mapper.Map<IEnumerable<UserStatisticsDto>>(users);
+
+            return Ok(usersToReturn);
         }
 
-        var userToReturn = mapper.Map<UserDetailsDto>(user);
+        [HttpGet("{username}")]
+        public async Task<IActionResult> getUser(string username)
+        {
+            var user = await userRepository.getUserByUsername(username);
 
-        return Ok(userToReturn);
+            if (!await authRepository.userExists(username))
+            {
+                return BadRequest("Nie ma takiego gracza");
+            }
+
+            var userToReturn = mapper.Map<UserDetailsDto>(user);
+
+            return Ok(userToReturn);
+        }
+
+        [HttpGet("/api/sended-bets/{userId}")]
+        public async Task<IActionResult> getUserSendedBets(int userId)
+        {
+
+            var user = await userLottoBetsRepository.userSendedBets(userId);
+            var userToReturn = mapper.Map<IEnumerable<LottoNumbersDto>>(user);
+
+            return Ok(userToReturn);
+        }
     }
-
-    [HttpGet("/api/sended-bets/{userId}")]
-    public async Task<IActionResult> getUserSendedBets(int userId)
-    {
-
-        var user = await userLottoBetsRepository.userSendedBets(userId);
-        var userToReturn = mapper.Map<IEnumerable<LottoNumbersDto>>(user);
-
-        return Ok(userToReturn);
-    }
-}
 }

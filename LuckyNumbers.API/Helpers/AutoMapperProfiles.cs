@@ -1,4 +1,3 @@
-using System.Linq;
 using AutoMapper;
 using LuckyNumbers.API.Dtos;
 using LuckyNumbers.API.Entities;
@@ -55,8 +54,7 @@ namespace LuckyNumbers.API.Helpers
                 dest => dest.experience, opt => {
                     opt.MapFrom( src => src.userExperience.experience );
                 }
-            )
-            .ForMember(
+            ).ForMember(
                 dest => dest.level, opt => {
                     opt.MapFrom( src => src.userExperience.level );
                 }
@@ -83,6 +81,10 @@ namespace LuckyNumbers.API.Helpers
             ).ForMember(
                 dest => dest.maxBetsToSend, opt => {
                     opt.MapFrom(src => src.lottoGame.maxBetsToSend);
+                }
+            ).ForMember(
+                dest => dest.profit, opt => {
+                    opt.MapFrom(src => src.lottoGame.profit);
                 }
             );
         }

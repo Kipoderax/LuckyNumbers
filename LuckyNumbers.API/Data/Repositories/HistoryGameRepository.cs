@@ -5,6 +5,7 @@ using AutoMapper;
 using LuckyNumbers.API.Data.Repositories;
 using LuckyNumbers.API.Dtos;
 using LuckyNumbers.API.Entities;
+using LuckyNumbers.API.Service;
 using Microsoft.EntityFrameworkCore;
 
 namespace LuckyNumbers.API.Data
@@ -38,8 +39,10 @@ namespace LuckyNumbers.API.Data
         }
 
         public void updateUserHistory(ResultLottoDto result, HistoryGameForLotto historyGame, int userId) {
+            ReadUrlPlainText dataGame = new ReadUrlPlainText();
 
             historyGame.userId = userId;
+            historyGame.dateGame = dataGame.readlatestDataLottoGame();
             historyGame.betsSended = result.totalCostBets / 3;
             historyGame.amountGoalThrees = result.goal3Numbers;
             historyGame.amountGoalFours = result.goal4Numbers;

@@ -23,7 +23,7 @@ namespace LuckyNumbers.API.Controllers
         }
 
         [HttpPost("{userId}/{amountBetsToSend}")]
-        public async Task<IActionResult> saveUserGenerateNumbers(int userId, int amountBetsToSend)
+        public IActionResult saveUserGenerateNumbers(int userId, int amountBetsToSend)
         {
             
             lottoNumbersService.sendGenerateNumbers(userId, amountBetsToSend);
@@ -63,14 +63,14 @@ namespace LuckyNumbers.API.Controllers
             return StatusCode(201);
         }
 
-        [HttpPost("/api/lotto/result/{userId}")]
+        [HttpGet("/api/lotto/result/{userId}")]
         public async Task<IActionResult> checkResult(int userId)
         {
-            result.resultLottoGame(userId);
+            ResultLottoDto resultLotto = result.resultLottoGame(userId);
 
             await userRepository.saveAll();
 
-            return StatusCode(201);
+            return Ok(resultLotto);
         }
     }
 }

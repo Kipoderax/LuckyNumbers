@@ -9,6 +9,7 @@ namespace LuckyNumbers.API.Dtos
         public DateTime created { get; set; }
         public string email { get; set; }
         public int saldo { get; set; }
+        public int profit { get; set; }
         public int amountOfThree { get; set; }
         public int amountOfFour { get; set; }
         public int amountOfFive { get; set; }

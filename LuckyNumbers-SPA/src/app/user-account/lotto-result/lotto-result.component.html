@@ -1,0 +1,172 @@
+<div class="cnt-center" >
+
+  <style>
+  .stats_table {
+      counter-reset: tableCount;
+  }
+  .position:before {
+      content: counter(tableCount);
+      counter-increment: tableCount;
+  }
+  .color:nth-of-type(odd) {
+      background-color:#f1e0c6;
+  }
+  .color:nth-of-type(even){
+      background-color:#d4c0a1;
+  }
+  </style>
+
+  <div class="content-top">
+      <div class="title">Wytypowane liczby</div>
+  </div>
+
+  <div class="content-bg">
+      <div class="content-txt">
+          <table class="stats_table" width="100%" cellspacing="1" cellpadding="4" border="0">
+              <tbody>
+              <tr>
+                  <td  style="font-weight: bold; color: white" bgcolor="#505050">
+                      <b>Podsumowanie</b>
+                  </td>
+                  <td bgcolor="#505050">
+                      <p style="color: white">Wylosowane liczby:  1,2,3,4,5,6</p>
+                  </td>
+              </tr>
+              <tr>
+
+                  <td bgcolor="#d4c0a1">
+                      <table width="300px">
+                          <tbody>
+                          <tr class="color">
+                              <td bgcolor="#d4c0a1">
+                                  <table style="margin-bottom: 20px">
+                                      <thead>
+                                      <tr style="background-color: grey">
+                                          <th colspan="2" align="center">Na {{lottoResult.totalCostBets / 3}} zakładów</th>
+                                      </tr>
+                                      </thead>
+                                      <tbody>
+                                      <tr style="background-color: #d4c0a1">
+                                          <td>żadnych liczb:</td>
+                                          <td class="table-desc" align="center">{{lottoResult.failGoal}}</td>
+                                      </tr>
+                                      <tr style="background-color: #f1e0c6">
+                                          <td>trafienia 1 liczby:</td>
+                                          <td class="table-desc" align="center">{{lottoResult.goal1Number}}</td>
+                                      </tr>
+                                      <tr style="background-color: #d4c0a1">
+                                          <td>trafienia 2 liczb:</td>
+                                          <td class="table-desc" align="center">{{lottoResult.goal2Numbers}}</td>
+                                      </tr>
+                                      <tr style="background-color: #f1e0c6">
+                                          <td>trafienia 3 liczb:</td>
+                                          <td class="table-desc" align="center">{{lottoResult.goal3Numbers}}</td>
+                                      </tr>
+                                      <tr style="background-color: #d4c0a1">
+                                          <td>trafienia 4 liczb:</td>
+                                          <td class="table-desc" align="center">{{lottoResult.goal4Numbers}}</td>
+                                      </tr>
+                                      <tr style="background-color: #f1e0c6">
+                                          <td>trafienia 5 liczb:</td>
+                                          <td class="table-desc" align="center">{{lottoResult.goal5Numbers}}</td>
+                                      </tr>
+                                      <tr style="background-color: #d4c0a1">
+                                          <td>trafienia 6 liczb:</td>
+                                          <td class="table-desc" align="center">{{lottoResult.goal6Numbers}}</td>
+                                      </tr>
+                                      <tr style="height: 10px; background-color: grey">
+                                          <td align="center" colspan="2">Rezultat</td>
+                                      </tr>
+                                      <tr style="background-color: #f1e0c6">
+                                          <td>wydano:</td>
+                                          <td class="table-desc" align="center">{{lottoResult.totalCostBets}}</td>
+                                      </tr>
+                                      <tr style="background-color: #d4c0a1">
+                                          <td>z trafionych liczb:</td>
+                                          <td class="table-desc" align="center">{{lottoResult.totalEarnMoney}}</td>
+                                      </tr>
+                                      <tr style="background-color: #f1e0c6">
+                                          <td>rezultat:</td>
+                                          <td *ngIf="lottoResult.totalEarnMoney - lottoResult.totalCostBets < 0" style="color: red;" class="table-desc" align="center"> 
+                                              {{lottoResult.totalEarnMoney - lottoResult.totalCostBets}} 
+                                          </td>
+                                          <td *ngIf="lottoResult.totalEarnMoney - lottoResult.totalCostBets >= 0" style="color: green;" class="table-desc" align="center"> 
+                                              +{{lottoResult.totalEarnMoney - lottoResult.totalCostBets}} 
+                                        </td>
+                                      </tr>
+                                      <tr style="background-color: #d4c0a1">
+                                          <td>exp:</td>
+                                          <td class="table-desc" align="center"> +{{lottoResult.totalEarnExp}} </td>
+                                      </tr>
+                                      </tbody>
+                                  </table>
+                              </td>
+                          </tr>
+                          </tbody>
+                      </table>
+
+
+                  </td>
+
+                  <td bgcolor="#d4c0a1">
+                      <table>
+
+                          <tr *ngIf="lottoResult.betsWithGoal3Numbers.length != 0" style="height: 10px; background-color: grey">
+                              <td align="center" colspan="6">Wylosowane trojki</td>
+                          </tr>
+                          <tr class="color" *ngFor="let with3Numbers of lottoResult.betsWithGoal3Numbers">
+                            <td width="40px" align="center">{{with3Numbers.number1}}</td>
+                            <td width="40px" align="center">{{with3Numbers.number2}}</td>
+                            <td width="40px" align="center">{{with3Numbers.number3}}</td>
+                            <td width="40px" align="center">{{with3Numbers.number4}}</td>
+                            <td width="40px" align="center">{{with3Numbers.number5}}</td>
+                            <td width="40px" align="center">{{with3Numbers.number6}}</td>
+                        </tr>
+                          <tr *ngIf="lottoResult.betsWithGoal4Numbers.length != 0" style="height: 10px; background-color: grey">
+                              <td align="center" colspan="6">Wylosowane czworki</td>
+                          </tr>
+                          <tr class="color" *ngFor="let with4Numbers of lottoResult.betsWithGoal4Numbers">
+                            <td width="40px" align="center">{{with4Numbers.number1}}</td>
+                            <td width="40px" align="center">{{with4Numbers.number2}}</td>
+                            <td width="40px" align="center">{{with4Numbers.number3}}</td>
+                            <td width="40px" align="center">{{with4Numbers.number4}}</td>
+                            <td width="40px" align="center">{{with4Numbers.number5}}</td>
+                            <td width="40px" align="center">{{with4Numbers.number6}}</td>
+                        </tr>
+
+                          <tr *ngIf="lottoResult.betsWithGoal5Numbers.length != 0" style="height: 10px; background-color: grey">
+                              <td align="center" colspan="6">Wylosowane piatki</td>
+                          </tr>
+                          <tr class="color" *ngFor="let with5Numbers of lottoResult.betsWithGoal5Numbers">
+                            <td width="40px" align="center">{{with5Numbers.number1}}</td>
+                            <td width="40px" align="center">{{with5Numbers.number2}}</td>
+                            <td width="40px" align="center">{{with5Numbers.number3}}</td>
+                            <td width="40px" align="center">{{with5Numbers.number4}}</td>
+                            <td width="40px" align="center">{{with5Numbers.number5}}</td>
+                            <td width="40px" align="center">{{with5Numbers.number6}}</td>
+                        </tr>
+
+                          <tr *ngIf="lottoResult.betsWithGoal6Numbers.length != 0" style="height: 10px; background-color: grey">
+                              <td align="center" colspan="6">Wylosowana szostka</td>
+                          </tr>
+                          <tr class="color" *ngFor="let with6Numbers of lottoResult.betsWithGoal6Numbers">
+                            <td width="40px" align="center">{{with6Numbers.number1}}</td>
+                            <td width="40px" align="center">{{with6Numbers.number2}}</td>
+                            <td width="40px" align="center">{{with6Numbers.number3}}</td>
+                            <td width="40px" align="center">{{with6Numbers.number4}}</td>
+                            <td width="40px" align="center">{{with6Numbers.number5}}</td>
+                            <td width="40px" align="center">{{with6Numbers.number6}}</td>
+                        </tr>
+
+                      </table>
+                  </td>
+
+              </tr>
+              </tbody>
+          </table>
+
+      </div>
+  </div>
+
+  <div class="content-bot"></div>
+</div>

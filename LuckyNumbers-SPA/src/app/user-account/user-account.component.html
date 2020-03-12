@@ -83,7 +83,7 @@
                                   </a>
                               </td>
                               <td>
-                                  <a href="#">
+                                  <a *ngIf="authService.loggedIn()" routerLinkActive="active" [routerLink]="['/wyniki']">
                                       <img src="" height="30px"><button class="btn">Wyniki</button>
                                   </a>
                               </td>
@@ -162,16 +162,21 @@
               </tr>
               <tr style="background-color: #f1e0c6">
                   <td class="table-desc">Z trafionych liczb uzbierano</td>
-                  <td>850</td>
+                  <td>{{user.betsSended * 3 + user.profit}}</td>
               </tr>
               <tr style="background-color: #d4c0a1">
 
                   <td class="table-desc">Rezultat:</td>
-                  <td th:if="${result} >= 0">
+                  <td *ngIf="user.profit >= 0" style="color: green;">
                       <b>
-                          stracono 2500
+                          Na plusie {{user.profit}}
                       </b>
                   </td>
+                  <td *ngIf="user.profit < 0" style="color: red;">
+                    <b>
+                        Na minusie {{-user.profit}}
+                    </b>
+                </td>
               </tr>
               </tbody>
           </table>
