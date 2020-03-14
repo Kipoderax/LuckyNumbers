@@ -44,13 +44,13 @@ export class UserAccountComponent implements OnInit {
     if (experience === 0) {
       return 1;
     } else {
-      return ((0.176777 * Math.pow(level + 1, 2.5)) - experience).toFixed();
+      return ((0.125 * Math.pow(level + 1, 3)) - experience).toFixed();
     }
   }
 
   needExpForAllLevel(level: number) {
-    return ((0.176777 * Math.pow(level + 1, 2.5)) -
-           (0.176777 * Math.pow(level, 2.5))).toFixed();
+    return ((0.125 * Math.pow(level + 1, 3)) -
+           (0.125 * Math.pow(level, 3))).toFixed();
   }
 
 }

@@ -48,7 +48,7 @@ namespace LuckyNumbers.API.Data
             historyGame.amountGoalFours = result.goal4Numbers;
             historyGame.amountGoalFives = result.goal5Numbers;
             historyGame.amountGoalSixes = result.goal6Numbers;
-            historyGame.experience = result.totalEarnExp;
+            historyGame.experience = (int) result.totalEarnExp;
             historyGame.result = result.totalEarnMoney - result.totalCostBets;
         }
     }

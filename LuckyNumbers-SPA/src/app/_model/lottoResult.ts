@@ -1,7 +1,6 @@
 import { UserSendedBets } from './userSendedBets';
 
 export interface LottoResult {
-    
     failGoal: number;
     goal1Number: number;
     goal2Numbers: number;
@@ -16,9 +15,4 @@ export interface LottoResult {
     betsWithGoal4Numbers: UserSendedBets[];
     betsWithGoal5Numbers: UserSendedBets[];
     betsWithGoal6Numbers: UserSendedBets[];
-    // public List<LottoNumbersDto> betsWithGoal3Numbers { get; set; } = new List<LottoNumbersDto>();
-    // public List<LottoNumbersDto> betsWithGoal4Numbers { get; set; } = new List<LottoNumbersDto>();
-    // public List<LottoNumbersDto> betsWithGoal5Numbers { get; set; } = new List<LottoNumbersDto>();
-    // public List<LottoNumbersDto> betsWithGoal6Numbers { get; set; } = new List<LottoNumbersDto>();
-
 }

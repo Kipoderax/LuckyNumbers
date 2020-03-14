@@ -72,12 +72,13 @@ namespace LuckyNumbers.API.Service
 
                 countGoalNumbers(goalNumber, ref result);
                 goalBetsWithSuccess(goalNumber, userLottoBets[k], result);
-                result.totalEarnExp += addUserExperience(goalNumber);
+                result.totalEarnExp += addUserExperience(goalNumber, userId);
                 result.totalEarnMoney += addUserMoneyRewards(goalNumber);
 
             }
 
             result.totalCostBets = userLottoBets.Count * 3;
+            result.totalEarnExp = (int) result.totalEarnExp;
 
             updateUserStats(result, userId);
             userRepository.add(historyGame);
@@ -117,33 +118,37 @@ namespace LuckyNumbers.API.Service
             }
         }
 
-        private int addUserExperience(int goal)
+        private double addUserExperience(int goal, int userId)
         {
-            int exp = 0;
+            Experience experience = new Experience();
+            int newExp = userExpRepo.getUserExperience(userId);
+            int currentLevel = experience.currentLevel(newExp);
+
+            double exp = 0;
             switch (goal)
             {
 
                 case 1:
-                    exp += (int)ExperiencePoints.ONEGOAL;
+                    exp += (1 + 0.02 * currentLevel) * (double)LottoExperiencePoints.ONEGOAL;
                     break;
                 case 2:
-                    exp += (int)ExperiencePoints.TWOGOALS;
+                    exp += (1 + 0.02 * currentLevel) * (double)LottoExperiencePoints.TWOGOALS;
                     break;
                 case 3:
-                    exp += (int)ExperiencePoints.THREEGOALS;
+                    exp += (1 + 0.02 * currentLevel) * (double)LottoExperiencePoints.THREEGOALS;
                     break;
                 case 4:
-                    exp += (int)ExperiencePoints.FOURGOALS;
+                    exp += (1 + 0.02 * currentLevel) * (double)LottoExperiencePoints.FOURGOALS;
                     break;
                 case 5:
-                    exp += (int)ExperiencePoints.FIVEGOALS;
+                    exp += (1 + 0.02 * currentLevel) * (double)LottoExperiencePoints.FIVEGOALS;
                     break;
                 case 6:
-                    exp += (int)ExperiencePoints.SIXGOALS;
+                    exp += (1 + 0.02 * currentLevel) * (double)LottoExperiencePoints.SIXGOALS;
                     break;
             }
 
-            return exp;
+            return (double) exp;
         }
 
         private int addUserMoneyRewards(int goals) {
@@ -186,16 +191,30 @@ namespace LuckyNumbers.API.Service
             return userLottoBets;
         }
 
+        private int renewUserSaldo(int totalEarnMoney, int level) {
+            int renewSaldo = 0;
+
+            if (level < 8) {
+                renewSaldo = 30 + totalEarnMoney;
+            } else {
+                renewSaldo = 4 * level + totalEarnMoney;
+            }
+
+            return renewSaldo;
+        }
+
         private async void updateUserStats(ResultLottoDto resultLotto, int userId)
         {
             Experience experience = new Experience();
 
-            var userRepo = await userRepository.getUserByUserId(userId);
-            int newExp = userExpRepo.getUserExperience(userId) + resultLotto.totalEarnExp;
-            userRepo.saldo += 4 * experience.currentLevel(newExp) + resultLotto.totalEarnMoney;
+            User userRepo = await userRepository.getUserByUserId(userId);
+            int newExp = userExpRepo.getUserExperience(userId) + (int) resultLotto.totalEarnExp;
+            int level = experience.currentLevel(newExp);
 
-            if(userRepo.userExperience.level > 5){
-                lottoGame.maxBetsToSend = System.Math.Min(userRepo.saldo / 3, experience.currentLevel(newExp) * 2);
+            userRepo.saldo += renewUserSaldo(resultLotto.totalEarnMoney, level);
+
+            if(level > 5){
+                lottoGame.maxBetsToSend = System.Math.Min(userRepo.saldo / 3, level * 2);
              } else lottoGame.maxBetsToSend = 10;
 
             userExpRepo.updateUserExperience(userId, newExp, userExperience);

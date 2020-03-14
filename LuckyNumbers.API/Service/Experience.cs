@@ -3,14 +3,14 @@ using System;
 namespace LuckyNumbers.API.Service
 {
 
-    public enum ExperiencePoints
+    public enum LottoExperiencePoints
     {
-        ONEGOAL = 3,
-        TWOGOALS = 8,
+        ONEGOAL = 1,
+        TWOGOALS = 3,
         THREEGOALS = 57,
-        FOURGOALS = 986,
-        FIVEGOALS = 21542,
-        SIXGOALS = 398381
+        FOURGOALS = 1032,
+        FIVEGOALS = 54021,
+        SIXGOALS = 2797362
     }
 
     public class Experience
@@ -18,7 +18,7 @@ namespace LuckyNumbers.API.Service
         public int currentLevel(int experience)
         {
 
-            return experience == 0 ? 1 : (int)(2 * Math.Pow(experience, 0.4));
+            return experience == 0 ? 1 : (int)(2 * Math.Pow(experience, 0.333333));
         }
     }
 }
