@@ -18,7 +18,7 @@ namespace LuckyNumbers.API.Service
         public int currentLevel(int experience)
         {
 
-            return experience == 0 ? 1 : (int)(2 * Math.Pow(experience, 0.333333));
+            return experience == 0 ? 1 : (int)(2 * Math.Pow(experience, 0.3333333333));
         }
     }
 }

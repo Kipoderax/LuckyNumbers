@@ -10,5 +10,6 @@ namespace LuckyNumbers.API.Data
         Task<User> getUserByUsername(string username);
         Task<User> getUserByUserId(int userId);
         Task<IEnumerable<User>> best5Players ();
+        int getLastId();
     }
 }

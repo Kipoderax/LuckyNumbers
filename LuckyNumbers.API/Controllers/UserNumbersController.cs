@@ -66,6 +66,11 @@ namespace LuckyNumbers.API.Controllers
         [HttpGet("/api/lotto/result/{userId}")]
         public async Task<IActionResult> checkResult(int userId)
         {
+            var user = await userRepository.getUserByUserId(userId);
+            if(user.lottoGame.resultCheck == 1) {
+                return BadRequest("Twoje zakłady zostały sprawdzone");
+            }
+
             ResultLottoDto resultLotto = result.resultLottoGame(userId);
 
             await userRepository.saveAll();

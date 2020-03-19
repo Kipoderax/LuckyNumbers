@@ -11,10 +11,16 @@ namespace LuckyNumbers.API.Data
     {
         private readonly DataContext context;
         private readonly IMapper mapper;
+
         public UserRepository(DataContext context, IMapper mapper) : base(context)
         {
             this.mapper = mapper;
             this.context = context;
+        }
+
+        public UserRepository(DataContext con) : base(con)
+        {
+            context = con;
         }
 
         public async Task<User> getUserByUsername(string username)
@@ -52,6 +58,12 @@ namespace LuckyNumbers.API.Data
                 .ToListAsync();
 
             return await users;
+        }
+
+        public int getLastId() {
+            var users = context.users.OrderByDescending(u => u.userId).Take(1);
+
+            return users.FirstOrDefault().userId;
         }
     }
 }

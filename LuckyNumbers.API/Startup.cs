@@ -1,3 +1,4 @@
+using System.Collections.Specialized;
 using System.Text;
 using AutoMapper;
 using LuckyNumbers.API.Data;
@@ -13,6 +14,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
+using Quartz;
+using Quartz.Impl;
 
 namespace LuckyNumbers.API
 {
@@ -34,6 +37,8 @@ namespace LuckyNumbers.API
             services.AddAutoMapper(typeof(Startup));
 
             services.AddTransient<Seed>();
+
+            services.AddSingleton(provider => GetScheduler());
 
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IGenericRepository, GenericRepository>();
@@ -88,6 +93,23 @@ namespace LuckyNumbers.API
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private IScheduler GetScheduler() {
+
+            var properties = new NameValueCollection
+            {
+                ["quartz.scheduler.instanceName"] = "QuartzWithCore",
+                ["quartz.threadPool.type"] = "Quartz.Simpl.SimpleThreadPool, Quartz",
+                ["quartz.threadPool.threadCount"] = "3",
+                ["quartz.jobStore.type"] = "Quartz.Simpl.RAMJobStore, Quartz",
+            };
+
+            ISchedulerFactory schedulerFactory = new StdSchedulerFactory(properties);
+            IScheduler scheduler = schedulerFactory.GetScheduler().Result;
+            scheduler.Start();
+
+            return scheduler;
         }
     }
 }

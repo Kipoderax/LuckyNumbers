@@ -54,6 +54,7 @@ namespace LuckyNumbers.API.Controllers
             userToCreate.saldo = 30;
 
             lottogame.maxBetsToSend = 10;
+            lottogame.resultCheck = 1;
             userExp.experience = 0;
             userExp.level = 1;
 

@@ -13,7 +13,7 @@ namespace LuckyNumbers.API.Entities
         public int betsSended { get; set; }
         public int maxBetsToSend { get; set; }
         public int profit { get; set; }
-        public int resultCheck { get; set; }
+        public int resultCheck { get; set; } //1 - checked, 0 - not checked
         public User user { get; set; }
         public int userId { get; set; }
     }
