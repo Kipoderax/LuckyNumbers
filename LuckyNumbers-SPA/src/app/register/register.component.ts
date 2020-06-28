@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
     this.authService.register(this.model).subscribe(() => {
       alertify.success('Konto zostało utworzone');
     }, error => {
-      alertify.error('Rejestracja nie powiodła się');
+      alertify.error(error);
     });
   }
 

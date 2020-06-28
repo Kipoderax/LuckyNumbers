@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/_service/user.service';
 import { LottoResult } from 'src/app/_model/lottoResult';
+declare let alertify: any;
 
 @Component({
   selector: 'app-lotto-result',
@@ -12,7 +13,7 @@ export class LottoResultComponent implements OnInit {
 
   lottoResult: LottoResult;
 
-  constructor(private router: ActivatedRoute, private userService: UserService) { }
+  constructor(private router: ActivatedRoute, private userService: UserService, private route: Router) { }
 
   ngOnInit() {
     this.getResult();
@@ -21,8 +22,6 @@ export class LottoResultComponent implements OnInit {
   getResult() {
     this.router.data.subscribe( data => {
       this.lottoResult = data.result;
-
-      console.log(this.lottoResult.failGoal);
     });
   }
 

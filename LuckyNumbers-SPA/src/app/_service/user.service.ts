@@ -5,6 +5,7 @@ import { User } from '../_model/user';
 import { HistoryGame } from '../_model/historyGame';
 import { UserSendedBets } from '../_model/userSendedBets';
 import { LottoResult } from '../_model/lottoResult';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -52,6 +53,7 @@ export class UserService {
   }
 
   getLottoResult(userId: number): Observable<LottoResult> {
+
     return this.http.get<LottoResult>(this.baseUrl + 'lotto/result/' + userId);
   }
 

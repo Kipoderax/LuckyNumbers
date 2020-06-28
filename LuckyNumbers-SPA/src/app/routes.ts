@@ -15,6 +15,7 @@ import { UserSendedBetsResolver } from './_resolvers/user-sended-bets.resolver';
 import { InputNumbersComponent } from './user-account/input-numbers/input-numbers.component';
 import { UserLottoResultResolver } from './_resolvers/user-lotto-result.resolver';
 import { LottoResultComponent } from './user-account/lotto-result/lotto-result.component';
+import { EmailComponent } from './email/email.component';
 
 export const appRoutes: Routes = [
     { path: 'home', component: MainPageComponent },
@@ -28,5 +29,6 @@ export const appRoutes: Routes = [
     { path: 'wyniki', component: LottoResultComponent, canActivate: [AuthGuard], resolve: {result: UserLottoResultResolver}},
     { path: 'wyszukiwarka', component: UserSearchComponent },
     { path: 'gracz/:username', component: UserDetailsComponent },
-    { path: '**', redirectTo: 'home', pathMatch: 'full' },
+    { path: 'reminder-pass', component: EmailComponent},
+    { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];

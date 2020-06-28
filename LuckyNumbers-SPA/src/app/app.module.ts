@@ -27,6 +27,8 @@ import { InputNumbersComponent } from './user-account/input-numbers/input-number
 import { ServerService } from './_service/server.service';
 import { LottoResultComponent } from './user-account/lotto-result/lotto-result.component';
 import { UserLottoResultResolver } from './_resolvers/user-lotto-result.resolver';
+import { ErrorInterceptorProvider } from './_service/error.interceptor';
+import { EmailComponent } from './email/email.component';
 
 @NgModule({
    declarations: [
@@ -43,7 +45,8 @@ import { UserLottoResultResolver } from './_resolvers/user-lotto-result.resolver
       HistoryComponent,
       NumbersComponent,
       InputNumbersComponent,
-      LottoResultComponent
+      LottoResultComponent,
+      EmailComponent
    ],
    imports: [
       BrowserModule,
@@ -57,6 +60,7 @@ import { UserLottoResultResolver } from './_resolvers/user-lotto-result.resolver
       UserService,
       ServerService,
       AuthGuard,
+      ErrorInterceptorProvider,
       UserLoginResolver,
       UserHistoryResolver,
       UserSendedBetsResolver,
